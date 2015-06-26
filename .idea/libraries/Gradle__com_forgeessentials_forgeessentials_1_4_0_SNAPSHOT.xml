@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.forgeessentials:forgeessentials:1.4.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.forgeessentials/forgeessentials/1.4.0-SNAPSHOT/9323605e59bb79e79a0aef7991c14b7275d2083a/forgeessentials-1.4.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.forgeessentials/forgeessentials/1.4.0-SNAPSHOT/2eca60a5e6c57c59279f859b58751a920a315824/forgeessentials-1.4.0-SNAPSHOT-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.forgeessentials/forgeessentials/1.4.0-SNAPSHOT/b708ce6e9bc2d4e9c78eab012771de43aeb3c6dd/forgeessentials-1.4.0-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

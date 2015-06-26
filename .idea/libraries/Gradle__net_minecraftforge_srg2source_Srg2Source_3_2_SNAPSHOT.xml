@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: net.minecraftforge.srg2source:Srg2Source:3.2-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.minecraftforge.srg2source/Srg2Source/3.2-SNAPSHOT/1b66b012733f12d052e18b0b71581acfdca53ee8/Srg2Source-3.2-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.minecraftforge.srg2source/Srg2Source/3.2-SNAPSHOT/4f0c44332bf4c185be1c673f95f4259a74fb8b51/Srg2Source-3.2-SNAPSHOT-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.minecraftforge.srg2source/Srg2Source/3.2-SNAPSHOT/32d836d3f8196348cef44699d6dbcfb8b459c9e8/Srg2Source-3.2-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
