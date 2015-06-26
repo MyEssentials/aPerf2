@@ -2,6 +2,7 @@ package aperf;
 
 import aperf.modules.loader.APModuleLoader;
 import aperf.proxy.sided.IProxy;
+import aperf.subsystem.FilterSubsystem;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
@@ -32,6 +33,9 @@ public class APerf {
         Constants.CONFIG_FOLDER = ev.getModConfigurationDirectory().getPath() + "/aPerf/";
         config = new Configuration(new File(Constants.CONFIG_FOLDER, "aPerf.cfg"));
         ConfigProcessor.load(config, Config.class);
+
+        // Initialize Subsystems
+        FilterSubsystem.load(ev.getAsmData());
 
         // Initialize Modules
         MODULELOADER = new APModuleLoader();
