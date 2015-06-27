@@ -65,4 +65,18 @@ public class MultiFilter implements IFilter {
         }
         return ret;
     }
+
+    public void addFilter(IFilter filter) {
+        filters.add(filter);
+    }
+
+    public void removeFilter(IFilter filter) {
+        if (!filters.remove(filter)) {
+            for (IFilter subF : filters) {
+                if (subF instanceof MultiFilter) {
+                    ((MultiFilter) subF).removeFilter(filter);
+                }
+            }
+        }
+    }
 }
