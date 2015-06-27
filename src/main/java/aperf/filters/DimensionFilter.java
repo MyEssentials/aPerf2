@@ -39,6 +39,8 @@ public class DimensionFilter implements IFilter {
                     dimList.add(e.getAsInt());
                 }
             }
+        } else {
+            throw new FilterException.FilterLoadException(this, "Invalid configuration! Should be an Array!");
         }
     }
 
@@ -49,7 +51,7 @@ public class DimensionFilter implements IFilter {
             try {
                 dimList.add(Integer.parseInt(dimStr));
             } catch(NumberFormatException e) {
-                throw new FilterException.FilterLoadException(e);
+                throw new FilterException.FilterLoadException(this, e);
             }
         }
     }

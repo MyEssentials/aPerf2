@@ -39,9 +39,9 @@ public class MultiFilter implements IFilter {
                 try {
                     filters.add(FilterRegistrar.INSTANCE.loadFilter(name, value));
                 } catch (FilterException.FilterCreationException e) {
-                    throw new FilterException.FilterLoadException("Sub-filter failed to create", e);
+                    throw new FilterException.FilterLoadException(this, "Sub-filter failed to create", e);
                 } catch (FilterException.FilterNotFoundException e) {
-                    throw new FilterException.FilterLoadException("Sub-filter failed to load", e);
+                    throw new FilterException.FilterLoadException(this, "Sub-filter failed to load", e);
                 }
             }
         }

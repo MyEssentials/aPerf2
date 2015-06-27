@@ -14,6 +14,8 @@ public abstract class StringFilter implements IFilter {
     public void load(JsonElement json) throws FilterException.FilterLoadException {
         if (json.isJsonPrimitive()) {
             value = json.getAsString();
+        } else {
+            throw new FilterException.FilterLoadException(this, "Invalid configuration! Should be a String!");
         }
     }
 

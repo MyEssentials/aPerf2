@@ -22,6 +22,8 @@ public class HashFilter implements IFilter {
     public void load(JsonElement json) throws FilterException.FilterLoadException {
         if (json.isJsonPrimitive()) {
             objHashCode = json.getAsInt();
+        } else {
+            throw new FilterException.FilterLoadException(this, "Invalid configuration! Should be an Integer!");
         }
     }
 
@@ -30,7 +32,7 @@ public class HashFilter implements IFilter {
         try {
             objHashCode = Integer.parseInt(str);
         } catch(NumberFormatException e) {
-            throw new FilterException.FilterLoadException(e);
+            throw new FilterException.FilterLoadException(this, e);
         }
     }
 

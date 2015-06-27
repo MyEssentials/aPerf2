@@ -34,13 +34,13 @@ public class FilterRegistrar {
 
     /**
      * Gets an IFilter class from the given name
-     * @param name Name of the IFilter to create
+     * @param name Name of the IFilter to get
      * @return The IFilter Class
      * @throws FilterException.FilterNotFoundException
      */
     public Class<IFilter> getFilterClass(String name) throws FilterException.FilterNotFoundException {
         if (!filters.containsKey(name)) {
-            throw new FilterException.FilterNotFoundException();
+            throw new FilterException.FilterNotFoundException(name);
         }
 
         return filters.get(name).getFilterClass();
@@ -59,7 +59,7 @@ public class FilterRegistrar {
         try {
             return filterClass.newInstance();
         } catch (Exception e) {
-            throw new FilterException.FilterCreationException(e);
+            throw new FilterException.FilterCreationException(name, e);
         }
     }
 

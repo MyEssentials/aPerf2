@@ -1,43 +1,68 @@
 package aperf.api.exceptions;
 
+import aperf.api.filter.Filter;
+import aperf.api.filter.IFilter;
+
 /**
  * Base {@link Exception} thrown by the filter subsystem
  */
 public class FilterException extends Exception {
-    public FilterException() {
+    protected String filterName;
+
+    public FilterException(IFilter filter) {
         super();
+        setFilterName(filter);
     }
 
-    public FilterException(String message) {
+    public FilterException(IFilter filter, String message) {
         super(message);
+        setFilterName(filter);
     }
 
-    public FilterException(String message, Throwable cause) {
+    public FilterException(IFilter filter, String message, Throwable cause) {
         super(message, cause);
+        setFilterName(filter);
     }
 
-    public FilterException(Throwable cause) {
+    public FilterException(IFilter filter, Throwable cause) {
         super(cause);
+        setFilterName(filter);
+    }
+
+    @Override
+    public String getMessage() {
+        return (filterName == null ? "" : "[" + filterName + "] ") + super.getMessage();
+    }
+
+    public String getFilterName() {
+        return filterName;
+    }
+
+    private void setFilterName(IFilter filter) {
+        if (filter == null) return;
+        Filter annot = filter.getClass().getAnnotation(Filter.class);
+        if (annot == null) return;
+        filterName = annot.name();
     }
 
     /**
      * Thrown when an {@link aperf.api.filter.IFilter} fails to load
      */
     public static class FilterLoadException extends FilterException {
-        public FilterLoadException() {
-            super();
+        public FilterLoadException(IFilter filter) {
+            super(filter);
         }
 
-        public FilterLoadException(String message) {
-            super(message);
+        public FilterLoadException(IFilter filter, String message) {
+            super(filter, message);
         }
 
-        public FilterLoadException(String message, Throwable cause) {
-            super(message, cause);
+        public FilterLoadException(IFilter filter, String message, Throwable cause) {
+            super(filter, message, cause);
         }
 
-        public FilterLoadException(Throwable cause) {
-            super(cause);
+        public FilterLoadException(IFilter filter, Throwable cause) {
+            super(filter, cause);
         }
     }
 
@@ -45,20 +70,20 @@ public class FilterException extends Exception {
      * Thrown when an {@link aperf.api.filter.IFilter} fails to Save
      */
     public static class FilterSaveException extends FilterException {
-        public FilterSaveException() {
-            super();
+        public FilterSaveException(IFilter filter) {
+            super(filter);
         }
 
-        public FilterSaveException(String message) {
-            super(message);
+        public FilterSaveException(IFilter filter, String message) {
+            super(filter, message);
         }
 
-        public FilterSaveException(String message, Throwable cause) {
-            super(message, cause);
+        public FilterSaveException(IFilter filter, String message, Throwable cause) {
+            super(filter, message, cause);
         }
 
-        public FilterSaveException(Throwable cause) {
-            super(cause);
+        public FilterSaveException(IFilter filter, Throwable cause) {
+            super(filter, cause);
         }
     }
 
@@ -66,20 +91,24 @@ public class FilterException extends Exception {
      * Thrown when an {@link aperf.api.filter.IFilter} can not be found
      */
     public static class FilterNotFoundException extends FilterException {
-        public FilterNotFoundException() {
-            super();
+        public FilterNotFoundException(String filterName) {
+            super(null);
+            this.filterName = filterName;
         }
 
-        public FilterNotFoundException(String message) {
-            super(message);
+        public FilterNotFoundException(String filterName, String message) {
+            super(null, message);
+            this.filterName = filterName;
         }
 
-        public FilterNotFoundException(String message, Throwable cause) {
-            super(message, cause);
+        public FilterNotFoundException(String filterName, String message, Throwable cause) {
+            super(null, message, cause);
+            this.filterName = filterName;
         }
 
-        public FilterNotFoundException(Throwable cause) {
-            super(cause);
+        public FilterNotFoundException(String filterName, Throwable cause) {
+            super(null, cause);
+            this.filterName = filterName;
         }
     }
 
@@ -87,20 +116,24 @@ public class FilterException extends Exception {
      * Thrown when an {@link aperf.api.filter.IFilter} can not be created
      */
     public static class FilterCreationException extends FilterException {
-        public FilterCreationException() {
-            super();
+        public FilterCreationException(String filterName) {
+            super(null);
+            this.filterName = filterName;
         }
 
-        public FilterCreationException(String message) {
-            super(message);
+        public FilterCreationException(String filterName, String message) {
+            super(null, message);
+            this.filterName = filterName;
         }
 
-        public FilterCreationException(String message, Throwable cause) {
-            super(message, cause);
+        public FilterCreationException(String filterName, String message, Throwable cause) {
+            super(null, message, cause);
+            this.filterName = filterName;
         }
 
-        public FilterCreationException(Throwable cause) {
-            super(cause);
+        public FilterCreationException(String filterName, Throwable cause) {
+            super(null, cause);
+            this.filterName = filterName;
         }
     }
 }

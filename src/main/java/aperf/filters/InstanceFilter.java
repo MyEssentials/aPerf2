@@ -23,7 +23,7 @@ public class InstanceFilter extends StringFilter {
         try {
             clazz = Class.forName(this.value); // TODO Get de-obfuscated Entity and TileEntity class name
         } catch (ClassNotFoundException e) {
-            throw new FilterException.FilterLoadException(e);
+            throw new FilterException.FilterLoadException(this, e);
         }
     }
 }

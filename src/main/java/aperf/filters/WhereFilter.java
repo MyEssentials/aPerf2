@@ -36,15 +36,23 @@ public class WhereFilter implements IFilter {
 
     @Override
     public void load(JsonElement json) throws FilterException.FilterLoadException {
-        if (json.isJsonObject()) {
-            JsonObject o = json.getAsJsonObject();
-            x1 = o.getAsJsonPrimitive("x1").getAsInt();
-            z1 = o.getAsJsonPrimitive("z1").getAsInt();
+        try {
+            if (json.isJsonObject()) {
+                JsonObject o = json.getAsJsonObject();
+                x1 = o.getAsJsonPrimitive("x1").getAsInt();
+                z1 = o.getAsJsonPrimitive("z1").getAsInt();
 
-            x2 = o.has("x2") ? o.getAsJsonPrimitive("x2").getAsInt() : x1;
-            z2 = o.has("z2") ? o.getAsJsonPrimitive("z2").getAsInt() : z1;
+                x2 = o.has("x2") ? o.getAsJsonPrimitive("x2").getAsInt() : x1;
+                z2 = o.has("z2") ? o.getAsJsonPrimitive("z2").getAsInt() : z1;
 
-            checkConfig();
+                checkConfig();
+            } else {
+                throw new FilterException.FilterLoadException(this, "Invalid configuration! Should be an Object!");
+            }
+        } catch(NullPointerException e) {
+            throw new FilterException.FilterLoadException(this, "Invalid configuration! Missing field!", e);
+        } catch(ClassCastException e) {
+            throw new FilterException.FilterLoadException(this, "Invalid configuration! Invalid field type!", e);
         }
     }
 
