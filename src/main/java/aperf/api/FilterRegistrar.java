@@ -79,6 +79,21 @@ public class FilterRegistrar {
     }
 
     /**
+     * Creates and loads an IFilter instance from the given name
+     * @param name Name of the IFilter to create
+     * @param config String config
+     * @return The newly created and loaded IFilter
+     * @throws FilterException.FilterCreationException
+     * @throws FilterException.FilterNotFoundException
+     * @throws FilterException.FilterLoadException
+     */
+    public IFilter loadFilter(String name, String config) throws FilterException.FilterCreationException, FilterException.FilterNotFoundException, FilterException.FilterLoadException {
+        IFilter filter = createFilter(name);
+        filter.load(config);
+        return filter;
+    }
+
+    /**
      * Gets the description of the {@link IFilter}
      * @param name
      * @return

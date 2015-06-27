@@ -21,4 +21,9 @@ public abstract class StringFilter implements IFilter {
     public JsonElement save() throws FilterException.FilterSaveException {
         return new JsonPrimitive(value);
     }
+
+    @Override
+    public void load(String str) throws FilterException.FilterLoadException {
+        this.value = str;
+    }
 }

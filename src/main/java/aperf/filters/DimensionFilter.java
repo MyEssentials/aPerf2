@@ -43,6 +43,18 @@ public class DimensionFilter implements IFilter {
     }
 
     @Override
+    public void load(String str) throws FilterException.FilterLoadException {
+        String[] dimStrs = str.split(",");
+        for (String dimStr : dimStrs) {
+            try {
+                dimList.add(Integer.parseInt(dimStr));
+            } catch(NumberFormatException e) {
+                throw new FilterException.FilterLoadException(e);
+            }
+        }
+    }
+
+    @Override
     public JsonElement save() throws FilterException.FilterSaveException {
         JsonArray ret = new JsonArray();
         for (Integer i : dimList) {

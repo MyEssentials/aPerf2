@@ -12,7 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 /**
  * Checks the entity position
  */
-@Filter(name = "Pos", desc = "Checks the entity position", valueDesc = "Chunk coords, <x>.<z>[/<x2>.<z2>]. Ex:-10.30")
+@Filter(name = "Pos", desc = "Checks the entity position", valueDesc = "Coords, <x>,<y>,<z>[/<x2>,<y2>,<z2>]. Ex:-500.0.-500/500.255.500")
 public class PosFilter implements IFilter {
     private int x1, y1, z1;
     private int x2, y2, z2;
@@ -43,24 +43,27 @@ public class PosFilter implements IFilter {
             y2 = o.has("y2") ? o.getAsJsonPrimitive("y2").getAsInt() : y1;
             z2 = o.has("z2") ? o.getAsJsonPrimitive("z2").getAsInt() : z1;
 
-            // x1, y1, z1 is ALWAYS less than x2, y2, z2
-            int temp;
-            if (x2 < x1) {
-                temp = x1;
-                x1 = x2;
-                x2 = temp;
-            }
-            if (y2 < y1) {
-                temp = y1;
-                y1 = y2;
-                y2 = temp;
-            }
-            if (z2 < z1) {
-                temp = z1;
-                z1 = z2;
-                z2 = temp;
-            }
+            checkConfig();
         }
+    }
+
+    @Override
+    public void load(String str) throws FilterException.FilterLoadException {
+        String[] parts = str.split("/");
+        String[] parts1 = parts[0].split(",");
+
+        x1 = Integer.parseInt(parts1[0]);
+        y1 = Integer.parseInt(parts1[1]);
+        z1 = Integer.parseInt(parts1[2]);
+
+        if (parts.length >= 2) {
+            String[] parts2 = parts[0].split(",");
+            x2 = parts2.length >= 1 ? Integer.parseInt(parts2[0]) : x1;
+            y2 = parts2.length >= 2 ? Integer.parseInt(parts2[1]) : y1;
+            z2 = parts2.length >= 3 ? Integer.parseInt(parts2[2]) : z1;
+        }
+
+        checkConfig();
     }
 
     @Override
@@ -75,6 +78,26 @@ public class PosFilter implements IFilter {
         if (y1 != y2) ret.add("y2", new JsonPrimitive(y2));
         if (z1 != z2) ret.add("z2", new JsonPrimitive(z2));
         return ret;
+    }
+
+    private void checkConfig() {
+        // x1, y1, z1 is ALWAYS less than x2, y2, z2
+        int temp;
+        if (x2 < x1) {
+            temp = x1;
+            x1 = x2;
+            x2 = temp;
+        }
+        if (y2 < y1) {
+            temp = y1;
+            y1 = y2;
+            y2 = temp;
+        }
+        if (z2 < z1) {
+            temp = z1;
+            z1 = z2;
+            z2 = temp;
+        }
     }
 
     private boolean withinPos(int x, int y, int z) {

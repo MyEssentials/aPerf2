@@ -23,6 +23,14 @@ public interface IFilter {
     void load(JsonElement json) throws FilterException.FilterLoadException;
 
     /**
+     * Loads the Filter from the given String.
+     * Useful for creating Filters from commands
+     * @param str String to load from
+     * @throws FilterException.FilterLoadException
+     */
+    void load(String str) throws FilterException.FilterLoadException;
+
+    /**
      * Save the filter as a JsonElement
      * @return The Filter as a JsonElement
      * @throws FilterException.FilterSaveException

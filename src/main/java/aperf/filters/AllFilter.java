@@ -23,6 +23,11 @@ public class AllFilter implements IFilter {
     }
 
     @Override
+    public void load(String str) throws FilterException.FilterLoadException {
+        // Not Supported/needed!
+    }
+
+    @Override
     public JsonElement save() throws FilterException.FilterSaveException {
         return null;
     }

@@ -26,6 +26,15 @@ public class HashFilter implements IFilter {
     }
 
     @Override
+    public void load(String str) throws FilterException.FilterLoadException {
+        try {
+            objHashCode = Integer.parseInt(str);
+        } catch(NumberFormatException e) {
+            throw new FilterException.FilterLoadException(e);
+        }
+    }
+
+    @Override
     public JsonElement save() throws FilterException.FilterSaveException {
         return new JsonPrimitive(objHashCode);
     }
