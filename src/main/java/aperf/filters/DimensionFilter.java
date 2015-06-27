@@ -33,6 +33,7 @@ public class DimensionFilter implements IFilter {
 
     @Override
     public void load(JsonElement json) throws FilterException.FilterLoadException {
+        if (json == null) throw new FilterException.FilterLoadException(this, "Json value can NOT be null!");
         if (json.isJsonArray()) {
             for (JsonElement e : json.getAsJsonArray()) {
                 if (e.isJsonPrimitive()) {
@@ -46,6 +47,7 @@ public class DimensionFilter implements IFilter {
 
     @Override
     public void load(String str) throws FilterException.FilterLoadException {
+        if (str == null) throw new FilterException.FilterLoadException(this, "String value can NOT be null!");
         String[] dimStrs = str.split(",");
         for (String dimStr : dimStrs) {
             try {

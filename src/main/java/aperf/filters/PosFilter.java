@@ -33,6 +33,7 @@ public class PosFilter implements IFilter {
 
     @Override
     public void load(JsonElement json) throws FilterException.FilterLoadException {
+        if (json == null) throw new FilterException.FilterLoadException(this, "Json value can NOT be null!");
         try {
             if (json.isJsonObject()) {
                 JsonObject o = json.getAsJsonObject();
@@ -57,6 +58,7 @@ public class PosFilter implements IFilter {
 
     @Override
     public void load(String str) throws FilterException.FilterLoadException {
+        if (str == null) throw new FilterException.FilterLoadException(this, "String value can NOT be null!");
         String[] parts = str.split("/");
         String[] parts1 = parts[0].split(",");
 
