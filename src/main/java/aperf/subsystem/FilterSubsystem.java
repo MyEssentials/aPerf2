@@ -51,6 +51,7 @@ public class FilterSubsystem {
             return;
         }
 
+        @SuppressWarnings("unchecked")
         Class<IFilter> filter = (Class<IFilter>) c;
 
         FilterRegistrar.INSTANCE.addFilter(filter, annot);
