@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 
-@Mod(modid = "aPerf", name = "aPerf", version = "2.0", dependencies = "required-after:Forge;required-after:MyEssentials-Core")
+@Mod(modid = "aPerf", name = "aPerf", version = "2.0", dependencies = "required-after:Forge;required-after:MyEssentials-Core", acceptableRemoteVersions = "*")
 public class APerf {
     @Mod.Instance
     public static APerf INSTANCE;

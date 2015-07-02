@@ -12,7 +12,13 @@ public class EntityModule {
     private SpawnLimiter spawnLimiter;
 
     @SubscribeEvent
-    public void serverStarted(ModuleEvent.ModuleServerPostInitEvent ev) {
-        spawnLimiter = new SpawnLimiter();
+    public void preInit(ModuleEvent.ModulePreInitEvent ev) {
+        Config.load();
+        spawnLimiter = new SpawnLimiter(ev);
+    }
+
+    @SubscribeEvent
+    public void serverStopped(ModuleEvent.ModuleServerStoppedEvent ev) {
+        Config.save();
     }
 }
