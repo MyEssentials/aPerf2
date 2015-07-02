@@ -38,7 +38,7 @@ public class JsonSpawnLimitMarshaler {
         ret.addProperty("type", annot.name());
         if (spawnLimit.getFilter() != null) {
             try {
-                ret.add("filter", spawnLimit.getFilter().save());
+                ret.add("filter", JsonFilterMarshaler.marshal(spawnLimit.getFilter()));
             } catch (FilterException.FilterSaveException e) {
                 e.printStackTrace();
             }
