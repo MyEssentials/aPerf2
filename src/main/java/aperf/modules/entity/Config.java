@@ -6,6 +6,7 @@ import aperf.api.spawnlimit.ISpawnLimit;
 import aperf.api.spawnlimit.JsonSpawnLimitMarshaler;
 import aperf.modules.entity.limiter.SpawnLimits;
 import com.google.gson.*;
+import com.google.gson.stream.JsonWriter;
 
 import java.io.*;
 
@@ -48,10 +49,12 @@ public class Config {
     private static void saveSpawnLimits() {
         File spawnLimitsConfig = new File(entityModFolder, "spawnLimits.json");
         try {
-            FileWriter writer = new FileWriter(spawnLimitsConfig);
+            FileWriter fileWriter = new FileWriter(spawnLimitsConfig);
+            JsonWriter jsonWriter = new JsonWriter(fileWriter);
+            jsonWriter.setIndent("  ");
             Gson gson = new Gson();
-            gson.toJson(makeSpawnLimitTree(), writer);
-            writer.close();
+            gson.toJson(makeSpawnLimitTree(), jsonWriter);
+            fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
