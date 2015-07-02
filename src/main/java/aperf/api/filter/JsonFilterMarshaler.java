@@ -2,14 +2,7 @@ package aperf.api.filter;
 
 import aperf.api.FilterRegistrar;
 import aperf.api.exceptions.FilterException;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import cpw.mods.fml.common.FMLCommonHandler;
-import org.json.simple.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Helper functions to marshal/un-marshal an IFilter

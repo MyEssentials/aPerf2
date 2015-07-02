@@ -1,6 +1,5 @@
 package aperf.api.spawnlimit;
 
-import aperf.APerf;
 import aperf.api.SpawnLimitRegistrar;
 import aperf.api.exceptions.FilterException;
 import aperf.api.filter.JsonFilterMarshaler;
@@ -10,11 +9,9 @@ import com.google.gson.JsonObject;
  */
 public class JsonSpawnLimitMarshaler {
     public static ISpawnLimit unmarshal(JsonObject jsonObject) {
-        APerf.LOG.info("Un-marshaling ISpawnLimit");
         if (jsonObject == null) return null; // TODO Throw exception?
         if (!jsonObject.has("type")) return null; // TODO Throw exception?
         String spawnLimitType = jsonObject.getAsJsonPrimitive("type").getAsString();
-        APerf.LOG.info("Un-marshaling", spawnLimitType);
         ISpawnLimit limit = SpawnLimitRegistrar.INSTANCE.loadSpawnLimit(spawnLimitType, jsonObject.get("value"));
         if (jsonObject.has("filter")) {
             try {
