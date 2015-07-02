@@ -1,0 +1,16 @@
+[
+{
+  "modid": "aPerf",
+  "name": "aPerf 2",
+  "description": "A performance mod.",
+  "version": "${mod_version}",
+  "mcversion": "${minecraft_version}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": [
+    "Alpha",
+    "Legobear154"
+  ],
+  "credits": "Alpha, Legobear154"
+}
+]
