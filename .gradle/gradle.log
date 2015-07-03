@@ -21,7 +21,7 @@
 Note: SpongePowered Mixin Annotation Processor v0.4.3
 Note: Hibernate JPA 2 Static-Metamodel Generator 4.3.7.Final
 
-:processResources UP-TO-DATE
+:processResources
 :classes
 :jar
 :compileTestJava UP-TO-DATE
@@ -51,4 +51,4 @@ Note: Hibernate JPA 2 Static-Metamodel Generator 4.3.7.Final
 
 BUILD SUCCESSFUL
 
-Total time: 20.922 secs
+Total time: 3 mins 14.664 secs
