@@ -16,9 +16,9 @@ import java.util.Set;
  * Loosely based on ForgeEssentials ModuleLauncher, but made more generic! :D
  */
 public abstract class ModuleLoader<ModuleAnnotation> {
-    private EventBus BUS;
-    private String annotationName;
-    private Map<String, ModuleContainer<ModuleAnnotation>> modules;
+    private final EventBus BUS;
+    private final String annotationName;
+    private final Map<String, ModuleContainer<ModuleAnnotation>> modules;
 
     public ModuleLoader(String annotationName) {
         BUS = new EventBus();

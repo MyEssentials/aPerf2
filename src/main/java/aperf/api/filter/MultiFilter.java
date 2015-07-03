@@ -52,7 +52,7 @@ public class MultiFilter implements IFilter {
     public JsonElement save() throws FilterException.FilterSaveException {
         JsonArray ret = new JsonArray();
         for (IFilter filter : filters) {
-            JsonObject subFilter = null;
+            JsonObject subFilter;
             try {
                 subFilter = JsonFilterMarshaler.marshal(filter);
             } catch (FilterException.FilterSaveException e) {

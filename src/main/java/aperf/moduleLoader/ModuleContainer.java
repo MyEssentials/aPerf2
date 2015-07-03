@@ -9,7 +9,7 @@ import cpw.mods.fml.common.discovery.ASMDataTable;
  * @param <ModuleAnnotation>
  */
 public class ModuleContainer<ModuleAnnotation> {
-    private ModuleLoader<ModuleAnnotation> moduleLoader;
+    private final ModuleLoader<ModuleAnnotation> moduleLoader;
     private Object module;
     private String name;
     private boolean enabled = false;
@@ -18,7 +18,7 @@ public class ModuleContainer<ModuleAnnotation> {
     public ModuleContainer(ModuleLoader<ModuleAnnotation> moduleLoader, ASMDataTable.ASMData data) {
         this.moduleLoader = moduleLoader;
 
-        Class<?> c = null;
+        Class<?> c;
         String className = data.getClassName();
 
         try {

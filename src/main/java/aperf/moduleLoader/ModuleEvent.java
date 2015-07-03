@@ -10,7 +10,7 @@ import cpw.mods.fml.common.eventhandler.Event;
  * @param <E> The FML Event to build off of
  */
 public class ModuleEvent<E extends FMLStateEvent> extends Event {
-    protected E event;
+    E event;
 
     public E getFMLEvent() {
         return event;

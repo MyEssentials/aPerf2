@@ -7,7 +7,7 @@ import aperf.api.filter.IFilter;
  * Base {@link Exception} thrown by the filter subsystem
  */
 public class FilterException extends Exception {
-    protected String filterName;
+    String filterName;
 
     public FilterException(IFilter filter) {
         super();
@@ -48,7 +48,7 @@ public class FilterException extends Exception {
     /**
      * Thrown when an {@link aperf.api.filter.IFilter} fails to load
      */
-    public static class FilterLoadException extends FilterException {
+    public final static class FilterLoadException extends FilterException {
         public FilterLoadException(IFilter filter) {
             super(filter);
         }
@@ -69,7 +69,7 @@ public class FilterException extends Exception {
     /**
      * Thrown when an {@link aperf.api.filter.IFilter} fails to Save
      */
-    public static class FilterSaveException extends FilterException {
+    public final static class FilterSaveException extends FilterException {
         public FilterSaveException(IFilter filter) {
             super(filter);
         }
@@ -90,7 +90,7 @@ public class FilterException extends Exception {
     /**
      * Thrown when an {@link aperf.api.filter.IFilter} can not be found
      */
-    public static class FilterNotFoundException extends FilterException {
+    public final static class FilterNotFoundException extends FilterException {
         public FilterNotFoundException(String filterName) {
             super(null);
             this.filterName = filterName;
@@ -115,7 +115,7 @@ public class FilterException extends Exception {
     /**
      * Thrown when an {@link aperf.api.filter.IFilter} can not be created
      */
-    public static class FilterCreationException extends FilterException {
+    public final static class FilterCreationException extends FilterException {
         public FilterCreationException(String filterName) {
             super(null);
             this.filterName = filterName;

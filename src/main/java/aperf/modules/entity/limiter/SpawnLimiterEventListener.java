@@ -1,6 +1,5 @@
 package aperf.modules.entity.limiter;
 
-import aperf.APerf;
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.EntityLivingBase;

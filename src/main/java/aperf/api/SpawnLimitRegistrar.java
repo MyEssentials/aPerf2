@@ -3,7 +3,6 @@ package aperf.api;
 import aperf.api.spawnlimit.ISpawnLimit;
 import aperf.api.spawnlimit.SpawnLimit;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +14,7 @@ import java.util.Map;
 public class SpawnLimitRegistrar {
     public static final SpawnLimitRegistrar INSTANCE = new SpawnLimitRegistrar();
 
-    private Map<String, SpawnLimitWrapper> limits;
+    private final Map<String, SpawnLimitWrapper> limits;
 
     private SpawnLimitRegistrar() {
         limits = new HashMap<String, SpawnLimitWrapper>();
@@ -110,8 +109,8 @@ public class SpawnLimitRegistrar {
      * Internal wrapper around an {@link ISpawnLimit} and its {@link SpawnLimit} annotation.
      */
     private class SpawnLimitWrapper {
-        Class<ISpawnLimit> limit;
-        private SpawnLimit annot;
+        final Class<ISpawnLimit> limit;
+        private final SpawnLimit annot;
 
         public SpawnLimitWrapper(Class<ISpawnLimit> limit, SpawnLimit annot) {
             this.limit = limit;

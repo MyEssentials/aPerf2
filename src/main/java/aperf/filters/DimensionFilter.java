@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Filter(name = "Dimension", desc = "Checks the dimension", valueDesc = "Integer list, <n>[,<n>[,<n>...]]")
 public class DimensionFilter implements IFilter {
-    private List<Integer> dimList = new ArrayList<Integer>();
+    private final List<Integer> dimList = new ArrayList<Integer>();
 
     @Override
     public boolean hits(Object o) {

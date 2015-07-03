@@ -15,11 +15,7 @@ import java.util.Map;
 public class FilterRegistrar {
     public static final FilterRegistrar INSTANCE = new FilterRegistrar();
 
-    private Map<String, FilterWrapper> filters;
-
-    private FilterRegistrar() {
-        filters = new HashMap<String, FilterWrapper>();
-    }
+    private final Map<String, FilterWrapper> filters = new HashMap<String, FilterWrapper>();
 
     /**
      * Registers a new IFilter.
@@ -127,8 +123,8 @@ public class FilterRegistrar {
      * Internal wrapper around an {@link IFilter} and its {@link Filter} annotation.
      */
     private class FilterWrapper {
-        private Class<IFilter> filter;
-        private Filter annot;
+        private final Class<IFilter> filter;
+        private final Filter annot;
 
         public FilterWrapper(Class<IFilter> filter, Filter annot) {
             this.filter = filter;

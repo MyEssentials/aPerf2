@@ -17,7 +17,7 @@ public class APerf {
     @Mod.Instance
     public static APerf INSTANCE;
     public static Logger LOG;
-    public static APModuleLoader MODULELOADER;
+    private static APModuleLoader MODULELOADER;
 
     private Configuration config;
 

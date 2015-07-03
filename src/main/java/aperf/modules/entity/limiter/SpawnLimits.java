@@ -10,7 +10,7 @@ import java.util.List;
 /**
  */
 public class SpawnLimits {
-    public static List<ISpawnLimit> Limits = new ArrayList<ISpawnLimit>();
+    public static final List<ISpawnLimit> Limits = new ArrayList<ISpawnLimit>();
 
     public static boolean findLimitAndCheck(EntityLivingBase entity, World world) {
         for (ISpawnLimit limit : Limits) {

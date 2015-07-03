@@ -8,7 +8,7 @@ import net.minecraftforge.common.MinecraftForge;
 /**
  */
 public class SpawnLimiter {
-    private SpawnLimiterEventListener events;
+    private final SpawnLimiterEventListener events;
 
     public SpawnLimiter(ModuleEvent.ModulePreInitEvent ev) {
         SpawnLimitLoader.load(ev.getFMLEvent().getAsmData());
