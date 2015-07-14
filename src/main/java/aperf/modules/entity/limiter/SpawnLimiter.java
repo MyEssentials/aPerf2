@@ -1,6 +1,6 @@
 package aperf.modules.entity.limiter;
 
-import aperf.moduleLoader.ModuleEvent;
+import aperf.api.moduleLoader.ModuleEvent;
 import aperf.modules.entity.Config;
 import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraftforge.common.MinecraftForge;

@@ -1,9 +1,9 @@
-package aperf.moduleLoader;
+package aperf.api.moduleLoader;
 
-import aperf.APerf;
 import cpw.mods.fml.common.discovery.ASMDataTable;
 import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.eventhandler.EventBus;
+import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,11 +19,13 @@ public abstract class ModuleLoader<ModuleAnnotation> {
     private final EventBus BUS;
     private final String annotationName;
     private final Map<String, ModuleContainer<ModuleAnnotation>> modules;
+    private final Logger logger;
 
-    public ModuleLoader(String annotationName) {
+    public ModuleLoader(String annotationName, Logger logger) {
         BUS = new EventBus();
         modules = new HashMap<String, ModuleContainer<ModuleAnnotation>>();
         this.annotationName = annotationName;
+        this.logger = logger;
     }
 
     public void preInit(FMLPreInitializationEvent ev) {
@@ -32,10 +34,10 @@ public abstract class ModuleLoader<ModuleAnnotation> {
         ModuleContainer<ModuleAnnotation> container;
         for (ASMDataTable.ASMData asm : data) {
             container = new ModuleContainer<ModuleAnnotation>(this, asm);
-            APerf.LOG.info("Found Module! " + container.getName());
+            logger.info("Found Module! " + container.getName());
 
             if (container.isEnabled() && !modules.containsKey(container.getName())) {
-                APerf.LOG.info("Registered Module! " + container.getName());
+                logger.info("Registered Module! " + container.getName());
                 registerWithBus(container);
                 modules.put(container.getName(), container);
             }

@@ -1,4 +1,4 @@
-package aperf.modules.loader;
+package aperf.subsystem.module;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -1,12 +1,12 @@
 package aperf;
 
-import aperf.modules.loader.APModuleLoader;
 import aperf.proxy.sided.IProxy;
 import aperf.subsystem.FilterSubsystem;
+import aperf.subsystem.module.ModuleSubsystem;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
-import mytown.core.config.ConfigProcessor;
+import mytown.core.new_config.ConfigProcessor;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.Logger;
 
@@ -17,7 +17,6 @@ public class APerf {
     @Mod.Instance
     public static APerf INSTANCE;
     public static Logger LOG;
-    private static APModuleLoader MODULELOADER;
 
     private Configuration config;
 
@@ -32,14 +31,11 @@ public class APerf {
         // Read Config
         Constants.CONFIG_FOLDER = ev.getModConfigurationDirectory().getPath() + "/aPerf/";
         config = new Configuration(new File(Constants.CONFIG_FOLDER, "aPerf.cfg"));
-        ConfigProcessor.load(config, Config.class);
+        ConfigProcessor.load(Config.class, config);
 
         // Initialize Subsystems
         FilterSubsystem.load(ev.getAsmData());
-
-        // Initialize Modules
-        MODULELOADER = new APModuleLoader();
-        MODULELOADER.preInit(ev);
+        ModuleSubsystem.Instance().preInit(ev);
 
         // Initialize Proxy
         proxy.preInit();
@@ -47,36 +43,36 @@ public class APerf {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent ev) {
-        MODULELOADER.init(ev);
+        ModuleSubsystem.Instance().init(ev);
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent ev) {
-        MODULELOADER.postInit(ev);
+        ModuleSubsystem.Instance().postInit(ev);
     }
 
     @Mod.EventHandler
     public void serverAboutToStart(FMLServerAboutToStartEvent ev) {
-        MODULELOADER.serverAboutToStart(ev);
+        ModuleSubsystem.Instance().serverAboutToStart(ev);
     }
 
     @Mod.EventHandler
     public void serverStarting(FMLServerStartingEvent ev) {
-        MODULELOADER.serverStarting(ev);
+        ModuleSubsystem.Instance().serverStarting(ev);
     }
 
     @Mod.EventHandler
     public void serverStarted(FMLServerStartedEvent ev) {
-        MODULELOADER.serverStarted(ev);
+        ModuleSubsystem.Instance().serverStarted(ev);
     }
 
     @Mod.EventHandler
     public void serverStopping(FMLServerStoppingEvent ev) {
-        MODULELOADER.serverStopping(ev);
+        ModuleSubsystem.Instance().serverStopping(ev);
     }
 
     @Mod.EventHandler
     public void serverStopped(FMLServerStoppedEvent ev) {
-        MODULELOADER.serverStopped(ev);
+        ModuleSubsystem.Instance().serverStopped(ev);
     }
 }

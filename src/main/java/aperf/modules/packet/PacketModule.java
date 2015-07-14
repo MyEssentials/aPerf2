@@ -1,6 +1,6 @@
 package aperf.modules.packet;
 
-import aperf.modules.loader.APModule;
+import aperf.subsystem.module.APModule;
 
 /**
  */

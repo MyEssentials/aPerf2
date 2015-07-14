@@ -1,4 +1,4 @@
-package aperf.moduleLoader;
+package aperf.api.moduleLoader;
 
 import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.eventhandler.Event;

@@ -1,7 +1,7 @@
 package aperf.modules.entity;
 
-import aperf.modules.loader.APModule;
-import aperf.moduleLoader.ModuleEvent;
+import aperf.subsystem.module.APModule;
+import aperf.api.moduleLoader.ModuleEvent;
 import aperf.modules.entity.limiter.SpawnLimiter;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
