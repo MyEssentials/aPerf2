@@ -24,7 +24,10 @@ public class FilterRegistrar {
      * @param annot
      */
     public void addFilter(Class<IFilter> filterClass, Filter annot) {
-        String name = annot.name();
+        String name = annot.name().toLowerCase();
+        if (filters.containsKey(name)) {
+            return; // TODO Throw exception?
+        }
         filters.put(name, new FilterWrapper(filterClass, annot));
     }
 
@@ -35,6 +38,8 @@ public class FilterRegistrar {
      * @throws FilterException.FilterNotFoundException
      */
     public Class<IFilter> getFilterClass(String name) throws FilterException.FilterNotFoundException {
+        name = name.toLowerCase();
+
         if (!filters.containsKey(name)) {
             throw new FilterException.FilterNotFoundException(name);
         }
