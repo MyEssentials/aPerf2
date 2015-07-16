@@ -1,5 +1,6 @@
 package aperf.api.filter;
 
+import aperf.api.FilterRegistrar;
 import aperf.api.exceptions.FilterException;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -45,7 +46,18 @@ public class MultiFilter implements IFilter {
 
     @Override
     public void load(String str) throws FilterException.FilterLoadException {
-        // Not Supported!
+        String[] filterParts = str.split(",");
+        for (String filter : filterParts) {
+            String filterName = filter.substring(0, filter.indexOf(':'));
+            String filterConfig = filter.substring(filter.indexOf(':') + 1);
+            try {
+                filters.add(FilterRegistrar.INSTANCE.loadFilter(filterName, filterConfig));
+            } catch (FilterException.FilterCreationException e) {
+                throw new FilterException.FilterLoadException(this, "Sub-filter failed to create", e);
+            } catch (FilterException.FilterNotFoundException e) {
+                throw new FilterException.FilterLoadException(this, "Sub-filter failed to load", e);
+            }
+        }
     }
 
     @Override
