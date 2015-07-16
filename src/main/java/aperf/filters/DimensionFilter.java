@@ -32,6 +32,18 @@ public class DimensionFilter implements IFilter {
     }
 
     @Override
+    public String group(Object o) {
+        if (o instanceof Entity) {
+            return String.valueOf(((Entity) o).worldObj.provider.dimensionId);
+        }
+        if (o instanceof TileEntity) {
+            return String.valueOf(((TileEntity) o).getWorldObj().provider.dimensionId);
+        }
+
+        return null;
+    }
+
+    @Override
     public void load(JsonElement json) throws FilterException.FilterLoadException {
         if (json == null) throw new FilterException.FilterLoadException(this, "Json value can NOT be null!");
         if (json.isJsonArray()) {

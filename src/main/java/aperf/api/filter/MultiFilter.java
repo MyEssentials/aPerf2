@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Makes multiple filters act as one. All or nothing.
  */
-@Filter(name = "Multi", desc = "Makes multiple filters act as one. All or nothing.", valueDesc = "Array of more filters")
+@Filter(name = "Multi", desc = "Makes multiple filters act as one. All or nothing.", valueDesc = "Array of more filters", isGrouper = false)
 public class MultiFilter implements IFilter {
     private List<IFilter> filters;
 
@@ -24,6 +24,11 @@ public class MultiFilter implements IFilter {
         }
 
         return true;
+    }
+
+    @Override
+    public String group(Object o) {
+        return null; // This does NOT support grouping!
     }
 
     @Override

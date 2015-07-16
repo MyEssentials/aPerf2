@@ -13,4 +13,9 @@ public class ClassFilter extends StringFilter {
         // TODO Get de-obfuscated Entity and TileEntity class name
         return this.value.equals(o.getClass().getName());
     }
+
+    @Override
+    public String group(Object o) {
+        return o.getClass().getName();
+    }
 }

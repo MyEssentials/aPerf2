@@ -23,4 +23,16 @@ public class NameFilter extends StringFilter {
 
         return false;
     }
+
+    @Override
+    public String group(Object o) {
+        if (o instanceof Entity) {
+            return EntityHelper.getEntityName((Entity) o);
+        }
+        if (o instanceof TileEntity) {
+            return TileEntityHelper.getEntityName((TileEntity) o);
+        }
+
+        return null;
+    }
 }

@@ -13,4 +13,9 @@ public class LClassFilter extends StringFilter {
         // TODO Get de-obfuscated Entity and TileEntity simple class name
         return this.value.equals(o.getClass().getSimpleName());
     }
+
+    @Override
+    public String group(Object o) {
+        return o.getClass().getSimpleName();
+    }
 }

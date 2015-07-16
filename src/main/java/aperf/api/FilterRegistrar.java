@@ -95,6 +95,29 @@ public class FilterRegistrar {
     }
 
     /**
+     * Creates an IFilter that is to be used to group objects together ONLY!
+     * @param name The name of the IFilter to create
+     * @return The newly created IFilter
+     * @throws FilterException.FilterNotFoundException
+     * @throws FilterException.FilterCreationException
+     */
+    public IFilter createGrouper(String name) throws FilterException.FilterNotFoundException, FilterException.FilterCreationException {
+        name = name.toLowerCase();
+        if (!filters.containsKey(name)) {
+            throw new FilterException.FilterNotFoundException(name);
+        }
+        FilterWrapper wrapper = filters.get(name);
+        if (wrapper.isGrouper()) {
+            try {
+                return wrapper.createFilter();
+            } catch (Exception e) {
+                throw new FilterException.FilterCreationException(name, e);
+            }
+        }
+        return null;
+    }
+
+    /**
      * Gets the description of the {@link IFilter}
      * @param name
      * @return
@@ -158,6 +181,14 @@ public class FilterRegistrar {
          */
         public String getValueDesc() {
             return annot.valueDesc();
+        }
+
+        /**
+         * Returns if the {@link IFilter} is a grouper
+         * @return
+         */
+        public boolean isGrouper() {
+            return annot.isGrouper();
         }
 
         /**

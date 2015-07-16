@@ -20,13 +20,19 @@ public @interface Filter {
 
     /**
      * The description of the Filter
-     * @return
+     * @return The description
      */
     String desc();
 
     /**
      * The description of the value type used. (eg. String, Integer, Boolean)
-     * @return
+     * @return The value description
      */
     String valueDesc();
+
+    /**
+     * If this Filter is also a way to group Objects
+     * @return Groups Objects?
+     */
+    boolean isGrouper() default true;
 }

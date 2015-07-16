@@ -35,6 +35,24 @@ public class WhereFilter implements IFilter {
     }
 
     @Override
+    public String group(Object o) {
+        if (o instanceof Entity) {
+            Entity e = (Entity) o;
+            int cx = ((int) e.posX) >> 4;
+            int cz = ((int) e.posZ) >> 4;
+            return String.format("%d:%d [%d:%d]", cx, cz, (cx << 4) + 8, (cz << 4) + 8);
+        }
+        if (o instanceof TileEntity) {
+            TileEntity te = (TileEntity) o;
+            int cx = te.xCoord >> 4;
+            int cz = te.zCoord >> 4;
+            // Whats with the extra bitshifts and adding 8?!? (Copied from old aperf)
+            return String.format("%d:%d [%d:%d]", cx, cz, (cx << 4) + 8, (cz << 4) + 8);
+        }
+        return null;
+    }
+
+    @Override
     public void load(JsonElement json) throws FilterException.FilterLoadException {
         if (json == null) throw new FilterException.FilterLoadException(this, "Json value can NOT be null!");
         try {

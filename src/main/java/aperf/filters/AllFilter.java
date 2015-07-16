@@ -8,7 +8,7 @@ import com.google.gson.JsonElement;
 /**
  * Hits anything and everything
  */
-@Filter(name = "All", desc = "Hits everything", valueDesc = "No Value")
+@Filter(name = "All", desc = "Hits everything", valueDesc = "No Value", isGrouper = false)
 public class AllFilter implements IFilter {
     public AllFilter() {
     }
@@ -16,6 +16,11 @@ public class AllFilter implements IFilter {
     @Override
     public boolean hits(Object o) {
         return true;
+    }
+
+    @Override
+    public String group(Object o) {
+        return null; // This does NOT support grouping!
     }
 
     @Override

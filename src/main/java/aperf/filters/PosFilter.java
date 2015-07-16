@@ -3,6 +3,8 @@ package aperf.filters;
 import aperf.api.exceptions.FilterException;
 import aperf.api.filter.Filter;
 import aperf.api.filter.IFilter;
+import aperf.api.util.EntityHelper;
+import aperf.api.util.TileEntityHelper;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
@@ -29,6 +31,20 @@ public class PosFilter implements IFilter {
         }
 
         return false;
+    }
+
+    @Override
+    public String group(Object o) {
+        if (o instanceof Entity) {
+            Entity e = (Entity) o;
+            return String.format("%s/%s @ %d,%d,%d", EntityHelper.getEntityName(e), Integer.toHexString(System.identityHashCode(e)), (int) e.posX, (int) e.posY, (int) e.posZ);
+        }
+        if (o instanceof TileEntity) {
+            TileEntity te = (TileEntity) o;
+            return String.format("%s/%s @ %d,%d,%d", TileEntityHelper.getEntityName(te), Integer.toHexString(System.identityHashCode(te)), (int) te.xCoord, (int) te.yCoord, (int) te.zCoord);
+        }
+
+        return null;
     }
 
     @Override

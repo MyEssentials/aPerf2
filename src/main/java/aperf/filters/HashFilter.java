@@ -19,6 +19,11 @@ public class HashFilter implements IFilter {
     }
 
     @Override
+    public String group(Object o) {
+        return String.valueOf(System.identityHashCode(o));
+    }
+
+    @Override
     public void load(JsonElement json) throws FilterException.FilterLoadException {
         if (json == null) throw new FilterException.FilterLoadException(this, "Json value can NOT be null!");
         if (json.isJsonPrimitive()) {

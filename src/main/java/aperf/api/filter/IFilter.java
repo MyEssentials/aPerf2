@@ -16,6 +16,13 @@ public interface IFilter {
     boolean hits(Object o);
 
     /**
+     * Returns what group o is part of.
+     * @param o The object to check
+     * @return The group the object is part of
+     */
+    String group(Object o);
+
+    /**
      * Loads the Filter from the given JsonElement
      * @param json Json to load from
      * @throws FilterException.FilterLoadException

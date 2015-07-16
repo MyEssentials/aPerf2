@@ -8,13 +8,18 @@ import com.google.gson.JsonElement;
 /**
  * Checks if its a class/superclass of the given
  */
-@Filter(name = "Instance", desc = "Checks if its a class/superclass", valueDesc = "Full class name. Ex: net.minecraft.entity.item.EntityItem")
+@Filter(name = "Instance", desc = "Checks if its a class/superclass", valueDesc = "Full class name. Ex: net.minecraft.entity.item.EntityItem", isGrouper = false)
 public class InstanceFilter extends StringFilter {
     private Class<?> clazz;
 
     @Override
     public boolean hits(Object o) {
         return o != null && clazz.isAssignableFrom(o.getClass());
+    }
+
+    @Override
+    public String group(Object o) {
+        return null;
     }
 
     @Override
