@@ -1,6 +1,6 @@
 package aperf.cmds;
 
-import mytown.core.command.Command;
+import myessentials.command.Command;
 import net.minecraft.command.ICommandSender;
 
 import java.util.List;

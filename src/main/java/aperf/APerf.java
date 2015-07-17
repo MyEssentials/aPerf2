@@ -9,8 +9,8 @@ import aperf.subsystem.module.ModuleSubsystem;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
-import mytown.core.command.CommandManager;
-import mytown.core.new_config.ConfigProcessor;
+import myessentials.command.CommandManager;
+import myessentials.new_config.ConfigProcessor;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.Logger;
 

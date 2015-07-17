@@ -4,7 +4,7 @@ import aperf.api.filter.IFilter;
 import aperf.api.grouper.Grouper;
 import aperf.cmds.Commands;
 import aperf.exceptions.APerfWrongUsageException;
-import mytown.core.command.CommandNode;
+import myessentials.command.CommandNode;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

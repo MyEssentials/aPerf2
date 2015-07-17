@@ -5,7 +5,7 @@ import aperf.api.exceptions.FilterException;
 import aperf.api.filter.IFilter;
 import aperf.exceptions.APerfCommandException;
 import aperf.subsystem.module.ModuleSubsystem;
-import mytown.core.command.CommandManager;
+import myessentials.command.CommandManager;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
 

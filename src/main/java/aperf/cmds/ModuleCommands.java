@@ -2,8 +2,8 @@ package aperf.cmds;
 
 import aperf.api.moduleLoader.ModuleContainer;
 import aperf.subsystem.module.ModuleSubsystem;
-import mytown.core.command.CommandNode;
-import mytown.core.utils.ChatUtils;
+import myessentials.command.CommandNode;
+import myessentials.utils.ChatUtils;
 import net.minecraft.command.ICommandSender;
 import org.apache.commons.lang3.StringUtils;
 

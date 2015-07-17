@@ -5,7 +5,7 @@ import aperf.subsystem.module.APModule;
 import aperf.api.moduleLoader.ModuleEvent;
 import aperf.modules.entity.limiter.SpawnLimiter;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import mytown.core.command.CommandManager;
+import myessentials.command.CommandManager;
 
 /**
  */
