@@ -114,7 +114,8 @@ public class FilterRegistrar {
                 throw new FilterException.FilterCreationException(name, e);
             }
         }
-        return null;
+        // Since a group was not actually found...
+        throw new FilterException.FilterNotFoundException(name);
     }
 
     /**
