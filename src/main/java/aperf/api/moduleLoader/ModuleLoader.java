@@ -28,6 +28,14 @@ public abstract class ModuleLoader<ModuleAnnotation> {
         this.logger = logger;
     }
 
+    public Set<String> getModuleNames() {
+        return modules.keySet();
+    }
+
+    public ModuleContainer<ModuleAnnotation> getModuleFromName(String modName) {
+        return modules.get(modName);
+    }
+
     public void preInit(FMLPreInitializationEvent ev) {
         Set<ASMDataTable.ASMData> data = ev.getAsmData().getAll(annotationName);
 
