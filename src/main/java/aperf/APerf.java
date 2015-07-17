@@ -1,18 +1,22 @@
 package aperf;
 
+import aperf.cmds.APerfCommand;
+import aperf.cmds.Commands;
+import aperf.cmds.ModuleCommands;
 import aperf.proxy.sided.IProxy;
 import aperf.subsystem.FilterSubsystem;
 import aperf.subsystem.module.ModuleSubsystem;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
+import mytown.core.command.CommandManager;
 import mytown.core.new_config.ConfigProcessor;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 
-@Mod(modid = "aPerf", name = "aPerf", version = "2.0", dependencies = "required-after:Forge;required-after:MyEssentials-Core", acceptableRemoteVersions = "*")
+@Mod(modid = "aPerf2", name = "aPerf2", version = "2.0", dependencies = "required-after:Forge;required-after:MyEssentials-Core", acceptableRemoteVersions = "*")
 public class APerf {
     @Mod.Instance
     public static APerf INSTANCE;
@@ -58,6 +62,8 @@ public class APerf {
 
     @Mod.EventHandler
     public void serverStarting(FMLServerStartingEvent ev) {
+        registerCommands();
+
         ModuleSubsystem.Instance().serverStarting(ev);
     }
 
@@ -74,5 +80,12 @@ public class APerf {
     @Mod.EventHandler
     public void serverStopped(FMLServerStoppedEvent ev) {
         ModuleSubsystem.Instance().serverStopped(ev);
+    }
+
+    private void registerCommands() {
+        CommandManager.registerCommands(APerfCommand.class);
+        CommandManager.registerCommands(ModuleCommands.class);
+
+        Commands.populateCompletionMap();
     }
 }
