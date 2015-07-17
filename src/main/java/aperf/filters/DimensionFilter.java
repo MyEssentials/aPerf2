@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Checks the dimension
  */
-@Filter(name = "Dimension", desc = "Checks the dimension", valueDesc = "Integer list, <n>[,<n>[,<n>...]]")
+@Filter(name = "Dim", desc = "Checks the dimension", valueDesc = "Integer list, <n>[,<n>[,<n>...]]")
 public class DimensionFilter implements IFilter {
     private final List<Integer> dimList = new ArrayList<Integer>();
 
