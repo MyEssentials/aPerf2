@@ -55,6 +55,14 @@ public class ModuleContainer<ModuleAnnotation> {
         return enabled;
     }
 
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public void toggle() {
+        setEnabled(!enabled);
+    }
+
     public ModuleAnnotation getAnnotation() {
         return annotation;
     }
