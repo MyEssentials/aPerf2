@@ -14,7 +14,7 @@ import java.util.List;
  */
 @Filter(name = "Multi", desc = "Makes multiple filters act as one. All or nothing.", valueDesc = "Array of more filters", isGrouper = false)
 public class MultiFilter implements IFilter {
-    private List<IFilter> filters;
+    private List<IFilter> filters = new ArrayList<IFilter>();
 
     @Override
     public boolean hits(Object o) {
@@ -34,7 +34,6 @@ public class MultiFilter implements IFilter {
     @Override
     public void load(JsonElement json) throws FilterException.FilterLoadException {
         if (json.isJsonArray()) {
-            filters = new ArrayList<IFilter>();
             JsonArray jsonArray = json.getAsJsonArray();
             for (JsonElement element : jsonArray) {
                 if (!element.isJsonObject()) continue;
@@ -51,7 +50,7 @@ public class MultiFilter implements IFilter {
 
     @Override
     public void load(String str) throws FilterException.FilterLoadException {
-        String[] filterParts = str.split(",");
+        String[] filterParts = str.split(";");
         for (String filter : filterParts) {
             String filterName = filter.substring(0, filter.indexOf(':'));
             String filterConfig = filter.substring(filter.indexOf(':') + 1);
