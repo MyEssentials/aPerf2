@@ -19,7 +19,7 @@ public class EntityCommands extends Commands {
             name = "entity",
             permission = "aperf.cmd.module.entity",
             parentName = "aperf.cmd",
-            alias = "e")
+            alias = {"e"})
     public static void entityCommand(ICommandSender sender, List<String> args) {
         callSubFunctions(sender, args, "aperf.cmd.module.entity");
     }
@@ -28,14 +28,14 @@ public class EntityCommands extends Commands {
             name = "list",
             permission = "aperf.cmd.module.entity.list",
             parentName = "aperf.cmd.module.entity",
-            alias = "l")
+            alias = {"l"})
     public static void listEntitiesCommand(ICommandSender sender, List<String> args) {
         // args: [group] [filter] [limit]
 
         // Get Group
         String groupName;
         IFilter grouperFilter = null;
-        if (args.size() >= 1 || args.get(0) == null) {
+        if (args.size() >= 1 && args.get(0) != null) {
             groupName = args.get(0);
             grouperFilter = loadGroup(groupName);
         }
@@ -43,7 +43,7 @@ public class EntityCommands extends Commands {
         // Get Filter
         String filterArg;
         IFilter filter = null;
-        if (args.size() >= 2 || args.get(1) == null) {
+        if (args.size() >= 2 && args.get(1) != null) {
             filterArg = args.get(1);
             filter = loadFilter("Multi", filterArg);
         }
@@ -51,7 +51,7 @@ public class EntityCommands extends Commands {
         // Get Limit
         int limitStart = 0;
         int limitCount = 0;
-        if (args.size() >= 3 || args.get(2) == null) {
+        if (args.size() >= 3 && args.get(2) != null) {
             String limitArg = args.get(2);
             String[] limitArgParts = limitArg.split("-");
             limitStart = Integer.parseInt(limitArgParts[0]);
@@ -63,6 +63,7 @@ public class EntityCommands extends Commands {
 
         Grouper<Entity> grouper = new Grouper<Entity>(filter, grouperFilter);
 
+        sendMessageBackToSender(sender, String.format("%s----------------------------------", EnumChatFormatting.GRAY));
         for (WorldServer world : MinecraftServer.getServer().worldServers) {
             List<?> list = world.loadedEntityList;
             if (list.size() <= 0) continue;
@@ -72,16 +73,19 @@ public class EntityCommands extends Commands {
                 total += e.getValue();
             }
 
-            sendMessageBackToSender(sender, String.format("%s%s [%d], %s %s", EnumChatFormatting.GREEN, world.provider.getDimensionName(), world.provider.dimensionId, total, total == 1 ? "entity" : "entities"));
-            sendCountedList(sender, "   ", groups, limitStart, limitCount);
+            if (total > 0) {
+                sendMessageBackToSender(sender, String.format("%s%s [%d], %s %s", EnumChatFormatting.GREEN, world.provider.getDimensionName(), world.provider.dimensionId, total, total == 1 ? "entity" : "entities"));
+                sendCountedList(sender, "   ", groups, limitStart, limitCount);
+            }
         }
+        sendMessageBackToSender(sender, String.format("%s----------------------------------", EnumChatFormatting.GRAY));
     }
 
     @CommandNode(
             name = "listaround",
             permission = "aperf.cmd.module.entity.listaround",
             parentName = "aperf.cmd.module.entity",
-            alias = "la")
+            alias = {"la"})
     public static void listAroundCommand(ICommandSender sender, List<String> args) {
         // args: <radius> [group] [filter] [limit]
         if (args.size() < 1) throw new APerfWrongUsageException("/aperf entity listaround <radius> [group] [filter] [limit]");
@@ -102,7 +106,7 @@ public class EntityCommands extends Commands {
             name = "listnearhere",
             permission = "aperf.cmd.module.entity.listnearhere",
             parentName = "aperf.cmd.module.entity",
-            alias = "lnh")
+            alias = {"lnh"})
     public static void listNearHereCommand(ICommandSender sender, List<String> args) {
         // args: <radius> [group] [filter] [limit]
         if (args.size() < 1) throw new APerfWrongUsageException("/aperf entity listnearhere <radius> [group] [filter] [limit]");
@@ -123,7 +127,7 @@ public class EntityCommands extends Commands {
             name = "listhere",
             permission = "aperf.cmd.module.entity.listhere",
             parentName = "aperf.cmd.module.entity",
-            alias = "lh")
+            alias = {"lh"})
     public static void listHereCommand(ICommandSender sender, List<String> args) {
         // args: [group] [filter] [limit]
         List<String> newArgs = new ArrayList<String>();
@@ -137,7 +141,7 @@ public class EntityCommands extends Commands {
     protected static void sendCountedList(ICommandSender sender, String prefix, List<Map.Entry<String, Integer>> counts, Integer from, Integer count) {
         if (counts == null) return;
         if (from == null || from < 0 || from >= counts.size()) from = 0;
-        if (count == null || from+count >= counts.size()) count = counts.size()-from;
+        if (count == null || count.equals(from) || from+count >= counts.size()) count = counts.size()-from;
         List<Map.Entry<String, Integer>> subList = counts.subList(from, from+count);
         String maxCntLen = null;
         for (Map.Entry<String, Integer> entry : subList) {

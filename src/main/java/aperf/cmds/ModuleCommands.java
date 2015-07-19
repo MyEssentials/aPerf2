@@ -15,7 +15,7 @@ public class ModuleCommands extends Commands {
             name = "module",
             permission = "aperf.cmd.module",
             parentName = "aperf.cmd",
-            alias = "m",
+            alias = {"m"},
             completionKeys = {"aperfModuleCompletion"})
     public static void moduleCommand(ICommandSender sender, List<String> args) {
         if (args == null || args.size() <= 0) {
@@ -30,7 +30,7 @@ public class ModuleCommands extends Commands {
             name = "list",
             permission = "aperf.cmd.module.list",
             parentName = "aperf.cmd.module",
-            alias = "l")
+            alias = {"l"})
     public static void listModulesCommand(ICommandSender sender, List<String> args) {
         Set<String> moduleNames = ModuleSubsystem.Instance().getModuleNames();
         sendMessageBackToSender(sender, StringUtils.join(moduleNames, ", "));
@@ -39,7 +39,8 @@ public class ModuleCommands extends Commands {
     @CommandNode(
             name = "toggle",
             permission = "aperf.cmd.module.toggle",
-            parentName = "aperf.cmd.module")
+            parentName = "aperf.cmd.module",
+            completionKeys = {"aperfModuleCompletion"})
     public static void toggleModuleCommand(ICommandSender sender, List<String> args) {
         if (args == null || args.size() <= 0) {
             return;
