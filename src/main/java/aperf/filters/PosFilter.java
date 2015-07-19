@@ -41,7 +41,7 @@ public class PosFilter implements IFilter {
         }
         if (o instanceof TileEntity) {
             TileEntity te = (TileEntity) o;
-            return String.format("%s/%s @ %d,%d,%d", TileEntityHelper.getEntityName(te), Integer.toHexString(System.identityHashCode(te)), (int) te.xCoord, (int) te.yCoord, (int) te.zCoord);
+            return String.format("%s/%s @ %d,%d,%d", TileEntityHelper.getEntityName(te), Integer.toHexString(System.identityHashCode(te)), te.xCoord, te.yCoord, te.zCoord);
         }
 
         return null;
@@ -87,6 +87,10 @@ public class PosFilter implements IFilter {
             x2 = parts2.length >= 1 ? Integer.parseInt(parts2[0]) : x1;
             y2 = parts2.length >= 2 ? Integer.parseInt(parts2[1]) : y1;
             z2 = parts2.length >= 3 ? Integer.parseInt(parts2[2]) : z1;
+        } else {
+            x2 = x1;
+            y2 = y1;
+            z2 = z1;
         }
 
         checkConfig();

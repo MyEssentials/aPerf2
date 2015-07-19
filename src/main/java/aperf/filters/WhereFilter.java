@@ -88,6 +88,9 @@ public class WhereFilter implements IFilter {
             String[] parts2 = parts[0].split(",");
             x2 = parts2.length >= 1 ? Integer.parseInt(parts2[0]) : x1;
             z2 = parts2.length >= 2 ? Integer.parseInt(parts2[1]) : z1;
+        } else {
+            x2 = x1;
+            z2 = z1;
         }
 
         checkConfig();
