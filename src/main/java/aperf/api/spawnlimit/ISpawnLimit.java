@@ -61,6 +61,7 @@ public abstract class ISpawnLimit {
             IFilter temp = filter;
             filter = new MultiFilter();
             ((MultiFilter) filter).addFilter(temp);
+            ((MultiFilter) filter).addFilter(f);
         }
     }
 
