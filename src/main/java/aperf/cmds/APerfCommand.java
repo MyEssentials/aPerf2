@@ -1,6 +1,7 @@
 package aperf.cmds;
 
 import myessentials.command.Command;
+import myessentials.command.CommandManager;
 import myessentials.command.CommandNode;
 import net.minecraft.command.ICommandSender;
 
@@ -10,11 +11,11 @@ public class APerfCommand extends Commands {
     @Command(name = "aperf", permission = "aperf.cmd", alias = {"ap"})
     public static void aPerfCommand(ICommandSender sender, List<String> args) {
         if (args == null || args.size() <= 0) {
-            sendHelpMessage(sender, "aperf.cmd", null);
+            aPerfHelpCommand(sender, args);
             return;
         }
 
-        callSubFunctions(sender, args, "aperf.cmd");
+        CommandManager.callSubFunctions(sender, args, "aperf.cmd", getLocal());
     }
 
     @CommandNode(
@@ -23,6 +24,6 @@ public class APerfCommand extends Commands {
             parentName = "aperf.cmd",
             alias = {"?"})
     public static void aPerfHelpCommand(ICommandSender sender, List<String> args) {
-        sendHelpMessage(sender, "aperf.cmd", null);
+        CommandManager.sendHelpMessage(sender, "aperf.cmd", null, getLocal());
     }
 }

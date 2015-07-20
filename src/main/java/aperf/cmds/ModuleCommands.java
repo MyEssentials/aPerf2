@@ -2,6 +2,7 @@ package aperf.cmds;
 
 import aperf.api.moduleLoader.ModuleContainer;
 import aperf.subsystem.module.ModuleSubsystem;
+import myessentials.command.CommandManager;
 import myessentials.command.CommandNode;
 import myessentials.utils.ChatUtils;
 import net.minecraft.command.ICommandSender;
@@ -23,7 +24,7 @@ public class ModuleCommands extends Commands {
             return;
         }
 
-        callSubFunctions(sender, args, "aperf.cmd.module");
+        CommandManager.callSubFunctions(sender, args, "aperf.cmd.module", getLocal());
     }
 
     @CommandNode(

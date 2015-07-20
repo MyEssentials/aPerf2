@@ -3,6 +3,7 @@ package aperf;
 import aperf.cmds.APerfCommand;
 import aperf.cmds.Commands;
 import aperf.cmds.ModuleCommands;
+import aperf.proxy.LocalizationProxy;
 import aperf.proxy.sided.IProxy;
 import aperf.subsystem.FilterSubsystem;
 import aperf.subsystem.module.ModuleSubsystem;
@@ -36,6 +37,8 @@ public class APerf {
         Constants.CONFIG_FOLDER = ev.getModConfigurationDirectory().getPath() + "/aPerf/";
         config = new Configuration(new File(Constants.CONFIG_FOLDER, "aPerf.cfg"));
         ConfigProcessor.load(Config.class, config);
+
+        LocalizationProxy.load();
 
         // Initialize Subsystems
         FilterSubsystem.load(ev.getAsmData());

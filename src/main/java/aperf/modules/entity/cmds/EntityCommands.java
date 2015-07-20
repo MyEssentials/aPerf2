@@ -4,6 +4,7 @@ import aperf.api.filter.IFilter;
 import aperf.api.grouper.Grouper;
 import aperf.cmds.Commands;
 import aperf.exceptions.APerfWrongUsageException;
+import myessentials.command.CommandManager;
 import myessentials.command.CommandNode;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.Entity;
@@ -21,7 +22,7 @@ public class EntityCommands extends Commands {
             parentName = "aperf.cmd",
             alias = {"e"})
     public static void entityCommand(ICommandSender sender, List<String> args) {
-        callSubFunctions(sender, args, "aperf.cmd.module.entity");
+        CommandManager.callSubFunctions(sender, args, "aperf.cmd.module.entity", getLocal());
     }
 
     @CommandNode(
