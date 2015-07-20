@@ -31,4 +31,9 @@ public class InstanceFilter extends StringFilter {
             throw new FilterException.FilterLoadException(this, e);
         }
     }
+
+    @Override
+    public String toString() {
+        return String.format("Instance(%s)", value);
+    }
 }

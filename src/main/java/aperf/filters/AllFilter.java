@@ -36,4 +36,9 @@ public class AllFilter implements IFilter {
     public JsonElement save() throws FilterException.FilterSaveException {
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "All";
+    }
 }

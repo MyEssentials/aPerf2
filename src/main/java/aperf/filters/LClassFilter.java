@@ -18,4 +18,9 @@ public class LClassFilter extends StringFilter {
     public String group(Object o) {
         return o.getClass().getSimpleName();
     }
+
+    @Override
+    public String toString() {
+        return String.format("LClass(%s)", value);
+    }
 }

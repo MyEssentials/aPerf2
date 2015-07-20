@@ -78,4 +78,9 @@ public class DimensionFilter implements IFilter {
         }
         return ret;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Dim(%s)", dimList);
+    }
 }

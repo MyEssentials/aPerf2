@@ -110,6 +110,11 @@ public class PosFilter implements IFilter {
         return ret;
     }
 
+    @Override
+    public String toString() {
+        return String.format("Pos(%s, %s, %s ; %s, %s, %s)", x1, y1, z1, x2, y2, z2);
+    }
+
     private void checkConfig() {
         // x1, y1, z1 is ALWAYS less than x2, y2, z2
         int temp;

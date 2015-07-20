@@ -18,4 +18,9 @@ public class ClassFilter extends StringFilter {
     public String group(Object o) {
         return o.getClass().getName();
     }
+
+    @Override
+    public String toString() {
+        return String.format("Class(%s)", value);
+    }
 }

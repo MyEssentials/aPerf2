@@ -80,6 +80,11 @@ public class MultiFilter implements IFilter {
         return ret;
     }
 
+    @Override
+    public String toString() {
+        return String.format("Multi(%s)", filters);
+    }
+
     public void addFilter(IFilter filter) {
         filters.add(filter);
     }

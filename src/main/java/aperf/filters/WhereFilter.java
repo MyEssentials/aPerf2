@@ -108,6 +108,11 @@ public class WhereFilter implements IFilter {
         return ret;
     }
 
+    @Override
+    public String toString() {
+        return String.format("Where(%s, %s ; %s, %s)", x1, z1, x2, z2);
+    }
+
     private void checkConfig() {
         // x1, z1 is ALWAYS less than x2, z2
         int temp;

@@ -35,4 +35,9 @@ public class NameFilter extends StringFilter {
 
         return null;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Name(%s)", value);
+    }
 }

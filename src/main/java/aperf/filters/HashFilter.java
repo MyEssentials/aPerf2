@@ -47,4 +47,9 @@ public class HashFilter implements IFilter {
     public JsonElement save() throws FilterException.FilterSaveException {
         return new JsonPrimitive(objHashCode);
     }
+
+    @Override
+    public String toString() {
+        return String.format("Hash(%s)", Integer.toHexString(objHashCode));
+    }
 }
