@@ -19,7 +19,7 @@ public final class LocalizationProxy {
     }
 
     /**
-     * Loads the {@link Localization}. First tries to load it from config/MyTown/Localization, then the classpath, then loads en_US in its place
+     * Loads the {@link Localization}. First tries to load it from config/aPerf/Localization, then the classpath, then loads en_US in its place
      */
     public static void load() {
         try {
