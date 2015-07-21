@@ -1,4 +1,4 @@
-package aperf.cmds;
+package aperf.cmd;
 
 import myessentials.command.Command;
 import myessentials.command.CommandManager;

@@ -1,4 +1,4 @@
-package aperf.cmds;
+package aperf.cmd;
 
 import aperf.api.moduleLoader.ModuleContainer;
 import aperf.subsystem.module.ModuleSubsystem;

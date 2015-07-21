@@ -1,8 +1,8 @@
 package aperf;
 
-import aperf.cmds.APerfCommand;
-import aperf.cmds.Commands;
-import aperf.cmds.ModuleCommands;
+import aperf.cmd.APerfCommand;
+import aperf.cmd.Commands;
+import aperf.cmd.ModuleCommands;
 import aperf.proxy.LocalizationProxy;
 import aperf.proxy.sided.IProxy;
 import aperf.subsystem.FilterSubsystem;

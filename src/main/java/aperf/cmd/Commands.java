@@ -1,4 +1,4 @@
-package aperf.cmds;
+package aperf.cmd;
 
 import aperf.api.FilterRegistrar;
 import aperf.api.exceptions.FilterException;
@@ -12,7 +12,6 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Commands {
@@ -37,11 +36,11 @@ public class Commands {
         try {
             return FilterRegistrar.INSTANCE.loadFilter("Multi", conf);
         } catch (FilterException.FilterNotFoundException e) {
-            throw new APerfCommandException("Filter not found!", e);
+            throw new APerfCommandException("aperf.filter.notfound", e, e.getFilterName());
         } catch (FilterException.FilterCreationException e) {
-            throw new APerfCommandException("Filter failed to load!", e);
+            throw new APerfCommandException("aperf.filter.creation.failed", e, e.getFilterName());
         } catch (FilterException.FilterLoadException e) {
-            throw new APerfCommandException("Filter failed to load!", e);
+            throw new APerfCommandException("aperf.filter.load.failed", e, e.getFilterName());
         }
     }
 
@@ -54,9 +53,9 @@ public class Commands {
         try {
             return FilterRegistrar.INSTANCE.createGrouper(name);
         } catch (FilterException.FilterNotFoundException e) {
-            throw new APerfCommandException("Group %s not found!", e, name);
+            throw new APerfCommandException("aperf.group.notfound", e, e.getFilterName());
         } catch (FilterException.FilterCreationException e) {
-            throw new APerfCommandException("Group %s failed!", e, name);
+            throw new APerfCommandException("aperf.group.creation.failed", e, e.getFilterName());
         }
     }
 
