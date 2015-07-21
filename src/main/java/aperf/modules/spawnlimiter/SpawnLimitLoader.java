@@ -1,4 +1,4 @@
-package aperf.modules.entity.limiter;
+package aperf.modules.spawnlimiter;
 
 import aperf.APerf;
 import aperf.api.SpawnLimitRegistrar;

@@ -1,4 +1,4 @@
-package aperf.modules.entity.limits;
+package aperf.modules.spawnlimiter.limits;
 
 import aperf.api.spawnlimit.CountLimit;
 import aperf.api.spawnlimit.SpawnLimit;
