@@ -5,6 +5,7 @@ import aperf.api.filter.IFilter;
 import aperf.api.spawnlimit.ISpawnLimit;
 import aperf.cmd.Commands;
 import aperf.exceptions.APerfCommandException;
+import aperf.exceptions.APerfWrongUsageException;
 import aperf.modules.spawnlimiter.Config;
 import aperf.modules.spawnlimiter.util.SpawnLimitCreation;
 import myessentials.command.CommandManager;
@@ -39,6 +40,13 @@ public class SpawnLimitCreationCommands extends Commands {
             alias = {"r", "rm"})
     public static void deleteSpawnLimitCommand(ICommandSender sender, List<String> args) {
         // args: <id>
+        if (args.size() < 1) throw new APerfWrongUsageException("aperf.cmd.module.entity.spawn.delete.usage");
+        int id = Integer.parseInt(args.get(0));
+        if (id < 0 || id > Config.Limits.size()) {
+            throw new APerfCommandException("aperf.spawn.notfound", args.get(0));
+        }
+        Config.Limits.remove(id);
+        sendMessageBackToSender(sender, getLocal().getLocalization("aperf.cmd.module.entity.spawn.delete.success"));
     }
 
     @CommandNode(name = "edit",
