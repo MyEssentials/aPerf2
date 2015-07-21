@@ -3,6 +3,8 @@ package aperf.modules.spawnlimiter;
 import aperf.api.moduleLoader.ModuleEvent;
 import aperf.api.spawnlimit.ISpawnLimit;
 import aperf.modules.spawnlimiter.cmd.SpawnLimitCommands;
+import aperf.modules.spawnlimiter.cmd.creation.SpawnLimitCreationCommands;
+import aperf.modules.spawnlimiter.cmd.creation.SpawnLimitFilterCommans;
 import aperf.subsystem.module.APModule;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -28,7 +30,8 @@ public class SpawnLimiterModule {
     @SubscribeEvent
     public void serverStarting(ModuleEvent.ModuleServerInitEvent ev) {
         CommandManager.registerCommands(SpawnLimitCommands.class);
-        CommandManager.registerCommands(SpawnLimitCommands.SpawnLimitFilterCommands.class);
+        CommandManager.registerCommands(SpawnLimitCreationCommands.class);
+        CommandManager.registerCommands(SpawnLimitFilterCommans.class);
     }
 
     @SubscribeEvent
