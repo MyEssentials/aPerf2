@@ -84,6 +84,12 @@ public class SpawnLimitRegistrar {
         return limit;
     }
 
+    public String getType(Class<? extends ISpawnLimit> clazz) {
+        SpawnLimit annot = clazz.getAnnotation(SpawnLimit.class);
+        if (annot == null) return null;
+        return annot.name();
+    }
+
     /**
      * Gets the description of the {@link ISpawnLimit}
      * @param name The name

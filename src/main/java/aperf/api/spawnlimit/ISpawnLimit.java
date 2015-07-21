@@ -11,6 +11,7 @@ import net.minecraft.world.World;
  */
 public abstract class ISpawnLimit {
     private IFilter filter;
+    private boolean enabled;
 
     /**
      * Checks if {@link Entity} e can spawn in {@link World} w
@@ -41,6 +42,18 @@ public abstract class ISpawnLimit {
 
     public final void setFilter(IFilter f) {
         this.filter = f;
+    }
+
+    public final boolean isEnabled() {
+        return enabled;
+    }
+
+    public final void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public final void toggle() {
+        setEnabled(!enabled);
     }
 
     /**
