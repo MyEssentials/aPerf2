@@ -6,6 +6,7 @@ import aperf.api.spawnlimit.ISpawnLimit;
 import aperf.api.spawnlimit.SpawnLimitChatComponent;
 import aperf.cmd.Commands;
 import aperf.exceptions.APerfCommandException;
+import aperf.exceptions.APerfWrongUsageException;
 import aperf.modules.spawnlimiter.Config;
 import aperf.modules.spawnlimiter.util.SpawnLimitCreation;
 import myessentials.command.CommandManager;
@@ -55,10 +56,7 @@ public class SpawnLimitCommands extends Commands {
     public static void toggleSpawnLimitCommand(ICommandSender sender, List<String> args) {
         // args: <id> [enable]
         ISpawnLimit limit = null;
-        if (args == null || args.size() < 1) {
-            CommandManager.sendHelpMessage(sender, "aperf.cmd.module.entity.spawn.toggle", null, getLocal());
-            return;
-        }
+        if (args == null || args.size() < 1) throw new APerfWrongUsageException("aperf.cmd.module.entity.spawn.toggle.help");
 
         limit = Config.Limits.get(Integer.parseInt(args.get(0)));
         if (limit == null) {

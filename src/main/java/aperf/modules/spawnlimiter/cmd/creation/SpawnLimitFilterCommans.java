@@ -2,6 +2,7 @@ package aperf.modules.spawnlimiter.cmd.creation;
 
 import aperf.api.filter.IFilter;
 import aperf.cmd.Commands;
+import aperf.exceptions.APerfWrongUsageException;
 import aperf.modules.spawnlimiter.util.SpawnLimitCreation;
 import myessentials.command.CommandManager;
 import myessentials.command.CommandNode;
@@ -24,10 +25,7 @@ public class SpawnLimitFilterCommans extends Commands {
             alias = {"a"})
     public static void spawnLimitFilterAddCommand(ICommandSender sender, List<String> args) {
         // args: <type> <options>
-        if (args.size() < 2) {
-            CommandManager.sendHelpMessage(sender, "aperf.cmd.module.entity.spawn.filter.add", null, getLocal());
-            return;
-        }
+        if (args.size() < 2) throw new APerfWrongUsageException("aperf.cmd.module.entity.spawn.filter.add.help");
         SpawnLimitCreation.SpawnLimitCreationState state = SpawnLimitCreation.getCreationState(sender);
         IFilter filter = loadFilter(args.get(0), args.get(1));
         state.limit().addFilter(filter);

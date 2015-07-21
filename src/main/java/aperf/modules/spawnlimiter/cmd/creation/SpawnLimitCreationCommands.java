@@ -23,10 +23,7 @@ public class SpawnLimitCreationCommands extends Commands {
             alias = {"c"})
     public static void createSpawnLimitCommand(ICommandSender sender, List<String> args) {
         // args: <type> <options>
-        if (args.size() < 2) {
-            CommandManager.sendHelpMessage(sender, "aperf.cmd.module.entity.spawn.create", null, getLocal());
-            return;
-        }
+        if (args.size() < 2) throw new APerfWrongUsageException("aperf.cmd.module.entity.spawn.create.help");
         if (SpawnLimitCreation.creationStateMap.containsKey(sender)) {
             throw new APerfCommandException("aperf.cmd.module.entity.spawn.alreadystarted"); // TODO: Is the name ok?!?
         }
@@ -40,11 +37,9 @@ public class SpawnLimitCreationCommands extends Commands {
             alias = {"r", "rm"})
     public static void deleteSpawnLimitCommand(ICommandSender sender, List<String> args) {
         // args: <id>
-        if (args.size() < 1) throw new APerfWrongUsageException("aperf.cmd.module.entity.spawn.delete.usage");
+        if (args.size() < 1) throw new APerfWrongUsageException("aperf.cmd.module.entity.spawn.delete.help");
         int id = Integer.parseInt(args.get(0));
-        if (id < 0 || id > Config.Limits.size()) {
-            throw new APerfCommandException("aperf.spawn.notfound", args.get(0));
-        }
+        if (id < 0 || id > Config.Limits.size()) throw new APerfCommandException("aperf.spawn.notfound", args.get(0));
         Config.Limits.remove(id);
         sendMessageBackToSender(sender, getLocal().getLocalization("aperf.cmd.module.entity.spawn.delete.success"));
     }
@@ -55,17 +50,12 @@ public class SpawnLimitCreationCommands extends Commands {
             alias = {"e"})
     public static void editSpawnLimitCommand(ICommandSender sender, List<String> args) {
         // args: <id>
-        if (args.size() < 1) {
-            CommandManager.sendHelpMessage(sender, "aperf.cmd.module.entity.spawn.edit", null, getLocal());
-            return;
-        }
+        if (args.size() < 1) throw new APerfWrongUsageException("aperf.cmd.module.entity.spawn.edit.help");
         if (SpawnLimitCreation.creationStateMap.containsKey(sender)) {
             throw new APerfCommandException("aperf.cmd.module.entity.spawn.alreadystarted"); // TODO: Is the name ok?!?
         }
         ISpawnLimit limit = Config.Limits.get(Integer.parseInt(args.get(0)));
-        if (limit == null) {
-            throw new APerfCommandException("aperf.spawn.notfound", args.get(0));
-        }
+        if (limit == null) throw new APerfCommandException("aperf.spawn.notfound", args.get(0));
         SpawnLimitCreation.creationStateMap.put(sender, new SpawnLimitCreation.SpawnLimitCreationState(limit, false));
     }
 

@@ -89,7 +89,7 @@ public class EntityCommands extends Commands {
             alias = {"la"})
     public static void listAroundCommand(ICommandSender sender, List<String> args) {
         // args: <radius> [group] [filter] [limit]
-        if (args.size() < 1) throw new APerfWrongUsageException("/aperf entity listaround <radius> [group] [filter] [limit]");
+        if (args.size() < 1) throw new APerfWrongUsageException("aperf.cmd.module.entity.listaround.help");  //throw new APerfWrongUsageException("/aperf entity listaround <radius> [group] [filter] [limit]");
         if (!(sender instanceof EntityPlayer)) return; // TODO Throw an exception
         EntityPlayer p = (EntityPlayer) sender;
         int radius = Integer.parseInt(args.get(0));
@@ -110,7 +110,7 @@ public class EntityCommands extends Commands {
             alias = {"lnh"})
     public static void listNearHereCommand(ICommandSender sender, List<String> args) {
         // args: <radius> [group] [filter] [limit]
-        if (args.size() < 1) throw new APerfWrongUsageException("/aperf entity listnearhere <radius> [group] [filter] [limit]");
+        if (args.size() < 1) throw new APerfWrongUsageException("aperf.cmd.module.entity.listnearhere.help"); //throw new APerfWrongUsageException("/aperf entity listnearhere <radius> [group] [filter] [limit]");
         if (!(sender instanceof EntityPlayer)) return; // TODO Throw an exception
         EntityPlayer p = (EntityPlayer) sender;
         int radius = Integer.parseInt(args.get(0));
