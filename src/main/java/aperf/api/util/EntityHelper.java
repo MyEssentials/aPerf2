@@ -22,6 +22,10 @@ import java.util.Map;
 public class EntityHelper {
     private static Map<Class<?>, String> typeCache = new HashMap<Class<?>, String>();
 
+    public static void removeEntity(Entity e) {
+        e.worldObj.removeEntity(e);
+    }
+
     public static String getEntityName(Entity e) {
         String n = e.getCommandSenderName();
         if (n.startsWith("entity.") && n.endsWith(".name")) {
