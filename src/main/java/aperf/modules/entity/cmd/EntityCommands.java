@@ -1,8 +1,8 @@
-package aperf.modules.entity.cmds;
+package aperf.modules.entity.cmd;
 
 import aperf.api.filter.IFilter;
 import aperf.api.grouper.Grouper;
-import aperf.cmds.Commands;
+import aperf.cmd.Commands;
 import aperf.exceptions.APerfWrongUsageException;
 import myessentials.command.CommandManager;
 import myessentials.command.CommandNode;
