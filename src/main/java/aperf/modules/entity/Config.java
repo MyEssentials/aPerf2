@@ -1,18 +1,21 @@
 package aperf.modules.entity;
 
-import aperf.Constants;
-
-import java.io.*;
+import myessentials.new_config.annotations.ConfigProperty;
+import myessentials.new_config.annotations.ConfigGroup;
 
 public class Config {
-    private static File entityModFolder;
+    @ConfigGroup
+    public static class EntityGrouper {
+        @ConfigProperty(comment = "If items should be grouped together or not.")
+        public static final boolean GroupItems = true;
 
-    public static void load() {
-        entityModFolder = new File(Constants.CONFIG_FOLDER, "/entity/");
-        if (!entityModFolder.exists())
-            entityModFolder.mkdirs();
-    }
+        @ConfigProperty(comment = "If Exp Orbs should be grouped together or not.")
+        public static final boolean GroupExpOrbs = true;
 
-    public static void save() {
+        @ConfigProperty(comment = "The range from the item/exp orb to group.")
+        public static final double Range = 1.5;
+
+        @ConfigProperty(comment = "The number of ticks to wait between each grouping.")
+        public static final int SkipTicks = 20;
     }
 }
