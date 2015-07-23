@@ -60,6 +60,10 @@ public abstract class EntityList<T> extends ArrayList<T> {
         }
     }
 
+    public void unhook() throws IllegalAccessException {
+        overriddenField.set(world, innerList); // TODO Make unhooking better?
+    }
+
     @Override
     public int size() {
         if (tickOverride() && World.class.isAssignableFrom(contextAccess.getContext(1))) {

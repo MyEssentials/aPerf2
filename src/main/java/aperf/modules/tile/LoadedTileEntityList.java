@@ -23,7 +23,7 @@ public class LoadedTileEntityList extends EntityList<TileEntity> {
 
     @Override
     protected boolean tickOverride() {
-        return false;
+        return true;
     }
 
     private List<IEntityListHook<TileEntity>> hooks() {
