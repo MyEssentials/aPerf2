@@ -1,6 +1,7 @@
 package aperf.subsystem.module;
 
 import aperf.APerf;
+import aperf.Config;
 import aperf.api.moduleLoader.ModuleContainer;
 import aperf.api.moduleLoader.ModuleLoader;
 
@@ -29,7 +30,13 @@ public class ModuleSubsystem extends ModuleLoader<APModule> {
 
     protected boolean shouldModuleLoad(ModuleContainer<APModule> container) {
         if (container.getAnnotation().canDisable()) {
-            // TODO Disable from config
+            for (String loadedModule : Config.General.loadedModules) {
+                if (loadedModule.toLowerCase().equals(container.getName().toLowerCase())) {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         return true;
