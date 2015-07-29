@@ -25,16 +25,16 @@ public final class LocalizationProxy {
         try {
             InputStream is = null;
 
-            File file = new File(Constants.CONFIG_FOLDER + "/localization/" + Config.localization + ".lang");
+            File file = new File(Constants.CONFIG_FOLDER + "/localization/" + Config.General.Localization + ".lang");
             if (file.exists()) {
                 is = new FileInputStream(file);
             }
             if (is == null) {
-                is = LocalizationProxy.class.getResourceAsStream("/localization/" + Config.localization + ".lang");
+                is = LocalizationProxy.class.getResourceAsStream("/localization/" + Config.General.Localization + ".lang");
             }
             if (is == null) {
                 is = LocalizationProxy.class.getResourceAsStream("/localization/en_US.lang");
-                LOG.warn("Reverting to en_US.lang because {} does not exist!", Config.localization + ".lang");
+                LOG.warn("Reverting to en_US.lang because {} does not exist!", Config.General.Localization + ".lang");
             }
 
             LocalizationProxy.localization = new Localization(new InputStreamReader(is));

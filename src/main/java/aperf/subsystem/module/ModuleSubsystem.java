@@ -30,7 +30,7 @@ public class ModuleSubsystem extends ModuleLoader<APModule> {
 
     protected boolean shouldModuleLoad(ModuleContainer<APModule> container) {
         if (container.getAnnotation().canDisable()) {
-            for (String loadedModule : Config.General.loadedModules) {
+            for (String loadedModule : Config.General.LoadedModules) {
                 if (loadedModule.toLowerCase().equals(container.getName().toLowerCase())) {
                     return true;
                 }
