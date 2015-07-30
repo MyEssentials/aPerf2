@@ -2,8 +2,8 @@ package aperf.api.hooks;
 
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface IEntityListHook<T> {
-    void call(World world, ArrayList<T> list);
+    void call(World world, List<T> list);
 }
