@@ -3,9 +3,8 @@ package aperf.modules.entity.cmd;
 import aperf.api.filter.IFilter;
 import aperf.api.grouper.Grouper;
 import aperf.cmd.Commands;
-import aperf.exceptions.APerfWrongUsageException;
-import myessentials.command.CommandManager;
-import myessentials.command.CommandNode;
+import mypermissions.command.CommandResponse;
+import mypermissions.command.annotation.Command;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,21 +15,23 @@ import net.minecraft.world.WorldServer;
 import java.util.*;
 
 public class EntityCommands extends Commands {
-    @CommandNode(
+    @Command(
             name = "entity",
             permission = "aperf.cmd.module.entity",
             parentName = "aperf.cmd",
+            syntax = "/aperf entity <command>",
             alias = {"e"})
-    public static void entityCommand(ICommandSender sender, List<String> args) {
-        CommandManager.callSubFunctions(sender, args, "aperf.cmd.module.entity", getLocal());
+    public static CommandResponse entityCommand(ICommandSender sender, List<String> args) {
+        return CommandResponse.SEND_HELP_MESSAGE;
     }
 
-    @CommandNode(
+    @Command(
             name = "list",
             permission = "aperf.cmd.module.entity.list",
             parentName = "aperf.cmd.module.entity",
+            syntax = "/aperf entity <command>",
             alias = {"l"})
-    public static void listEntitiesCommand(ICommandSender sender, List<String> args) {
+    public static CommandResponse listEntitiesCommand(ICommandSender sender, List<String> args) {
         // args: [group] [filter] [limit]
 
         // Get Group
@@ -80,17 +81,20 @@ public class EntityCommands extends Commands {
             }
         }
         sendMessageBackToSender(sender, String.format("%s----------------------------------", EnumChatFormatting.GRAY));
+
+        return CommandResponse.DONE;
     }
 
-    @CommandNode(
+    @Command(
             name = "listaround",
             permission = "aperf.cmd.module.entity.listaround",
             parentName = "aperf.cmd.module.entity",
+            syntax = "/aperf entity <command>",
             alias = {"la"})
-    public static void listAroundCommand(ICommandSender sender, List<String> args) {
+    public static CommandResponse listAroundCommand(ICommandSender sender, List<String> args) {
         // args: <radius> [group] [filter] [limit]
-        if (args.size() < 1) throw new APerfWrongUsageException("aperf.cmd.module.entity.listaround.help");  //throw new APerfWrongUsageException("/aperf entity listaround <radius> [group] [filter] [limit]");
-        if (!(sender instanceof EntityPlayer)) return; // TODO Throw an exception
+        if (args.size() < 1) return CommandResponse.SEND_HELP_MESSAGE;
+        if (!(sender instanceof EntityPlayer)) return CommandResponse.DONE; // TODO Throw an exception
         EntityPlayer p = (EntityPlayer) sender;
         int radius = Integer.parseInt(args.get(0));
 
@@ -101,17 +105,20 @@ public class EntityCommands extends Commands {
         args.set(2, filter);
 
         listEntitiesCommand(sender, args.subList(1, args.size()));
+
+        return CommandResponse.DONE;
     }
 
-    @CommandNode(
+    @Command(
             name = "listnearhere",
             permission = "aperf.cmd.module.entity.listnearhere",
             parentName = "aperf.cmd.module.entity",
+            syntax = "/aperf entity <command>",
             alias = {"lnh"})
-    public static void listNearHereCommand(ICommandSender sender, List<String> args) {
+    public static CommandResponse listNearHereCommand(ICommandSender sender, List<String> args) {
         // args: <radius> [group] [filter] [limit]
-        if (args.size() < 1) throw new APerfWrongUsageException("aperf.cmd.module.entity.listnearhere.help"); //throw new APerfWrongUsageException("/aperf entity listnearhere <radius> [group] [filter] [limit]");
-        if (!(sender instanceof EntityPlayer)) return; // TODO Throw an exception
+        if (args.size() < 1) return CommandResponse.SEND_HELP_MESSAGE;
+        if (!(sender instanceof EntityPlayer)) return CommandResponse.DONE; // TODO Throw an exception
         EntityPlayer p = (EntityPlayer) sender;
         int radius = Integer.parseInt(args.get(0));
 
@@ -122,14 +129,17 @@ public class EntityCommands extends Commands {
         args.set(2, filter);
 
         listEntitiesCommand(sender, args.subList(1, args.size()));
+
+        return CommandResponse.DONE;
     }
 
-    @CommandNode(
+    @Command(
             name = "listhere",
             permission = "aperf.cmd.module.entity.listhere",
             parentName = "aperf.cmd.module.entity",
+            syntax = "/aperf entity <command>",
             alias = {"lh"})
-    public static void listHereCommand(ICommandSender sender, List<String> args) {
+    public static CommandResponse listHereCommand(ICommandSender sender, List<String> args) {
         // args: [group] [filter] [limit]
         List<String> newArgs = new ArrayList<String>();
         newArgs.set(0, "0");
@@ -137,6 +147,8 @@ public class EntityCommands extends Commands {
             newArgs.addAll(args);
         }
         listNearHereCommand(sender, args);
+
+        return CommandResponse.DONE;
     }
 
     protected static void sendCountedList(ICommandSender sender, String prefix, List<Map.Entry<String, Integer>> counts, Integer from, Integer count) {

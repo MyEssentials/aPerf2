@@ -1,22 +1,22 @@
-package aperf.modules.tile;
+package aperf.modules.entity;
 
 import aperf.api.HookRegistrar;
 import aperf.api.hooks.IEntityListHook;
 import aperf.util.EntityList;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 
 import java.lang.reflect.Field;
 import java.util.List;
 
-public class LoadedTileEntityList extends EntityList<TileEntity> {
-    public LoadedTileEntityList(World world, Field overriddenField) {
+public class LoadedEntityList extends EntityList<Entity> {
+    public LoadedEntityList(World world, Field overriddenField) {
         super(world, overriddenField);
     }
 
     @Override
     public void tick() {
-        for (IEntityListHook<TileEntity> hook : hooks()) {
+        for (IEntityListHook<Entity> hook : hooks()) {
             hook.call(world, innerList);
         }
     }
@@ -26,7 +26,7 @@ public class LoadedTileEntityList extends EntityList<TileEntity> {
         return Config.TickModifier.EnableSlowing;
     }
 
-    private List<IEntityListHook<TileEntity>> hooks() {
-        return HookRegistrar.Instance().getTileEntityListHookList();
+    private List<IEntityListHook<Entity>> hooks() {
+        return HookRegistrar.Instance().getEntityListHookList();
     }
 }

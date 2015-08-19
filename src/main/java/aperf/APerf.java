@@ -10,8 +10,8 @@ import aperf.subsystem.module.ModuleSubsystem;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
-import myessentials.command.CommandManager;
 import myessentials.new_config.ConfigProcessor;
+import mypermissions.command.CommandManager;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.Logger;
 
@@ -23,8 +23,6 @@ public class APerf {
     public static APerf INSTANCE;
     public static Logger LOG;
 
-    private Configuration config;
-
     @SidedProxy(clientSide = "aperf.proxy.sided.ClientProxy", serverSide = "aperf.proxy.sided.ServerProxy")
     private static IProxy proxy;
 
@@ -35,8 +33,8 @@ public class APerf {
 
         // Read Config
         Constants.CONFIG_FOLDER = ev.getModConfigurationDirectory().getPath() + "/aPerf/";
-        config = new Configuration(new File(Constants.CONFIG_FOLDER, "aPerf.cfg"));
-        ConfigProcessor.load(Config.class, config);
+        Configuration forgeConfig = new Configuration(new File(Constants.CONFIG_FOLDER, "aPerf.cfg"));
+        ConfigProcessor.load(Config.class, forgeConfig);
 
         LocalizationProxy.load();
 
@@ -86,8 +84,8 @@ public class APerf {
     }
 
     private void registerCommands() {
-        CommandManager.registerCommands(APerfCommand.class);
-        CommandManager.registerCommands(ModuleCommands.class);
+        CommandManager.registerCommands(APerfCommand.class, null, LocalizationProxy.getLocalization(), null);
+        CommandManager.registerCommands(ModuleCommands.class, "aperf.cmd", LocalizationProxy.getLocalization(), null);
 
         Commands.populateCompletionMap();
     }

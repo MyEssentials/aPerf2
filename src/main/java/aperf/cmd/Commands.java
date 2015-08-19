@@ -7,7 +7,7 @@ import aperf.exceptions.APerfCommandException;
 import aperf.proxy.LocalizationProxy;
 import aperf.subsystem.module.ModuleSubsystem;
 import myessentials.Localization;
-import myessentials.command.CommandManager;
+import mypermissions.command.CommandCompletion;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
 
@@ -23,7 +23,7 @@ public class Commands {
     public static void populateCompletionMap() {
         List<String> populator = new ArrayList<String>();
         populator.addAll(ModuleSubsystem.Instance().getModuleNames());
-        CommandManager.completionMap.put("aperfModuleCompletion", populator);
+        CommandCompletion.addCompletions("aperfModuleCompletion", populator);
     }
 
     /**

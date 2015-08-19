@@ -2,9 +2,9 @@ package aperf.cmd;
 
 import aperf.api.moduleLoader.ModuleContainer;
 import aperf.subsystem.module.ModuleSubsystem;
-import myessentials.command.CommandManager;
-import myessentials.command.CommandNode;
 import myessentials.utils.ChatUtils;
+import mypermissions.command.CommandResponse;
+import mypermissions.command.annotation.Command;
 import net.minecraft.command.ICommandSender;
 import org.apache.commons.lang3.StringUtils;
 
@@ -12,39 +12,43 @@ import java.util.List;
 import java.util.Set;
 
 public class ModuleCommands extends Commands {
-    @CommandNode(
+    @Command(
             name = "module",
             permission = "aperf.cmd.module",
+            syntax = "/aperf module <command>",
             parentName = "aperf.cmd",
             alias = {"m"},
             completionKeys = {"aperfModuleCompletion"})
-    public static void moduleCommand(ICommandSender sender, List<String> args) {
+    public static CommandResponse moduleCommand(ICommandSender sender, List<String> args) {
         if (args == null || args.size() <= 0) {
             listModulesCommand(sender, args);
-            return;
         }
 
-        CommandManager.callSubFunctions(sender, args, "aperf.cmd.module", getLocal());
+        return CommandResponse.DONE;
     }
 
-    @CommandNode(
+    @Command(
             name = "list",
             permission = "aperf.cmd.module.list",
             parentName = "aperf.cmd.module",
+            syntax = "/aperf module list",
             alias = {"l"})
-    public static void listModulesCommand(ICommandSender sender, List<String> args) {
+    public static CommandResponse listModulesCommand(ICommandSender sender, List<String> args) {
         Set<String> moduleNames = ModuleSubsystem.Instance().getModuleNames();
         sendMessageBackToSender(sender, StringUtils.join(moduleNames, ", "));
+
+        return CommandResponse.DONE;
     }
 
-    @CommandNode(
+    @Command(
             name = "toggle",
             permission = "aperf.cmd.module.toggle",
             parentName = "aperf.cmd.module",
+            syntax = "/aperf module toggle <module> [enable]",
             completionKeys = {"aperfModuleCompletion"})
-    public static void toggleModuleCommand(ICommandSender sender, List<String> args) {
+    public static CommandResponse toggleModuleCommand(ICommandSender sender, List<String> args) {
         if (args == null || args.size() <= 0) {
-            return;
+            return CommandResponse.SEND_HELP_MESSAGE;
         }
 
         String modName = args.get(0);
@@ -56,5 +60,7 @@ public class ModuleCommands extends Commands {
         } else {
             modContainer.toggle();
         }
+
+        return CommandResponse.DONE;
     }
 }

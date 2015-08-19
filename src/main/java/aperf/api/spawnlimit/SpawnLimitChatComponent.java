@@ -18,11 +18,11 @@ public class SpawnLimitChatComponent implements IChatComponent {
 
         component = new JsonMessageBuilder()
                 .setText(String.format("%3s", Integer.toString(id)))
-                .addExtra().setText("|")
+                .addExtra().setText("|").getParent()
                 .addExtra().setText(String.format("%6s", limit.isEnabled() ? "On" : "Off"))
-                    .setClickEventRunCommand("/aperf e s t")
-                .addExtra().setText("|")
-                .addExtra().setText(String.format("%46s", type))
+                    .setClickEventRunCommand("/aperf e s t").getParent()
+                .addExtra().setText("|").getParent()
+                .addExtra().setText(String.format("%46s", type)).getParent()
                 .build();
 
         APerf.LOG.info(component.toString());

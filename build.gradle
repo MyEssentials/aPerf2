@@ -95,6 +95,7 @@ dependencies {
 
     // Mod Deps
     compile project(":MyEssentials-Core")
+    compile project(":MyPermissions")
 }
 
 // Process Resources, injecting version numbers in

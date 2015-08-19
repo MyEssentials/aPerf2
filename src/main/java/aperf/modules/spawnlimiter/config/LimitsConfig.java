@@ -1,4 +1,4 @@
-package aperf.modules.spawnlimiter;
+package aperf.modules.spawnlimiter.config;
 
 import aperf.APerf;
 import aperf.Constants;
@@ -11,7 +11,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Config {
+public class LimitsConfig {
     public static final List<ISpawnLimit> Limits = new ArrayList<ISpawnLimit>();
     private static File spawnLimitModuleFolder;
 

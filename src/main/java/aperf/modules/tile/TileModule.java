@@ -1,7 +1,9 @@
 package aperf.modules.tile;
 
 import aperf.APerf;
+import aperf.api.HookRegistrar;
 import aperf.api.moduleLoader.ModuleEvent;
+import aperf.modules.tile.hooks.TickTileEntities;
 import aperf.subsystem.module.APModule;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.world.World;
@@ -17,11 +19,14 @@ public class TileModule {
 
     @SubscribeEvent
     public void serverStarting(ModuleEvent.ModuleServerInitEvent ev) {
+//        hook();
     }
 
     public void hook() {
         if (isHookInstalled) return;
         isHookInstalled = true;
+
+        HookRegistrar.Instance().hookTileEntityList(new TickTileEntities());
 
         final Collection<World> worlds = Arrays.<World>asList(DimensionManager.getWorlds());
 
@@ -49,9 +54,9 @@ public class TileModule {
         try {
             Field loadedTileEntityListField = World.class.getDeclaredField("loadedTileEntityList");
             new LoadedTileEntityList(world, loadedTileEntityListField);
-            APerf.LOG.debug("Hooked into world {} (DimID: {})", world.getClass(), world.provider.dimensionId);
+            APerf.LOG.debug("Hooked TileEntity into world {} (DimID: {})", world.getClass(), world.provider.dimensionId);
         } catch (Exception e) {
-            APerf.LOG.fatal("Failed to hook world {} (DimID: {})", world.getClass(), world.provider.dimensionId);
+            APerf.LOG.fatal("Failed to hook TileEntity world {} (DimID: {})", world.getClass(), world.provider.dimensionId);
             APerf.LOG.catching(e);
         }
     }
@@ -62,12 +67,12 @@ public class TileModule {
             Object o = loadedTileEntityListField.get(world);
             if (o instanceof LoadedTileEntityList) {
                 ((LoadedTileEntityList) o).unhook();
-                APerf.LOG.debug("Unhooked from world {}", world.getClass());
+                APerf.LOG.debug("Unhooked TileEntity from world {}", world.getClass());
             } else {
-                APerf.LOG.fatal("Could not uninstall hook! Looks like another mod changed loadedTileEntityList in world {}!", world.getClass());
+                APerf.LOG.fatal("Could not uninstall TileEntity hook! Looks like another mod changed loadedTileEntityList in world {}!", world.getClass());
             }
         } catch (Exception e) {
-            APerf.LOG.fatal("Could not uninstall hook for world {}!", world.getClass());
+            APerf.LOG.fatal("Could not uninstall TileEntity hook for world {}!", world.getClass());
             APerf.LOG.catching(e);
         }
     }

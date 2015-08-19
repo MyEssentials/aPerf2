@@ -1,5 +1,6 @@
 package aperf.modules.entity;
 
+import aperf.APerf;
 import aperf.api.util.EntityHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
@@ -43,11 +44,11 @@ public class GrouperEvents {
             if (e.isDead || e == item) continue;
             if (!item.combineItems(e)) continue;
             EntityHelper.removeEntity(item.isDead ? item : e);
+            APerf.LOG.info("Grouped item " + e.getEntityItem().getDisplayName());
             return;
         }
     }
 
-    // TODO No idea how well this works
     private static void groupExpOrbs(EntityXPOrb xpOrb, World world) {
         if (xpOrb == null || xpOrb.isDead) return;
         List<?> entities = world.getEntitiesWithinAABB(EntityXPOrb.class, xpOrb.boundingBox.expand(Config.EntityGrouper.Range, Config.EntityGrouper.Range, Config.EntityGrouper.Range));
