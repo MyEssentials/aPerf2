@@ -6,18 +6,14 @@ import aperf.api.HookRegistrar;
 import aperf.modules.entity.cmd.EntityCommands;
 import aperf.modules.entity.hooks.TickEntities;
 import aperf.modules.tile.LoadedTileEntityList;
-import aperf.proxy.LocalizationProxy;
 import aperf.subsystem.module.APModule;
 import aperf.api.moduleLoader.ModuleEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import myessentials.new_config.ConfigProcessor;
-import mypermissions.command.CommandManager;
+import mypermissions.api.command.CommandManager;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.common.config.Configuration;
 
-import java.io.File;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Collection;
@@ -29,7 +25,7 @@ public class EntityModule {
     @SubscribeEvent
     public void preInit(ModuleEvent.ModulePreInitEvent ev) {
         // Load Config
-        ConfigProcessor.load(Config.class, new Configuration(new File(Constants.CONFIG_FOLDER, "entity.cfg")));
+        Config.instance.init(Constants.CONFIG_FOLDER + "entity.cfg", "aPerf2");
 
         // Register Event Listeners
         FMLCommonHandler.instance().bus().register(new GrouperEvents());
@@ -37,7 +33,7 @@ public class EntityModule {
 
     @SubscribeEvent
     public void serverStarting(ModuleEvent.ModuleServerInitEvent ev) {
-        CommandManager.registerCommands(EntityCommands.class, "aperf.cmd", LocalizationProxy.getLocalization(), null);
+        CommandManager.registerCommands(EntityCommands.class, "aperf.cmd", APerf.LOCAL, null);
 
 //        hook();
     }

@@ -1,24 +1,36 @@
 package aperf.modules.spawnlimiter.config;
 
-import myessentials.new_config.data.ConfigData;
+import myessentials.config.ConfigProperty;
+import myessentials.config.ConfigTemplate;
 
-@myessentials.new_config.Config
-public class Config {
-    @myessentials.new_config.Config.Instance
-    public static ConfigData data;
+public class Config extends ConfigTemplate {
+    public static Config instance = new Config();
 
-    @myessentials.new_config.Config.Group
-    public static class SpawnLimiter {
-        @myessentials.new_config.Config.Property(comment = "If spawn limits should be checked on world join event.")
-        public static final boolean OnJoinWorld = true;
+    public ConfigProperty<Boolean> OnJoinWorld = new ConfigProperty<Boolean>(
+            "OnJoinWorld",
+            "SpawnLimiter",
+            "If spawn limits should be checked on world join event.",
+            true
+    );
 
-        @myessentials.new_config.Config.Property(comment = "If spawn limits should be checked on special spawn event. (Typically from mob spawners).")
-        public static final boolean OnSpecialSpawn = true;
+    public ConfigProperty<Boolean> OnSpecialSpawn = new ConfigProperty<Boolean>(
+            "OnSpecialSpawn",
+            "SpawnLimiter",
+            "If spawn limits should be checked on special spawn event. (Typically from mob spawners).",
+            true
+    );
 
-        @myessentials.new_config.Config.Property(comment = "If spawn limits should be checked on check spawn event.")
-        public static final boolean OnCheckSpawn = true;
+    public ConfigProperty<Boolean> OnCheckSpawn = new ConfigProperty<Boolean>(
+            "OnCheckSpawn",
+            "SpawnLimiter",
+            "If spawn limits should be checked on check spawn event.",
+            true
+    );
 
-        @myessentials.new_config.Config.Property(comment = "If spawn limits should be checked when a chunk loads.")
-        public static final boolean OnChunkLoad = true;
-    }
+    public ConfigProperty<Boolean> OnChunkLoad = new ConfigProperty<Boolean>(
+            "OnChunkLoad",
+            "SpawnLimiter",
+            "If spawn limits should be checked when a chunk loads.",
+            true
+    );
 }

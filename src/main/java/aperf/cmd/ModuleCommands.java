@@ -3,8 +3,8 @@ package aperf.cmd;
 import aperf.api.moduleLoader.ModuleContainer;
 import aperf.subsystem.module.ModuleSubsystem;
 import myessentials.utils.ChatUtils;
-import mypermissions.command.CommandResponse;
-import mypermissions.command.annotation.Command;
+import mypermissions.api.command.CommandResponse;
+import mypermissions.api.command.annotation.Command;
 import net.minecraft.command.ICommandSender;
 import org.apache.commons.lang3.StringUtils;
 

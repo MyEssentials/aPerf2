@@ -6,8 +6,8 @@ import aperf.cmd.Commands;
 import aperf.exceptions.APerfCommandException;
 import aperf.modules.spawnlimiter.config.LimitsConfig;
 import myessentials.utils.ChatUtils;
-import mypermissions.command.CommandResponse;
-import mypermissions.command.annotation.Command;
+import mypermissions.api.command.CommandResponse;
+import mypermissions.api.command.annotation.Command;
 import net.minecraft.command.ICommandSender;
 
 import java.util.List;

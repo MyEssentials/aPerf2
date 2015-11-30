@@ -1,11 +1,11 @@
 package aperf.exceptions;
 
-import aperf.proxy.LocalizationProxy;
+import aperf.APerf;
 import net.minecraft.command.CommandException;
 
 public class APerfCommandException extends CommandException {
     public APerfCommandException(String key, Object... args) {
-        super(LocalizationProxy.getLocalization().getLocalization(key, args));
+        super(APerf.LOCAL.getLocalization(key, args));
     }
 
     public APerfCommandException(String key, Throwable cause, Object... args) {

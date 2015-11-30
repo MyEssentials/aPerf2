@@ -26,19 +26,19 @@ public class GrouperEvents {
         World world = worldTickEvent.world;
         for (int i = 0; i < world.loadedEntityList.size(); i++) {
             Object o = world.loadedEntityList.get(i);
-            if (Config.EntityGrouper.GroupItems && o instanceof EntityItem) {
+            if (Config.instance.GroupItems.get() && o instanceof EntityItem) {
                 groupItem((EntityItem) o, world);
-            } else if (Config.EntityGrouper.GroupExpOrbs && o instanceof EntityXPOrb) {
+            } else if (Config.instance.GroupExpOrbs.get() && o instanceof EntityXPOrb) {
                 groupExpOrbs((EntityXPOrb) o, world);
             }
         }
 
-        ticks = MinecraftServer.getServer().worldServers.length * Config.EntityGrouper.SkipTicks;
+        ticks = MinecraftServer.getServer().worldServers.length * Config.instance.SkipTicks.get();
     }
 
     private static void groupItem(EntityItem item, World world) {
         if (item.getEntityItem() == null || !item.getEntityItem().isStackable() || item.isDead) return;
-        List<?> entities = world.getEntitiesWithinAABB(EntityItem.class, item.boundingBox.expand(Config.EntityGrouper.Range, Config.EntityGrouper.Range, Config.EntityGrouper.Range));
+        List<?> entities = world.getEntitiesWithinAABB(EntityItem.class, item.boundingBox.expand(Config.instance.Range.get(), Config.instance.Range.get(), Config.instance.Range.get()));
         for (Object o : entities) {
             EntityItem e = (EntityItem) o;
             if (e.isDead || e == item) continue;
@@ -51,7 +51,7 @@ public class GrouperEvents {
 
     private static void groupExpOrbs(EntityXPOrb xpOrb, World world) {
         if (xpOrb == null || xpOrb.isDead) return;
-        List<?> entities = world.getEntitiesWithinAABB(EntityXPOrb.class, xpOrb.boundingBox.expand(Config.EntityGrouper.Range, Config.EntityGrouper.Range, Config.EntityGrouper.Range));
+        List<?> entities = world.getEntitiesWithinAABB(EntityXPOrb.class, xpOrb.boundingBox.expand(Config.instance.Range.get(), Config.instance.Range.get(), Config.instance.Range.get()));
         List<EntityXPOrb> close = new ArrayList<EntityXPOrb>();
         for (Object o : entities) {
             EntityXPOrb e = (EntityXPOrb) o;

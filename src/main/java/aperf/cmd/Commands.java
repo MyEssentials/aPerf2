@@ -1,13 +1,13 @@
 package aperf.cmd;
 
+import aperf.APerf;
 import aperf.api.FilterRegistrar;
 import aperf.api.exceptions.FilterException;
 import aperf.api.filter.IFilter;
 import aperf.exceptions.APerfCommandException;
-import aperf.proxy.LocalizationProxy;
 import aperf.subsystem.module.ModuleSubsystem;
 import myessentials.Localization;
-import mypermissions.command.CommandCompletion;
+import mypermissions.api.command.CommandCompletion;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
 
@@ -60,6 +60,6 @@ public class Commands {
     }
 
     protected static Localization getLocal() {
-        return LocalizationProxy.getLocalization();
+        return APerf.LOCAL;
     }
 }

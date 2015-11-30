@@ -1,30 +1,43 @@
 package aperf.modules.entity;
 
-import myessentials.new_config.data.ConfigData;
+import myessentials.config.ConfigProperty;
+import myessentials.config.ConfigTemplate;
 
-@myessentials.new_config.Config
-public class Config {
-    @myessentials.new_config.Config.Instance
-    public static ConfigData data;
+public class Config extends ConfigTemplate {
+    public static Config instance = new Config();
 
-    @myessentials.new_config.Config.Group
-    public static class EntityGrouper {
-        @myessentials.new_config.Config.Property(comment = "If items should be grouped together or not.")
-        public static final boolean GroupItems = false;
+    public ConfigProperty<Boolean> GroupItems = new ConfigProperty<Boolean>(
+            "GroupItems",
+            "EntityGrouper",
+            "If items should be grouped together or not.",
+            false
+    );
 
-        @myessentials.new_config.Config.Property(comment = "If Exp Orbs should be grouped together or not.")
-        public static final boolean GroupExpOrbs = true;
+    public ConfigProperty<Boolean> GroupExpOrbs = new ConfigProperty<Boolean>(
+            "GroupExpOrbs",
+            "EntityGrouper",
+            "If Exp Orbs should be grouped together or not.",
+            true
+    );
 
-        @myessentials.new_config.Config.Property(comment = "The range from the item/exp orb to group.")
-        public static final double Range = 10;
+    public ConfigProperty<Double> Range = new ConfigProperty<Double>(
+            "Range",
+            "EntityGrouper",
+            "The range from the item/exp orb to group.",
+            10d
+    );
 
-        @myessentials.new_config.Config.Property(comment = "The number of ticks to wait between each grouping.")
-        public static final int SkipTicks = 20;
-    }
+    public ConfigProperty<Integer> SkipTicks = new ConfigProperty<Integer>(
+            "SkipTicks",
+            "EntityGrouper",
+            "The number of ticks to wait between each grouping.",
+            20
+    );
 
-    @myessentials.new_config.Config.Group
-    public static class TickModifier {
-        @myessentials.new_config.Config.Property(comment = "If entities should be slowed down to help reduce lag.\\nIf enabled, some entities will not tick, thus may appear to lag to unsuspecting players.")
-        public static final boolean EnableSlowing = true;
-    }
+    public ConfigProperty<Boolean> EnableSlowing = new ConfigProperty<Boolean>(
+            "EnableSlowing",
+            "TickModifier",
+            "If entities should be slowed down to help reduce lag.\\nIf enabled, some entities will not tick, thus may appear to lag to unsuspecting players.",
+            true
+    );
 }

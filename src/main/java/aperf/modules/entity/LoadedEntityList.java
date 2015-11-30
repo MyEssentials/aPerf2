@@ -23,7 +23,7 @@ public class LoadedEntityList extends EntityList<Entity> {
 
     @Override
     protected boolean tickOverride() {
-        return Config.TickModifier.EnableSlowing;
+        return Config.instance.EnableSlowing.get();
     }
 
     private List<IEntityListHook<Entity>> hooks() {
