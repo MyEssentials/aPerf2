@@ -3,8 +3,8 @@ package aperf.modules.spawnlimiter.cmd.creation;
 import aperf.api.filter.IFilter;
 import aperf.cmd.Commands;
 import aperf.modules.spawnlimiter.util.SpawnLimitCreation;
-import mypermissions.api.command.CommandResponse;
-import mypermissions.api.command.annotation.Command;
+import mypermissions.command.api.CommandResponse;
+import mypermissions.command.api.annotation.Command;
 import net.minecraft.command.ICommandSender;
 
 import java.util.List;

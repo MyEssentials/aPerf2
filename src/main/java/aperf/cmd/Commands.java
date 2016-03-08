@@ -1,24 +1,16 @@
 package aperf.cmd;
 
-import aperf.APerf;
 import aperf.api.FilterRegistrar;
 import aperf.api.exceptions.FilterException;
 import aperf.api.filter.IFilter;
 import aperf.exceptions.APerfCommandException;
 import aperf.subsystem.module.ModuleSubsystem;
-import myessentials.Localization;
-import mypermissions.api.command.CommandCompletion;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.util.ChatComponentText;
+import mypermissions.command.api.CommandCompletion;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Commands {
-
-    public static void sendMessageBackToSender(ICommandSender sender, String message) {
-        sender.addChatMessage(new ChatComponentText(message));
-    }
 
     public static void populateCompletionMap() {
         List<String> populator = new ArrayList<String>();
@@ -57,9 +49,5 @@ public class Commands {
         } catch (FilterException.FilterCreationException e) {
             throw new APerfCommandException("aperf.group.creation.failed", e, e.getFilterName());
         }
-    }
-
-    protected static Localization getLocal() {
-        return APerf.LOCAL;
     }
 }

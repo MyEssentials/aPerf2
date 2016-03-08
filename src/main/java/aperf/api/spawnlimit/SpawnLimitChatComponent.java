@@ -2,7 +2,7 @@ package aperf.api.spawnlimit;
 
 import aperf.APerf;
 import aperf.api.SpawnLimitRegistrar;
-import myessentials.chat.JsonMessageBuilder;
+import myessentials.chat.api.JsonMessageBuilder;
 import net.minecraft.util.ChatStyle;
 import net.minecraft.util.IChatComponent;
 

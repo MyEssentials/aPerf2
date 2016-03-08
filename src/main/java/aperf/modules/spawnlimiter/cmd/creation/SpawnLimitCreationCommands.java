@@ -6,8 +6,9 @@ import aperf.cmd.Commands;
 import aperf.exceptions.APerfCommandException;
 import aperf.modules.spawnlimiter.config.LimitsConfig;
 import aperf.modules.spawnlimiter.util.SpawnLimitCreation;
-import mypermissions.api.command.CommandResponse;
-import mypermissions.api.command.annotation.Command;
+import myessentials.chat.api.ChatManager;
+import mypermissions.command.api.CommandResponse;
+import mypermissions.command.api.annotation.Command;
 import net.minecraft.command.ICommandSender;
 
 import java.util.List;
@@ -42,7 +43,7 @@ public class SpawnLimitCreationCommands extends Commands {
         int id = Integer.parseInt(args.get(0));
         if (id < 0 || id > LimitsConfig.Limits.size()) throw new APerfCommandException("aperf.spawn.notfound", args.get(0));
         LimitsConfig.Limits.remove(id);
-        sendMessageBackToSender(sender, getLocal().getLocalization("aperf.cmd.module.entity.spawn.delete.success"));
+        ChatManager.send(sender, "aperf.cmd.module.entity.spawn.delete.success");
 
         return CommandResponse.DONE;
     }

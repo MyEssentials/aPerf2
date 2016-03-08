@@ -1,7 +1,7 @@
 package aperf.cmd;
 
-import mypermissions.api.command.CommandResponse;
-import mypermissions.api.command.annotation.Command;
+import mypermissions.command.api.CommandResponse;
+import mypermissions.command.api.annotation.Command;
 import net.minecraft.command.ICommandSender;
 
 import java.util.List;

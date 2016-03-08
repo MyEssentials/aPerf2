@@ -3,12 +3,16 @@ package aperf.modules.entity.cmd;
 import aperf.api.filter.IFilter;
 import aperf.api.grouper.Grouper;
 import aperf.cmd.Commands;
-import mypermissions.api.command.CommandResponse;
-import mypermissions.api.command.annotation.Command;
+import myessentials.chat.api.ChatComponentFormatted;
+import myessentials.chat.api.ChatManager;
+import mypermissions.command.api.CommandResponse;
+import mypermissions.command.api.annotation.Command;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatStyle;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.WorldServer;
 
@@ -65,7 +69,7 @@ public class EntityCommands extends Commands {
 
         Grouper<Entity> grouper = new Grouper<Entity>(filter, grouperFilter);
 
-        sendMessageBackToSender(sender, String.format("%s----------------------------------", EnumChatFormatting.GRAY));
+        ChatManager.send(sender, new ChatComponentText("----------------------------------").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.GRAY)));
         for (WorldServer world : MinecraftServer.getServer().worldServers) {
             List<?> list = world.loadedEntityList;
             if (list.size() <= 0) continue;
@@ -76,11 +80,11 @@ public class EntityCommands extends Commands {
             }
 
             if (total > 0) {
-                sendMessageBackToSender(sender, String.format("%s%s [%d], %s %s", EnumChatFormatting.GREEN, world.provider.getDimensionName(), world.provider.dimensionId, total, total == 1 ? "entity" : "entities"));
+                ChatManager.send(sender, new ChatComponentFormatted("{a|%s [%s], %s %s}", world.provider.getDimensionName(), world.provider.dimensionId, total, total == 1 ? "entity" : "entities"));
                 sendCountedList(sender, "   ", groups, limitStart, limitCount);
             }
         }
-        sendMessageBackToSender(sender, String.format("%s----------------------------------", EnumChatFormatting.GRAY));
+        ChatManager.send(sender, new ChatComponentText("----------------------------------").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.GRAY)));
 
         return CommandResponse.DONE;
     }
@@ -162,7 +166,7 @@ public class EntityCommands extends Commands {
                 maxCntLen = String.valueOf(entry.getValue().toString().length());
             }
 
-            sendMessageBackToSender(sender, String.format("%s%s%" + maxCntLen + "d %s| %s%s", prefix, EnumChatFormatting.RED, entry.getValue(), EnumChatFormatting.GREEN, EnumChatFormatting.YELLOW, entry.getKey()));
+            ChatManager.send(sender, new ChatComponentFormatted("{f|%s}{c|%s}{a| / }{e|%s}", prefix, entry.getValue(), entry.getKey()));
         }
     }
 }

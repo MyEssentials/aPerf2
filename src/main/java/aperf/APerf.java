@@ -9,8 +9,9 @@ import aperf.subsystem.module.ModuleSubsystem;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
-import myessentials.Localization;
-import mypermissions.api.command.CommandManager;
+import myessentials.localization.api.Local;
+import myessentials.localization.api.LocalManager;
+import mypermissions.command.api.CommandManager;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = "aPerf2", name = "aPerf2", version = "2.0", dependencies = "required-after:Forge;required-after:MyEssentials-Core", acceptableRemoteVersions = "*")
@@ -18,7 +19,6 @@ public class APerf {
     @Mod.Instance
     public static APerf INSTANCE;
     public static Logger LOG;
-    public static Localization LOCAL;
 
     @SidedProxy(clientSide = "aperf.proxy.sided.ClientProxy", serverSide = "aperf.proxy.sided.ServerProxy")
     private static IProxy proxy;
@@ -33,7 +33,7 @@ public class APerf {
         Config.instance.init(Constants.CONFIG_FOLDER + "aPerf.cfg", "aPerf2");
 
         // Setup Localization
-        LOCAL = new Localization(Constants.CONFIG_FOLDER, Config.instance.localization.get(), "/aperf/localization", APerf.class);
+        LocalManager.register(new Local(Constants.CONFIG_FOLDER, Config.instance.localization.get(), "/aperf/localization", APerf.class), "aperf");
 
         // Initialize Subsystems
         FilterSubsystem.load(ev.getAsmData());
@@ -81,8 +81,8 @@ public class APerf {
     }
 
     private void registerCommands() {
-        CommandManager.registerCommands(APerfCommand.class, null, LOCAL, null);
-        CommandManager.registerCommands(ModuleCommands.class, "aperf.cmd", LOCAL, null);
+        CommandManager.registerCommands(APerfCommand.class, null, null, null);
+        CommandManager.registerCommands(ModuleCommands.class, "aperf.cmd", null, null);
 
         Commands.populateCompletionMap();
     }

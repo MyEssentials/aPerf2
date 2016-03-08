@@ -2,10 +2,12 @@ package aperf.cmd;
 
 import aperf.api.moduleLoader.ModuleContainer;
 import aperf.subsystem.module.ModuleSubsystem;
+import myessentials.chat.api.ChatManager;
 import myessentials.utils.ChatUtils;
-import mypermissions.api.command.CommandResponse;
-import mypermissions.api.command.annotation.Command;
+import mypermissions.command.api.CommandResponse;
+import mypermissions.command.api.annotation.Command;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.util.ChatComponentText;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -35,7 +37,7 @@ public class ModuleCommands extends Commands {
             alias = {"l"})
     public static CommandResponse listModulesCommand(ICommandSender sender, List<String> args) {
         Set<String> moduleNames = ModuleSubsystem.Instance().getModuleNames();
-        sendMessageBackToSender(sender, StringUtils.join(moduleNames, ", "));
+        ChatManager.send(sender, new ChatComponentText(StringUtils.join(moduleNames, ", ")));
 
         return CommandResponse.DONE;
     }

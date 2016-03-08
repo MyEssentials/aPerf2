@@ -5,10 +5,12 @@ import aperf.api.spawnlimit.SpawnLimitChatComponent;
 import aperf.cmd.Commands;
 import aperf.exceptions.APerfCommandException;
 import aperf.modules.spawnlimiter.config.LimitsConfig;
+import myessentials.chat.api.ChatManager;
 import myessentials.utils.ChatUtils;
-import mypermissions.api.command.CommandResponse;
-import mypermissions.api.command.annotation.Command;
+import mypermissions.command.api.CommandResponse;
+import mypermissions.command.api.annotation.Command;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.util.ChatComponentText;
 
 import java.util.List;
 
@@ -30,8 +32,8 @@ public class SpawnLimitCommands extends Commands {
             syntax = "/aperf entity spawn list",
             alias = {"l"})
     public static CommandResponse listSpawnLimitsCommand(ICommandSender sender, List<String> args) {
-        sendMessageBackToSender(sender, String.format("%3s|%6s|%46s", "#", "Active", "Type"));
-        sendMessageBackToSender(sender, "-----------------------------------------------------");
+        ChatManager.send(sender, new ChatComponentText(" # |Active|          Type          "));
+        ChatManager.send(sender, new ChatComponentText("-----------------------------------------------------"));
         if (LimitsConfig.Limits.size() > 0) {
             ISpawnLimit limit;
             for (int id = 0; id < LimitsConfig.Limits.size(); id++) {
@@ -39,10 +41,10 @@ public class SpawnLimitCommands extends Commands {
                 sender.addChatMessage(new SpawnLimitChatComponent(id, limit));
             }
         } else {
-            sendMessageBackToSender(sender, "You don't have any spawn limits created yet!");
-            sendMessageBackToSender(sender, "To create a spawn limit, call /aperf entity spawn create <type> <options>");
+            ChatManager.send(sender, new ChatComponentText("You don't have any spawn limits created yet!"));
+            ChatManager.send(sender, new ChatComponentText("To create a spawn limit, call /aperf entity spawn create <type> <options>"));
         }
-        sendMessageBackToSender(sender, "-----------------------------------------------------");
+        ChatManager.send(sender, new ChatComponentText("-----------------------------------------------------"));
         return CommandResponse.DONE;
     }
 

@@ -3,14 +3,14 @@ package aperf.modules.entity;
 import aperf.APerf;
 import aperf.Constants;
 import aperf.api.HookRegistrar;
+import aperf.api.moduleLoader.ModuleEvent;
 import aperf.modules.entity.cmd.EntityCommands;
 import aperf.modules.entity.hooks.TickEntities;
 import aperf.modules.tile.LoadedTileEntityList;
 import aperf.subsystem.module.APModule;
-import aperf.api.moduleLoader.ModuleEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import mypermissions.api.command.CommandManager;
+import mypermissions.command.api.CommandManager;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 
@@ -33,7 +33,7 @@ public class EntityModule {
 
     @SubscribeEvent
     public void serverStarting(ModuleEvent.ModuleServerInitEvent ev) {
-        CommandManager.registerCommands(EntityCommands.class, "aperf.cmd", APerf.LOCAL, null);
+        CommandManager.registerCommands(EntityCommands.class, "aperf.cmd", null, null);
 
 //        hook();
     }

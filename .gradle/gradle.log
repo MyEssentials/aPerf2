@@ -5,8 +5,17 @@
  R4wk, ZeuX, IngisKahn, bspkrs
  MCP Data version : unknown
 ****************************
-:wrapper
+:ideaModule
+:ideaProject
+:ideaWorkspace
+:idea
+:MyEssentials-Core:ideaModule
+:MyEssentials-Core:idea
+:MyEssentials-TestSuite:ideaModule
+:MyEssentials-TestSuite:idea
+:MyPermissions:ideaModule
+:MyPermissions:idea
 
 BUILD SUCCESSFUL
 
-Total time: 12.709 secs
+Total time: 2 mins 21.757 secs

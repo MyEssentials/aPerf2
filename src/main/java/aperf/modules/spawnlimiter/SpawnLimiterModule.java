@@ -12,14 +12,11 @@ import aperf.modules.spawnlimiter.config.LimitsConfig;
 import aperf.subsystem.module.APModule;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import mypermissions.api.command.CommandManager;
+import mypermissions.command.api.CommandManager;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
-
-import java.io.File;
 
 @APModule(name = "SpawnLimiter")
 public class SpawnLimiterModule {
@@ -38,9 +35,9 @@ public class SpawnLimiterModule {
 
     @SubscribeEvent
     public void serverStarting(ModuleEvent.ModuleServerInitEvent ev) {
-        CommandManager.registerCommands(SpawnLimitCommands.class, "aperf.cmd", APerf.LOCAL, null);
-        CommandManager.registerCommands(SpawnLimitCreationCommands.class, "aperf.cmd.module.entity.spawn", APerf.LOCAL, null);
-        CommandManager.registerCommands(SpawnLimitFilterCommans.class, "aperf.cmd.module.entity.spawn", APerf.LOCAL, null);
+        CommandManager.registerCommands(SpawnLimitCommands.class, "aperf.cmd", null, null);
+        CommandManager.registerCommands(SpawnLimitCreationCommands.class, "aperf.cmd.module.entity.spawn", null, null);
+        CommandManager.registerCommands(SpawnLimitFilterCommans.class, "aperf.cmd.module.entity.spawn", null, null);
     }
 
     @SubscribeEvent
