@@ -5,3 +5,6 @@ notifications:
 cache:
   directories:
   - $HOME/.gradle/caches/
+before_install:
+  - git submodule update --init --recursive
+  - pip install --user codecov
