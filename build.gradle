@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'net.ellune.blossom' version '1.0.1'
+}
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+group 'aperf'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'jitpack'
+        url = 'https://jitpack.io'
+    }
+    maven {
+        name = 'sponge'
+        url = 'http://repo.spongepowered.org/maven'
+    }
+}
+
+blossom {
+    replaceToken "@project.version@", project.version, "src/main/java/io/github/myessentials/aperf/PluginInfo.java"
+}
+
+configurations {
+    shade
+    compile.extendsFrom shade
+}
+
+dependencies {
+    compile 'org.spongepowered:spongeapi:4.0.3'
+    shade 'com.github.Flibio:Updatifier:v1.4.0:api'
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': archivesBaseName, 'Implementation-Version': version
+    }
+    configurations.shade.copyRecursive().setTransitive(false).each { artifact -> from (zipTree(artifact))}
+}
