@@ -29,13 +29,6 @@ public abstract class Module implements CatalogType {
         this.enabled = enabled;
     }
 
-    /**
-     * Toggles the enable state of this {@link Module}
-     */
-    public final void toggleEnabled() {
-        setEnabled(!this.enabled);
-    }
-
     public final Text getEnableText() {
         return isEnabled() ? Text.of(TextColors.GREEN, "Enabled") : Text.of(TextColors.RED, "Disabled");
     }

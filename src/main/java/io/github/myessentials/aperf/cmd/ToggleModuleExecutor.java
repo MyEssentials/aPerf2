@@ -25,22 +25,15 @@ class ToggleModuleExecutor implements CommandExecutor {
         Optional<Module> module = args.getOne("module");
         Optional<Boolean> enabled = args.getOne("enable");
 
-        if (enabled.isPresent()) {
-            // If the enable argument was present, use the value to change the enabled state of the module
-            module
-                    .orElseThrow(() -> new CommandException(Text.of("Invalid module")))
-                    .setEnabled(enabled.get());
-        } else {
-            // Otherwise we just toggle
-            module
-                    .orElseThrow(() -> new CommandException(Text.of("Invalid module")))
-                    .toggleEnabled();
-        }
+        // Set enable state, or toggle when no "enable" arg given
+        module
+                .orElseThrow(() -> new CommandException(Text.of("Invalid module")))
+                .setEnabled(enabled.orElse(!module.get().isEnabled()));
 
         // Let the sender know what happened
         src.sendMessage(template.apply(ImmutableMap.of(
                 "moduleName", Text.of(module.get().getId()),
-                "enableState", Text.of((module.get().isEnabled() ? "enabled" : "disabled"))
+                "enableState", module.get().getEnableText()
         )).build());
 
         return CommandResult.success();
