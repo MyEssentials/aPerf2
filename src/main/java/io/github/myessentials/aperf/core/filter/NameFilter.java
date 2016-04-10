@@ -1,7 +1,7 @@
 package io.github.myessentials.aperf.core.filter;
 
 import io.github.myessentials.aperf.api.filter.Filter;
-import io.github.myessentials.aperf.api.filter.FilterRegistration;
+import io.github.myessentials.aperf.api.filter.FilterType;
 import io.github.myessentials.aperf.api.filter.impl.StringFilter;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.tileentity.TileEntity;
@@ -43,7 +43,7 @@ public class NameFilter extends StringFilter {
         return type.getId().toLowerCase();
     }
 
-    public static class Registration extends FilterRegistration {
+    public static class Type extends FilterType {
         @Override
         public String desc() {
             return "Checks based on names";

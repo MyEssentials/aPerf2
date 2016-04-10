@@ -19,7 +19,7 @@ public class FilterSerializer implements TypeSerializer<Filter> {
                 .getString();
 
         // Get the registration
-        FilterRegistration registration = Sponge.getRegistry().getType(FilterRegistration.class, filterType)
+        FilterType registration = Sponge.getRegistry().getType(FilterType.class, filterType)
                 .orElseThrow(() -> new ObjectMappingException("Unknown filter type " + filterType));
 
         // Get the value node

@@ -6,7 +6,7 @@ import org.spongepowered.api.CatalogType;
 
 import java.util.Optional;
 
-public abstract class FilterRegistration implements CatalogType {
+public abstract class FilterType implements CatalogType {
     /**
      * The description of the Filter
      * @return The description

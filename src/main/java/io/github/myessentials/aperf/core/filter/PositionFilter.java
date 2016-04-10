@@ -1,7 +1,7 @@
 package io.github.myessentials.aperf.core.filter;
 
 import io.github.myessentials.aperf.api.filter.Filter;
-import io.github.myessentials.aperf.api.filter.FilterRegistration;
+import io.github.myessentials.aperf.api.filter.FilterType;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 import org.spongepowered.api.block.tileentity.TileEntity;
@@ -152,7 +152,7 @@ public class PositionFilter implements Filter {
         return (x >= x1 && x <= x2) && (y >= y1 && y <= y2) && (z >= z1 && z <= z2);
     }
 
-    public static class Registration extends FilterRegistration {
+    public static class Type extends FilterType {
         @Override
         public String desc() {
             return "Checks the position";

@@ -1,7 +1,7 @@
 package io.github.myessentials.aperf.core.filter;
 
 import io.github.myessentials.aperf.api.filter.Filter;
-import io.github.myessentials.aperf.api.filter.FilterRegistration;
+import io.github.myessentials.aperf.api.filter.FilterType;
 import io.github.myessentials.aperf.api.filter.impl.StringFilter;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.objectmapping.ObjectMappingException;
@@ -47,7 +47,7 @@ public class InstanceFilter extends StringFilter {
         }
     }
 
-    public static class Registration extends FilterRegistration {
+    public static class Type extends FilterType {
         @Override
         public String desc() {
             return "Catches if its a class/superclass";

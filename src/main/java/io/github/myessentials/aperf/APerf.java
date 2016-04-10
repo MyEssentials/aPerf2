@@ -3,7 +3,7 @@ package io.github.myessentials.aperf;
 import com.google.common.reflect.TypeToken;
 import com.google.inject.Inject;
 import io.github.myessentials.aperf.api.filter.Filter;
-import io.github.myessentials.aperf.api.filter.FilterRegistration;
+import io.github.myessentials.aperf.api.filter.FilterType;
 import io.github.myessentials.aperf.api.filter.FilterSerializer;
 import io.github.myessentials.aperf.api.module.Module;
 import io.github.myessentials.aperf.api.spawnlimit.SpawnLimit;
@@ -72,7 +72,7 @@ public class APerf {
         configManager.load();
 
         // Register the registers
-        Sponge.getRegistry().registerModule(FilterRegistration.class, new FilterRegistry());
+        Sponge.getRegistry().registerModule(FilterType.class, new FilterRegistry());
         Sponge.getRegistry().registerModule(Module.class, new ModuleRegistry());
         Sponge.getRegistry().registerModule(SpawnLimitRegistration.class, new SpawnLimitRegistry());
     }

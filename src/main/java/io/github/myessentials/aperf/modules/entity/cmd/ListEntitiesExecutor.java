@@ -2,7 +2,7 @@ package io.github.myessentials.aperf.modules.entity.cmd;
 
 import com.google.common.collect.ImmutableMap;
 import io.github.myessentials.aperf.api.filter.Filter;
-import io.github.myessentials.aperf.api.filter.FilterRegistration;
+import io.github.myessentials.aperf.api.filter.FilterType;
 import io.github.myessentials.aperf.api.grouper.Grouper;
 import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 import org.spongepowered.api.Sponge;
@@ -43,7 +43,7 @@ class ListEntitiesExecutor implements CommandExecutor {
         // Get Group
         try {
             group = args
-                    .<FilterRegistration>getOne("group")
+                    .<FilterType>getOne("group")
                     .orElseThrow(() -> new CommandException(Text.of("Group must be given")))
                     .getFilterClass()
                     .newInstance();
@@ -57,7 +57,7 @@ class ListEntitiesExecutor implements CommandExecutor {
         // Get filter
         try {
             filter = args
-                    .<FilterRegistration>getOne("filter")
+                    .<FilterType>getOne("filter")
                     .orElseThrow(() -> new CommandException(Text.of("Filter must be given")))
                     .deserialize(conf)
                     .orElseThrow(() -> new CommandException(Text.of("Failed to get filter")));
