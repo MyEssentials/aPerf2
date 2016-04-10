@@ -28,7 +28,7 @@ public class NameFilter extends StringFilter {
             return false;
         }
 
-        return this.value.toLowerCase().equals(type.getId().toLowerCase());
+        return this.value.equalsIgnoreCase(type.getId());
     }
 
     @Override

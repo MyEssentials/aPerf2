@@ -19,7 +19,7 @@ public class LClassFilter extends StringFilter {
 
     @Override
     public boolean hits(Object o) {
-        return this.value.equals(o.getClass().getSimpleName());
+        return this.value.equalsIgnoreCase(o.getClass().getSimpleName());
     }
 
     @Override
