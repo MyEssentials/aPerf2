@@ -6,7 +6,7 @@ import org.spongepowered.api.command.dispatcher.SimpleDispatcher;
 import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.text.Text;
 
-public class Commands {
+public final class Commands {
     private static final CommandSpec listEntitiesCommandSpec = CommandSpec.builder()
             .permission("aperf.cmd.module.entity.list")
             .arguments(
@@ -19,5 +19,8 @@ public class Commands {
 
     public static void register(SimpleDispatcher dispatcher) {
         dispatcher.register(listEntitiesCommandSpec, "list", "l");
+    }
+
+    private Commands() {
     }
 }
