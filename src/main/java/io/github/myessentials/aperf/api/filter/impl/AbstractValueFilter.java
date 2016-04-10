@@ -10,7 +10,7 @@ public abstract class AbstractValueFilter<T> extends AbstractFilter {
 
     @Override
     public String toString() {
-        return String.format("%s(%s)", getName(), value);
+        return String.format("%s(%s)", getType().getId(), value);
     }
 
     @Override
