@@ -1,10 +1,12 @@
 package io.github.myessentials.aperf.modules.spawnlimiter;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.reflect.TypeToken;
 import io.github.myessentials.aperf.APerf;
 import io.github.myessentials.aperf.api.module.Module;
 import io.github.myessentials.aperf.api.spawnlimit.SpawnLimit;
 import io.github.myessentials.aperf.api.util.ConfigUtil;
+import io.github.myessentials.aperf.modules.spawnlimiter.cmd.Commands;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
 import org.spongepowered.api.Sponge;
@@ -15,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class SpawnLimiterModule extends Module {
+    public static final SpawnLimiterModule instance = new SpawnLimiterModule();
+
     public final Config config = new Config();
 
     private ConfigurationLoader<? extends ConfigurationNode> spawnLimitsLoader;
@@ -38,6 +42,9 @@ public final class SpawnLimiterModule extends Module {
 
         // Register event listeners
         Sponge.getEventManager().registerListeners(APerf.instance, new EventListeners(this));
+
+        // Register commands
+        Commands.register(this.getCommandDispatcher());
     }
 
     @Override
@@ -60,6 +67,10 @@ public final class SpawnLimiterModule extends Module {
         return "SpawnLimiter";
     }
 
+    public List<SpawnLimit> getLimits() {
+        return ImmutableList.copyOf(limits);
+    }
+
     boolean findLimitAndCheck(Entity entity) {
         APerf.getLogger().debug("Checking {} in world {} ({}) at ({}, {}, {})", entity.getType(), entity.getWorld().getUniqueId(), entity.getWorld().getName(), entity.getLocation().getX(), entity.getLocation().getY(), entity.getLocation().getZ());
 
@@ -70,18 +81,18 @@ public final class SpawnLimiterModule extends Module {
         }
 
         for(SpawnLimit limit : limits) {
-            if (!limit.isEnabled()) {
-                APerf.getLogger().debug("{}: disabled", limit.getName());
+            if (!limit.isActive()) {
+                APerf.getLogger().debug("{}: disabled", limit.getType().getId());
                 continue;
             }
 
             if (!limit.hits(entity)) {
-                APerf.getLogger().debug("{}: filter doesn't get a hit", limit.getName());
+                APerf.getLogger().debug("{}: filter doesn't get a hit", limit.getType().getId());
                 continue;
             }
 
             if (!limit.canSpawn(entity)) {
-                APerf.getLogger().debug("{}: Stopped spawning", limit.getName());
+                APerf.getLogger().debug("{}: Stopped spawning", limit.getType().getId());
                 return false;
             }
         }
