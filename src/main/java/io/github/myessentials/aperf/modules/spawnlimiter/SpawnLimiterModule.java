@@ -26,6 +26,9 @@ public final class SpawnLimiterModule extends Module {
 
     private final List<SpawnLimit> limits = new ArrayList<>();
 
+    private SpawnLimiterModule() {
+    }
+
     @Override
     public void load() {
         // Load config

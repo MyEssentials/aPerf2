@@ -36,7 +36,7 @@ public class ModuleRegistry implements AdditionalCatalogRegistryModule<Module> {
     @Override
     @DelayedRegistration(RegistrationPhase.INIT)
     public void registerDefaults() {
-        registerAdditionalCatalog(new EntityModule());
+        registerAdditionalCatalog(EntityModule.instance);
         registerAdditionalCatalog(SpawnLimiterModule.instance);
     }
 }

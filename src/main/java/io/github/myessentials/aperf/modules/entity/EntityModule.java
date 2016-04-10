@@ -6,6 +6,11 @@ import io.github.myessentials.aperf.modules.entity.cmd.Commands;
 import javax.annotation.Nonnull;
 
 public class EntityModule extends Module {
+    public static final EntityModule instance = new EntityModule();
+
+    private EntityModule() {
+    }
+
     @Override
     public void load() {
         // Register commands
