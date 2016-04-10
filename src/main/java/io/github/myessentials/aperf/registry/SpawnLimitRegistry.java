@@ -1,7 +1,7 @@
 package io.github.myessentials.aperf.registry;
 
 import com.google.common.collect.ImmutableList;
-import io.github.myessentials.aperf.api.spawnlimit.SpawnLimitRegistration;
+import io.github.myessentials.aperf.api.spawnlimit.SpawnLimitType;
 import io.github.myessentials.aperf.core.limits.*;
 import org.spongepowered.api.registry.AdditionalCatalogRegistryModule;
 import org.spongepowered.api.registry.RegistrationPhase;
@@ -14,31 +14,31 @@ import java.util.Optional;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class SpawnLimitRegistry implements AdditionalCatalogRegistryModule<SpawnLimitRegistration> {
-    private final Map<String, SpawnLimitRegistration> spawnLimitMappings = new HashMap<>();
+public class SpawnLimitRegistry implements AdditionalCatalogRegistryModule<SpawnLimitType> {
+    private final Map<String, SpawnLimitType> spawnLimitMappings = new HashMap<>();
 
     @Override
-    public Optional<SpawnLimitRegistration> getById(String id) {
+    public Optional<SpawnLimitType> getById(String id) {
         return Optional.ofNullable(spawnLimitMappings.get(checkNotNull(id).toLowerCase()));
     }
 
     @Override
-    public Collection<SpawnLimitRegistration> getAll() {
+    public Collection<SpawnLimitType> getAll() {
         return ImmutableList.copyOf(spawnLimitMappings.values());
     }
 
     @Override
-    public void registerAdditionalCatalog(SpawnLimitRegistration extraCatalog) {
+    public void registerAdditionalCatalog(SpawnLimitType extraCatalog) {
         spawnLimitMappings.put(checkNotNull(extraCatalog).getId().toLowerCase(), extraCatalog);
     }
 
     @Override
     @DelayedRegistration(RegistrationPhase.INIT)
     public void registerDefaults() {
-        registerAdditionalCatalog(new ChunkCount.Registration());
-        registerAdditionalCatalog(new Disabled.Registration());
-        registerAdditionalCatalog(new NearbyCount.Registration());
-        registerAdditionalCatalog(new ServerCount.Registration());
-        registerAdditionalCatalog(new WorldCount.Registration());
+        registerAdditionalCatalog(new ChunkCount.Type());
+        registerAdditionalCatalog(new Disabled.Type());
+        registerAdditionalCatalog(new NearbyCount.Type());
+        registerAdditionalCatalog(new ServerCount.Type());
+        registerAdditionalCatalog(new WorldCount.Type());
     }
 }

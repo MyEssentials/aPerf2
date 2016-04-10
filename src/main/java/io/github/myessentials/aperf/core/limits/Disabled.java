@@ -1,7 +1,7 @@
 package io.github.myessentials.aperf.core.limits;
 
 import io.github.myessentials.aperf.api.spawnlimit.SpawnLimit;
-import io.github.myessentials.aperf.api.spawnlimit.SpawnLimitRegistration;
+import io.github.myessentials.aperf.api.spawnlimit.SpawnLimitType;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 import org.spongepowered.api.entity.Entity;
@@ -25,7 +25,7 @@ public class Disabled extends SpawnLimit {
     public void deserialize(ConfigurationNode value) throws ObjectMappingException {
     }
 
-    public static class Registration implements SpawnLimitRegistration {
+    public static class Type implements SpawnLimitType {
         @Override
         public String getId() {
             return "Disabled";

@@ -15,7 +15,7 @@ public abstract class SpawnLimit {
 
     /**
      * Name of this {@link SpawnLimit}.
-     * MUST be unique and the same as {@link SpawnLimitRegistration#getId()}!
+     * MUST be unique and the same as {@link SpawnLimitType#getId()}!
      * @return The name of this {@link SpawnLimit}
      */
     public abstract String getName();

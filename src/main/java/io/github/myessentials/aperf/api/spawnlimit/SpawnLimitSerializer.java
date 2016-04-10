@@ -21,7 +21,7 @@ public class SpawnLimitSerializer implements TypeSerializer<SpawnLimit> {
                 .getString();
 
         // Get the registration
-        SpawnLimitRegistration registration = Sponge.getRegistry().getType(SpawnLimitRegistration.class, limitType)
+        SpawnLimitType registration = Sponge.getRegistry().getType(SpawnLimitType.class, limitType)
                 .orElseThrow(() -> new ObjectMappingException("Unknown spawn limit type " + limitType));
 
         // Hold the SpawnLimit

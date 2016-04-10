@@ -7,7 +7,7 @@ import io.github.myessentials.aperf.api.filter.FilterType;
 import io.github.myessentials.aperf.api.filter.FilterSerializer;
 import io.github.myessentials.aperf.api.module.Module;
 import io.github.myessentials.aperf.api.spawnlimit.SpawnLimit;
-import io.github.myessentials.aperf.api.spawnlimit.SpawnLimitRegistration;
+import io.github.myessentials.aperf.api.spawnlimit.SpawnLimitType;
 import io.github.myessentials.aperf.api.spawnlimit.SpawnLimitSerializer;
 import io.github.myessentials.aperf.cmd.Commands;
 import io.github.myessentials.aperf.config.Config;
@@ -74,7 +74,7 @@ public class APerf {
         // Register the registers
         Sponge.getRegistry().registerModule(FilterType.class, new FilterRegistry());
         Sponge.getRegistry().registerModule(Module.class, new ModuleRegistry());
-        Sponge.getRegistry().registerModule(SpawnLimitRegistration.class, new SpawnLimitRegistry());
+        Sponge.getRegistry().registerModule(SpawnLimitType.class, new SpawnLimitRegistry());
     }
 
     @Listener

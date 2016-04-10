@@ -2,7 +2,7 @@ package io.github.myessentials.aperf.core.limits;
 
 import com.flowpowered.math.vector.Vector3i;
 import io.github.myessentials.aperf.api.spawnlimit.SpawnLimit;
-import io.github.myessentials.aperf.api.spawnlimit.SpawnLimitRegistration;
+import io.github.myessentials.aperf.api.spawnlimit.SpawnLimitType;
 import io.github.myessentials.aperf.api.spawnlimit.impl.CountLimit;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.objectmapping.ObjectMappingException;
@@ -55,7 +55,7 @@ public class ChunkCount extends CountLimit {
                 .getInt();
     }
 
-    public static class Registration implements SpawnLimitRegistration {
+    public static class Type implements SpawnLimitType {
         @Override
         public String getId() {
             return "ChunkCount";

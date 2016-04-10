@@ -1,7 +1,7 @@
 package io.github.myessentials.aperf.core.limits;
 
 import io.github.myessentials.aperf.api.spawnlimit.SpawnLimit;
-import io.github.myessentials.aperf.api.spawnlimit.SpawnLimitRegistration;
+import io.github.myessentials.aperf.api.spawnlimit.SpawnLimitType;
 import io.github.myessentials.aperf.api.spawnlimit.impl.CountLimit;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.Entity;
@@ -24,7 +24,7 @@ public class ServerCount extends CountLimit {
         return count < limit;
     }
 
-    public static class Registration implements SpawnLimitRegistration {
+    public static class Type implements SpawnLimitType {
         @Override
         public String getId() {
             return "ServerCount";

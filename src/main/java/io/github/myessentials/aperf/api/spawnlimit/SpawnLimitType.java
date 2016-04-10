@@ -2,7 +2,7 @@ package io.github.myessentials.aperf.api.spawnlimit;
 
 import org.spongepowered.api.CatalogType;
 
-public interface SpawnLimitRegistration extends CatalogType {
+public interface SpawnLimitType extends CatalogType {
     /**
      * The description of the Filter
      * @return The description
