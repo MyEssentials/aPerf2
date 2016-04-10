@@ -34,6 +34,15 @@ public class SpawnLimitSerializer implements TypeSerializer<SpawnLimit> {
             throw new ObjectMappingException("Failed to create spawn limit of type " + limitType);
         }
 
+        // Set the filter
+        limit.get().setFilter(Optional.ofNullable(value.getNode("filter"))
+                .filter(node -> !node.isVirtual())
+                .orElseThrow(() -> new ObjectMappingException("Spawn limit must specify filter"))
+                .getValue(TypeToken.of(Filter.class)));
+
+        // Set the enable state
+        limit.get().setEnabled(value.getNode("enabled").getBoolean(true));
+
         // Get the value node
         ConfigurationNode valueNode = value.getNode("value");
 
@@ -41,12 +50,6 @@ public class SpawnLimitSerializer implements TypeSerializer<SpawnLimit> {
         limit
                 .orElseThrow(() -> new ObjectMappingException("Failed to create spawn limit of type " + limitType))
                 .deserialize(valueNode);
-
-        // Set the filter
-        limit.get().setFilter(Optional.ofNullable(value.getNode("filter"))
-                .filter(node -> !node.isVirtual())
-                .orElseThrow(() -> new ObjectMappingException("Spawn limit must specify filter"))
-                .getValue(TypeToken.of(Filter.class)));
 
         // Return the spawn limit
         return limit.get();
@@ -56,6 +59,9 @@ public class SpawnLimitSerializer implements TypeSerializer<SpawnLimit> {
     public void serialize(TypeToken<?> type, SpawnLimit obj, ConfigurationNode value) throws ObjectMappingException {
         // Set the type
         value.getNode("type").setValue(obj.getType().getId());
+
+        // Store the enable state
+        value.getNode("enabled").setValue(obj.isEnabled());
 
         // Store the filter
         value.getNode("filter").setValue(TypeToken.of(Filter.class), obj.getFilter());
