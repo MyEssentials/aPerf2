@@ -6,6 +6,9 @@ import org.spongepowered.api.CatalogType;
 
 import java.util.Optional;
 
+/**
+ * Defines a type of {@link Filter}
+ */
 public abstract class FilterType implements CatalogType {
     /**
      * The description of the Filter
@@ -19,6 +22,12 @@ public abstract class FilterType implements CatalogType {
      */
     public abstract Class<? extends Filter> getFilterClass();
 
+    /**
+     * Deserialize the {@link ConfigurationNode} to a {@link Filter}
+     * @param value The {@link ConfigurationNode} to deserialize from
+     * @return The {@link Filter}
+     * @throws ObjectMappingException
+     */
     public final Optional<Filter> deserialize(ConfigurationNode value) throws ObjectMappingException {
         Optional<Filter> filter;
 
@@ -37,6 +46,12 @@ public abstract class FilterType implements CatalogType {
         return filter;
     }
 
+    /**
+     * Deserialize the {@link String} to a {@link Filter}
+     * @param value the {@link String} to deserialize from
+     * @return The {@link Filter}
+     * @throws ObjectMappingException
+     */
     public final Optional<Filter> deserialize(String value) throws ObjectMappingException {
         Optional<Filter> filter;
 

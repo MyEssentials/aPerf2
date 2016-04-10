@@ -1,6 +1,7 @@
 package io.github.myessentials.aperf.api.filter;
 
 import com.google.common.reflect.TypeToken;
+import io.github.myessentials.aperf.api.grouper.GroupSupplier;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 import ninja.leaping.configurate.objectmapping.serialize.TypeSerializer;
@@ -8,6 +9,9 @@ import org.spongepowered.api.Sponge;
 
 import java.util.Optional;
 
+/**
+ * A {@link TypeSerializer} for {@link Filter} instances.
+ */
 public class FilterSerializer implements TypeSerializer<Filter> {
     @Override
     public Filter deserialize(TypeToken<?> type, ConfigurationNode value) throws ObjectMappingException {

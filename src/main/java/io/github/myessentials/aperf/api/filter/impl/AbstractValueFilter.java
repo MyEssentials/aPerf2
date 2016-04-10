@@ -1,10 +1,15 @@
 package io.github.myessentials.aperf.api.filter.impl;
 
+import io.github.myessentials.aperf.api.filter.Filter;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 
 import java.util.Optional;
 
+/**
+ * {@link Filter} to load a single generic value
+ * @param <T> The type of the value
+ */
 public abstract class AbstractValueFilter<T> extends AbstractFilter {
     protected T value;
 
