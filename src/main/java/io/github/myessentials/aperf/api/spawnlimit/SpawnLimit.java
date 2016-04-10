@@ -14,11 +14,10 @@ public abstract class SpawnLimit {
     private boolean enabled = true;
 
     /**
-     * Name of this {@link SpawnLimit}.
-     * MUST be unique and the same as {@link SpawnLimitType#getId()}!
-     * @return The name of this {@link SpawnLimit}
+     * Returns the {@link SpawnLimitType} this {@link SpawnLimit} is
+     * @return Returns an instance of the {@link SpawnLimitType} for this {@link SpawnLimit}
      */
-    public abstract String getName();
+    public abstract SpawnLimitType getType();
 
     /**
      * Checks if the {@link Entity} can spawn
@@ -135,6 +134,6 @@ public abstract class SpawnLimit {
 
     @Override
     public String toString() {
-        return String.format("%s(enabled=%s; filter=%s)", getName(), isEnabled(), filter == null ? "None" : filter.toString());
+        return String.format("%s(enabled=%s; filter=%s)", getType().getId(), isEnabled(), filter == null ? "None" : filter.toString());
     }
 }

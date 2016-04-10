@@ -12,11 +12,16 @@ import org.spongepowered.api.world.Chunk;
 import java.util.Optional;
 
 public class ChunkCount extends CountLimit {
+    /**
+     * Holds the {@link ChunkCount} {@link SpawnLimitType} for convenience
+     */
+    public static final SpawnLimitType typeInstance = new Type();
+
     private int range = 0;
 
     @Override
-    public String getName() {
-        return "ChunkCount";
+    public SpawnLimitType getType() {
+        return typeInstance;
     }
 
     @Override

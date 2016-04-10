@@ -9,9 +9,14 @@ import org.spongepowered.api.entity.Entity;
  * Limits by counting entities in a world
  */
 public class WorldCount extends CountLimit {
+    /**
+     * Holds the {@link WorldCount} {@link SpawnLimitType} for convenience
+     */
+    public static final SpawnLimitType typeInstance = new Type();
+
     @Override
-    public String getName() {
-        return "WorldCount";
+    public SpawnLimitType getType() {
+        return typeInstance;
     }
 
     @Override

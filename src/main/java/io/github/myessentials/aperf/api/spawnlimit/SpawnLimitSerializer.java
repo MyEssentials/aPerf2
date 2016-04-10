@@ -55,7 +55,7 @@ public class SpawnLimitSerializer implements TypeSerializer<SpawnLimit> {
     @Override
     public void serialize(TypeToken<?> type, SpawnLimit obj, ConfigurationNode value) throws ObjectMappingException {
         // Set the type
-        value.getNode("type").setValue(obj.getName());
+        value.getNode("type").setValue(obj.getType().getId());
 
         // Store the filter
         value.getNode("filter").setValue(TypeToken.of(Filter.class), obj.getFilter());

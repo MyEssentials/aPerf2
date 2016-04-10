@@ -8,9 +8,14 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.World;
 
 public class ServerCount extends CountLimit {
+    /**
+     * Holds the {@link ServerCount} {@link SpawnLimitType} for convenience
+     */
+    public static final SpawnLimitType typeInstance = new Type();
+
     @Override
-    public String getName() {
-        return "ServerCount";
+    public SpawnLimitType getType() {
+        return typeInstance;
     }
 
     @Override

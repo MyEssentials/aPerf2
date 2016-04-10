@@ -35,10 +35,10 @@ public class SpawnLimitRegistry implements AdditionalCatalogRegistryModule<Spawn
     @Override
     @DelayedRegistration(RegistrationPhase.INIT)
     public void registerDefaults() {
-        registerAdditionalCatalog(new ChunkCount.Type());
-        registerAdditionalCatalog(new Disabled.Type());
-        registerAdditionalCatalog(new NearbyCount.Type());
-        registerAdditionalCatalog(new ServerCount.Type());
-        registerAdditionalCatalog(new WorldCount.Type());
+        registerAdditionalCatalog(ChunkCount.typeInstance);
+        registerAdditionalCatalog(Disabled.typeInstance);
+        registerAdditionalCatalog(NearbyCount.typeInstance);
+        registerAdditionalCatalog(ServerCount.typeInstance);
+        registerAdditionalCatalog(WorldCount.typeInstance);
     }
 }

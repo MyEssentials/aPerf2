@@ -11,11 +11,16 @@ import org.spongepowered.api.entity.EntityTypes;
 import java.util.Optional;
 
 public class NearbyCount extends CountLimit {
+    /**
+     * Holds the {@link NearbyCount} {@link SpawnLimitType} for convenience
+     */
+    public static final SpawnLimitType typeInstance = new Type();
+
     private int range = 0;
 
     @Override
-    public String getName() {
-        return "NearbyCount";
+    public SpawnLimitType getType() {
+        return typeInstance;
     }
 
     @Override

@@ -7,9 +7,14 @@ import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 import org.spongepowered.api.entity.Entity;
 
 public class Disabled extends SpawnLimit {
+    /**
+     * Holds the {@link Disabled} {@link SpawnLimitType} for convenience
+     */
+    public static final SpawnLimitType typeInstance = new Type();
+
     @Override
-    public String getName() {
-        return "Disabled";
+    public SpawnLimitType getType() {
+        return typeInstance;
     }
 
     @Override
