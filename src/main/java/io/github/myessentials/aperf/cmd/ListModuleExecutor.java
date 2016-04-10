@@ -39,7 +39,7 @@ class ListModuleExecutor implements CommandExecutor {
                 .stream()
                 .map(module -> template.apply(ImmutableMap.of(
                         "moduleName", Text.of(module.getId()),
-                        "enableState", Text.of(module.isEnabled() ? "enabled" : "disabled")
+                        "enableState", module.getEnableText()
                 )).build())
                 .collect(Collectors.toList());
 

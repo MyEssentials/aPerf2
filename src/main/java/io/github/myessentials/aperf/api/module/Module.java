@@ -2,6 +2,8 @@ package io.github.myessentials.aperf.api.module;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.command.dispatcher.SimpleDispatcher;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.format.TextColors;
 
 public abstract class Module implements CatalogType {
     private boolean enabled = true;
@@ -32,6 +34,10 @@ public abstract class Module implements CatalogType {
      */
     public final void toggleEnabled() {
         setEnabled(!this.enabled);
+    }
+
+    public final Text getEnableText() {
+        return isEnabled() ? Text.of(TextColors.GREEN, "Enabled") : Text.of(TextColors.RED, "Disabled");
     }
 
     public SimpleDispatcher getCommandDispatcher() {
