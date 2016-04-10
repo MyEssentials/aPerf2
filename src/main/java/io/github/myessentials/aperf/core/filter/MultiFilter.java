@@ -13,12 +13,14 @@ import java.util.List;
 import java.util.Optional;
 
 public class MultiFilter extends AbstractFilter {
+    public static final FilterType typeInstance = new Type();
+
     private boolean allRequired = true;
     private List<Filter> filters = new ArrayList<>();
 
     @Override
-    public String getName() {
-        return "Multi";
+    public FilterType getType() {
+        return typeInstance;
     }
 
     @Override

@@ -12,12 +12,14 @@ import javax.annotation.Nonnull;
 import java.util.Optional;
 
 public class ChunkFilter implements Filter {
+    public static final FilterType typeInstance = new Type();
+
     private int x1, z1;
     private int x2, z2;
 
     @Override
-    public String getName() {
-        return "Chunk";
+    public FilterType getType() {
+        return typeInstance;
     }
 
     @Override

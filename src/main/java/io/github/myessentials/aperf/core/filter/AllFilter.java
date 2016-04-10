@@ -12,7 +12,11 @@ import javax.annotation.Nonnull;
  * {@link io.github.myessentials.aperf.api.filter.Filter} that catches all
  */
 public class AllFilter extends AbstractFilter {
-    public AllFilter() {
+    public static final FilterType typeInstance = new Type();
+
+    @Override
+    public FilterType getType() {
+        return typeInstance;
     }
 
     @Override
@@ -33,11 +37,6 @@ public class AllFilter extends AbstractFilter {
     @Override
     public void deserialize(String value) throws ObjectMappingException {
         // Unused
-    }
-
-    @Override
-    public String getName() {
-        return "All";
     }
 
     public static class Type extends FilterType {

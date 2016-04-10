@@ -10,6 +10,13 @@ import javax.annotation.Nonnull;
  * {@link io.github.myessentials.aperf.api.filter.Filter} that checks based on the Class name
  */
 public class ClassFilter extends StringFilter {
+    public static final FilterType typeInstance = new Type();
+
+    @Override
+    public FilterType getType() {
+        return typeInstance;
+    }
+
     @Override
     public boolean hits(Object o) {
         return this.value.equals(o.getClass().getName());
@@ -18,11 +25,6 @@ public class ClassFilter extends StringFilter {
     @Override
     public String group(Object o) {
         return o == null ? null : o.getClass().getName();
-    }
-
-    @Override
-    public String getName() {
-        return "Class";
     }
 
     public static class Type extends FilterType {

@@ -35,15 +35,15 @@ public class FilterRegistry implements AdditionalCatalogRegistryModule<FilterTyp
     @Override
     @DelayedRegistration(RegistrationPhase.INIT)
     public void registerDefaults() {
-        registerAdditionalCatalog(new AllFilter.Type());
-        registerAdditionalCatalog(new ChunkFilter.Type());
-        registerAdditionalCatalog(new ClassFilter.Type());
-        registerAdditionalCatalog(new DimensionFilter.Type());
-        registerAdditionalCatalog(new HashFilter.Type());
-        registerAdditionalCatalog(new InstanceFilter.Type());
-        registerAdditionalCatalog(new LClassFilter.Type());
-        registerAdditionalCatalog(new MultiFilter.Type());
-        registerAdditionalCatalog(new NameFilter.Type());
-        registerAdditionalCatalog(new PositionFilter.Type());
+        registerAdditionalCatalog(AllFilter.typeInstance);
+        registerAdditionalCatalog(ChunkFilter.typeInstance);
+        registerAdditionalCatalog(ClassFilter.typeInstance);
+        registerAdditionalCatalog(DimensionFilter.typeInstance);
+        registerAdditionalCatalog(HashFilter.typeInstance);
+        registerAdditionalCatalog(InstanceFilter.typeInstance);
+        registerAdditionalCatalog(LClassFilter.typeInstance);
+        registerAdditionalCatalog(MultiFilter.typeInstance);
+        registerAdditionalCatalog(NameFilter.typeInstance);
+        registerAdditionalCatalog(PositionFilter.typeInstance);
     }
 }

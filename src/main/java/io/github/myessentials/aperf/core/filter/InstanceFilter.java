@@ -9,11 +9,13 @@ import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 import javax.annotation.Nonnull;
 
 public class InstanceFilter extends StringFilter {
+    public static final FilterType typeInstance = new Type();
+
     private Class<?> clazz;
 
     @Override
-    public String getName() {
-        return "Instance";
+    public FilterType getType() {
+        return typeInstance;
     }
 
     @Override

@@ -34,7 +34,7 @@ public class FilterSerializer implements TypeSerializer<Filter> {
     @Override
     public void serialize(TypeToken<?> type, Filter obj, ConfigurationNode value) throws ObjectMappingException {
         // Set the type
-        value.getNode("type").setValue(obj.getName());
+        value.getNode("type").setValue(obj.getType().getId());
 
         // Get the value node
         ConfigurationNode valueNode = value.getNode("value");

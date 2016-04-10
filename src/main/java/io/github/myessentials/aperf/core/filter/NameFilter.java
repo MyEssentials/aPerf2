@@ -10,9 +10,11 @@ import org.spongepowered.api.entity.Entity;
 import javax.annotation.Nonnull;
 
 public class NameFilter extends StringFilter {
+    public static final FilterType typeInstance = new Type();
+
     @Override
-    public String getName() {
-        return "Name";
+    public FilterType getType() {
+        return typeInstance;
     }
 
     @Override

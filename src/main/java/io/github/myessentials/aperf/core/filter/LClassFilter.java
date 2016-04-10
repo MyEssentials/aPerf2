@@ -10,6 +10,13 @@ import javax.annotation.Nonnull;
  * {@link io.github.myessentials.aperf.api.filter.Filter} that checks the FULL class name
  */
 public class LClassFilter extends StringFilter {
+    public static final FilterType typeInstance = new Type();
+
+    @Override
+    public FilterType getType() {
+        return typeInstance;
+    }
+
     @Override
     public boolean hits(Object o) {
         return this.value.equals(o.getClass().getSimpleName());
@@ -18,11 +25,6 @@ public class LClassFilter extends StringFilter {
     @Override
     public String group(Object o) {
         return o == null ? null : o.getClass().getSimpleName();
-    }
-
-    @Override
-    public String getName() {
-        return "LClass";
     }
 
     public static class Type extends FilterType {

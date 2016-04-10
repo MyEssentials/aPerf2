@@ -16,12 +16,14 @@ import java.util.Optional;
  * {@link Filter} that checks based on objects position
  */
 public class PositionFilter implements Filter {
+    public static final FilterType typeInstance = new Type();
+
     private int x1, y1, z1;
     private int x2, y2, z2;
 
     @Override
-    public String getName() {
-        return "Pos";
+    public FilterType getType() {
+        return typeInstance;
     }
 
     @Override

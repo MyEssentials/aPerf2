@@ -12,11 +12,13 @@ import javax.annotation.Nonnull;
 import java.util.UUID;
 
 public class DimensionFilter extends StringFilter {
+    public static final FilterType typeInstance = new Type();
+
     private UUID worldUUID;
 
     @Override
-    public String getName() {
-        return "Dim";
+    public FilterType getType() {
+        return typeInstance;
     }
 
     @Override

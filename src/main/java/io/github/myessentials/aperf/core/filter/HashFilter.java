@@ -10,6 +10,13 @@ import javax.annotation.Nonnull;
  * {@link io.github.myessentials.aperf.api.filter.Filter} that checks the Java hashcode
  */
 public class HashFilter extends IntFilter {
+    public static final FilterType typeInstance = new Type();
+
+    @Override
+    public FilterType getType() {
+        return typeInstance;
+    }
+
     @Override
     public boolean hits(Object o) {
         return o != null && System.identityHashCode(o) == value;
@@ -18,11 +25,6 @@ public class HashFilter extends IntFilter {
     @Override
     public String group(Object o) {
         return o == null ? null : String.valueOf(System.identityHashCode(o));
-    }
-
-    @Override
-    public String getName() {
-        return "Hash";
     }
 
     public static class Type extends FilterType {

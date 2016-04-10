@@ -8,11 +8,10 @@ import ninja.leaping.configurate.objectmapping.ObjectMappingException;
  */
 public interface Filter {
     /**
-     * Name of this {@link Filter}.
-     * MUST be unique and the same as {@link FilterType#getId()}!
-     * @return The name of the Filter
+     * Returns the {@link FilterType} this {@link Filter} is
+     * @return Returns an instance of the {@link FilterType} for this {@link Filter}
      */
-    String getName();
+    FilterType getType();
 
     /**
      * Checks if o is a hit on this {@link Filter}.
