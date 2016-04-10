@@ -8,7 +8,7 @@ import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.event.filter.cause.First;
 
 public final class EventListeners {
-    private SpawnLimiterModule module;
+    private final SpawnLimiterModule module;
 
     EventListeners(SpawnLimiterModule spawnLimiterModule) {
         module = spawnLimiterModule;

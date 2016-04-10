@@ -7,13 +7,14 @@ import io.github.myessentials.aperf.api.filter.impl.AbstractFilter;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class MultiFilter extends AbstractFilter {
     private boolean allRequired = true;
-    private List<Filter> filters = new ArrayList<Filter>();
+    private List<Filter> filters = new ArrayList<>();
 
     @Override
     public String getName() {
@@ -65,11 +66,9 @@ public class MultiFilter extends AbstractFilter {
 
     public void removeFilter(Filter filter) {
         if (!filters.remove(filter)) {
-            for (Filter subFilter : filters) {
-                if (subFilter instanceof MultiFilter) {
-                    ((MultiFilter) subFilter).removeFilter(filter);
-                }
-            }
+            filters.stream()
+                    .filter(subFilter -> subFilter instanceof MultiFilter)
+                    .forEach(subFilter -> ((MultiFilter) subFilter).removeFilter(filter));
         }
     }
 
@@ -85,11 +84,13 @@ public class MultiFilter extends AbstractFilter {
         }
 
         @Override
+        @Nonnull
         public String getId() {
             return "Multi";
         }
 
         @Override
+        @Nonnull
         public String getName() {
             return "Multi";
         }

@@ -5,8 +5,8 @@ import io.github.myessentials.aperf.api.filter.Filter;
 import java.util.*;
 
 public final class Grouper<T> {
-    private Filter filter;
-    private Filter groupFilter;
+    private final Filter filter;
+    private final Filter groupFilter;
 
     public Grouper(Filter filter, Filter groupFilter) {
         this.filter = filter;

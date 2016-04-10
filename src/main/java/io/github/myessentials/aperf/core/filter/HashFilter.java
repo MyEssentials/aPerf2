@@ -4,6 +4,8 @@ import io.github.myessentials.aperf.api.filter.Filter;
 import io.github.myessentials.aperf.api.filter.FilterRegistration;
 import io.github.myessentials.aperf.api.filter.impl.IntFilter;
 
+import javax.annotation.Nonnull;
+
 /**
  * {@link io.github.myessentials.aperf.api.filter.Filter} that checks the Java hashcode
  */
@@ -35,11 +37,13 @@ public class HashFilter extends IntFilter {
         }
 
         @Override
+        @Nonnull
         public String getId() {
             return "Hash";
         }
 
         @Override
+        @Nonnull
         public String getName() {
             return "Hash";
         }

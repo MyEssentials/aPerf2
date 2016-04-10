@@ -10,28 +10,30 @@ import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextTemplate;
 
+import javax.annotation.Nonnull;
 import java.util.Optional;
 
-public class ToggleModuleExecutor implements CommandExecutor {
-    private static final CommandException InvalidModuleException = new CommandException(Text.of("Invalid module"));
+@SuppressWarnings("OptionalGetWithoutIsPresent")
+class ToggleModuleExecutor implements CommandExecutor {
     private static final TextTemplate template = TextTemplate.of(
             TextTemplate.arg("moduleName"), " was ", TextTemplate.arg("enableState")
     );
 
     @Override
-    public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
+    @Nonnull
+    public CommandResult execute(@Nonnull CommandSource src, @Nonnull CommandContext args) throws CommandException {
         Optional<Module> module = args.getOne("module");
         Optional<Boolean> enabled = args.getOne("enable");
 
         if (enabled.isPresent()) {
             // If the enable argument was present, use the value to change the enabled state of the module
             module
-                    .orElseThrow(() -> InvalidModuleException)
+                    .orElseThrow(() -> new CommandException(Text.of("Invalid module")))
                     .setEnabled(enabled.get());
         } else {
             // Otherwise we just toggle
             module
-                    .orElseThrow(() -> InvalidModuleException)
+                    .orElseThrow(() -> new CommandException(Text.of("Invalid module")))
                     .toggleEnabled();
         }
 

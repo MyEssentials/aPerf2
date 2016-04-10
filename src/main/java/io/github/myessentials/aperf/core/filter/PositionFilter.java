@@ -2,7 +2,6 @@ package io.github.myessentials.aperf.core.filter;
 
 import io.github.myessentials.aperf.api.filter.Filter;
 import io.github.myessentials.aperf.api.filter.FilterRegistration;
-import io.github.myessentials.aperf.api.filter.impl.StringFilter;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 import org.spongepowered.api.block.tileentity.TileEntity;
@@ -10,6 +9,7 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.Optional;
 
 /**
@@ -164,11 +164,13 @@ public class PositionFilter implements Filter {
         }
 
         @Override
+        @Nonnull
         public String getId() {
             return "Pos";
         }
 
         @Override
+        @Nonnull
         public String getName() {
             return "Pos";
         }

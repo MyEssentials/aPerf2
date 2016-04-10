@@ -8,6 +8,7 @@ import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.entity.Entity;
 
+import javax.annotation.Nonnull;
 import java.util.Optional;
 
 public class ChunkFilter implements Filter {
@@ -145,11 +146,13 @@ public class ChunkFilter implements Filter {
         }
 
         @Override
+        @Nonnull
         public String getId() {
             return "Chunk";
         }
 
         @Override
+        @Nonnull
         public String getName() {
             return "Chunk";
         }

@@ -8,6 +8,7 @@ import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.entity.Entity;
 
+import javax.annotation.Nonnull;
 import java.util.UUID;
 
 public class DimensionFilter extends StringFilter {
@@ -77,11 +78,13 @@ public class DimensionFilter extends StringFilter {
         }
 
         @Override
+        @Nonnull
         public String getId() {
             return "Dim";
         }
 
         @Override
+        @Nonnull
         public String getName() {
             return "Dim";
         }

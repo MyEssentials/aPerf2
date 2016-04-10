@@ -7,7 +7,7 @@ import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.text.Text;
 
 public class Commands {
-    static CommandSpec listEntitiesCommandSpec = CommandSpec.builder()
+    private static final CommandSpec listEntitiesCommandSpec = CommandSpec.builder()
             .permission("aperf.cmd.module.entity.list")
             .arguments(
                     GenericArguments.catalogedElement(Text.of("group"), FilterRegistration.class),

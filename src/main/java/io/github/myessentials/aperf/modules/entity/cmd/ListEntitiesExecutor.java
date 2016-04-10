@@ -19,14 +19,15 @@ import org.spongepowered.api.text.TextTemplate;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class ListEntitiesExecutor implements CommandExecutor {
-    private static TextTemplate listEntryTemplate = TextTemplate.of(
+class ListEntitiesExecutor implements CommandExecutor {
+    private static final TextTemplate listEntryTemplate = TextTemplate.of(
             TextTemplate.arg("prefix").color(TextColors.WHITE),
             TextTemplate.arg("name").color(TextColors.RED),
             TextColors.GREEN, " | ",
@@ -34,7 +35,8 @@ public class ListEntitiesExecutor implements CommandExecutor {
     );
 
     @Override
-    public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
+    @Nonnull
+    public CommandResult execute(@Nonnull CommandSource src, @Nonnull CommandContext args) throws CommandException {
         Filter group;
         Filter filter;
 
@@ -111,16 +113,10 @@ public class ListEntitiesExecutor implements CommandExecutor {
 
     private static List<Text> getCountedList(String prefix, List<Map.Entry<String, Integer>> counts) {
         Text prefixText = Text.of(prefix);
-        List<Text> list = new ArrayList<>();
-
-        for (Map.Entry<String, Integer> entry : counts) {
-            list.add(listEntryTemplate.apply(ImmutableMap.of(
-                    "prefix", prefixText,
-                    "name", Text.of(String.format("%-10s", entry.getKey())),
-                    "count", Text.of(entry.getValue())
-            )).build());
-        }
-
-        return list;
+        return counts.stream().map(entry -> listEntryTemplate.apply(ImmutableMap.of(
+                "prefix", prefixText,
+                "name", Text.of(String.format("%-10s", entry.getKey())),
+                "count", Text.of(entry.getValue())
+        )).build()).collect(Collectors.toList());
     }
 }

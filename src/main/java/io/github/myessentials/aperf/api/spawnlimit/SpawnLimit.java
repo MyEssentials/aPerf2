@@ -14,9 +14,9 @@ public abstract class SpawnLimit {
     private boolean enabled = true;
 
     /**
-     * Name of this Filter.
+     * Name of this {@link SpawnLimit}.
      * MUST be unique and the same as {@link SpawnLimitRegistration#getId()}!
-     * @return
+     * @return The name of this {@link SpawnLimit}
      */
     public abstract String getName();
 
@@ -35,7 +35,7 @@ public abstract class SpawnLimit {
     public abstract void serialize(ConfigurationNode value) throws ObjectMappingException;
 
     /**
-     * Deserializes the values from the given {@link ConfigurationNode} into this {@link SpawnLimit}
+     * Deserialize the values from the given {@link ConfigurationNode} into this {@link SpawnLimit}
      * @param value The {@link ConfigurationNode} to deserialize from
      * @throws ObjectMappingException
      */
@@ -60,7 +60,7 @@ public abstract class SpawnLimit {
 
     /**
      * Sets the enable state of this {@link SpawnLimit}
-     * @param enabled
+     * @param enabled The new enable state
      */
     public final void setEnabled(boolean enabled) {
         this.enabled = enabled;
@@ -121,7 +121,7 @@ public abstract class SpawnLimit {
      * If current {@link Filter} is the given {@link Filter}, set current {@link Filter} to null
      * If current {@link Filter} is a {@link MultiFilter} remove the {@link Filter} from it
      *
-     * @param f
+     * @param f The {@link Filter} to remove
      */
     public final void removeFilter(Filter f) {
         if (f == null || filter == null) return;

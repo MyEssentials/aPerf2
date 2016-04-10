@@ -40,22 +40,22 @@ public class APerf {
         return instance.logger;
     }
 
-    public static final Config getConfig() {
+    public static Config getConfig() {
         return instance.configManager.config;
     }
 
-    public static final Path getConfigDir() {
+    public static Path getConfigDir() {
         return instance.configDir;
     }
 
     @Inject
-    public Logger logger;
+    private Logger logger;
 
     @Inject
     @ConfigDir(sharedRoot = false)
-    public Path configDir;
+    private Path configDir;
 
-    public ConfigManager configManager = new ConfigManager();
+    private final ConfigManager configManager = new ConfigManager();
 
     @Listener
     public void onConstruction(GameConstructionEvent ev) {

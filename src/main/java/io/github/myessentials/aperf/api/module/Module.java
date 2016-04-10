@@ -5,7 +5,7 @@ import org.spongepowered.api.command.dispatcher.SimpleDispatcher;
 
 public abstract class Module implements CatalogType {
     private boolean enabled = true;
-    private SimpleDispatcher commandDispatcher = new SimpleDispatcher();
+    private final SimpleDispatcher commandDispatcher = new SimpleDispatcher();
 
     public abstract void load();
 
@@ -21,7 +21,7 @@ public abstract class Module implements CatalogType {
 
     /**
      * Sets the enable state of this {@link Module}
-     * @param enabled
+     * @param enabled The new enable state
      */
     public final void setEnabled(boolean enabled) {
         this.enabled = enabled;

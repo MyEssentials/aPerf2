@@ -15,21 +15,21 @@ import java.util.Optional;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class SpawnLimitRegistry implements AdditionalCatalogRegistryModule<SpawnLimitRegistration> {
-    private final Map<String, SpawnLimitRegistration> spawnLimitMappints = new HashMap<>();
+    private final Map<String, SpawnLimitRegistration> spawnLimitMappings = new HashMap<>();
 
     @Override
     public Optional<SpawnLimitRegistration> getById(String id) {
-        return Optional.ofNullable(spawnLimitMappints.get(checkNotNull(id).toLowerCase()));
+        return Optional.ofNullable(spawnLimitMappings.get(checkNotNull(id).toLowerCase()));
     }
 
     @Override
     public Collection<SpawnLimitRegistration> getAll() {
-        return ImmutableList.copyOf(spawnLimitMappints.values());
+        return ImmutableList.copyOf(spawnLimitMappings.values());
     }
 
     @Override
     public void registerAdditionalCatalog(SpawnLimitRegistration extraCatalog) {
-        spawnLimitMappints.put(checkNotNull(extraCatalog).getId().toLowerCase(), extraCatalog);
+        spawnLimitMappings.put(checkNotNull(extraCatalog).getId().toLowerCase(), extraCatalog);
     }
 
     @Override

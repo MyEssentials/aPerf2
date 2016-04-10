@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class SpawnLimiterModule extends Module {
-    public Config config = new Config();
+    public final Config config = new Config();
 
     private ConfigurationLoader<? extends ConfigurationNode> spawnLimitsLoader;
     private ConfigurationNode spawnLimitsRoot;
@@ -26,7 +26,8 @@ public final class SpawnLimiterModule extends Module {
     public void load() {
         // Load config
         try {
-            spawnLimitsLoader = ConfigUtil.get(APerf.getConfigDir().resolve("spawnLimits.json"));
+            spawnLimitsLoader = ConfigUtil.get(APerf.getConfigDir().resolve("spawnLimits.json"))
+                    .orElseThrow(() -> new RuntimeException("Failed to load configuration for SpawnLimiterModule"));
             spawnLimitsRoot = spawnLimitsLoader.load();
             limits.addAll(spawnLimitsRoot.getList(TypeToken.of(SpawnLimit.class)));
 

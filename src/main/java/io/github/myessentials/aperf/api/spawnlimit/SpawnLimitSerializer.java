@@ -9,6 +9,7 @@ import org.spongepowered.api.Sponge;
 
 import java.util.Optional;
 
+@SuppressWarnings("OptionalGetWithoutIsPresent")
 public class SpawnLimitSerializer implements TypeSerializer<SpawnLimit> {
     @Override
     public SpawnLimit deserialize(TypeToken<?> type, ConfigurationNode value) throws ObjectMappingException {

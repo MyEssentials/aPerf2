@@ -8,12 +8,12 @@ import org.spongepowered.api.command.spec.CommandSpec;
 import org.spongepowered.api.text.Text;
 
 public final class Commands {
-    private static CommandSpec listModuleCommandSpec = CommandSpec.builder()
+    private static final CommandSpec listModuleCommandSpec = CommandSpec.builder()
             .permission("aperf.cmd.module.list")
             .executor(new ListModuleExecutor())
             .build();
 
-    private static CommandSpec toggleModuleCommandSpec = CommandSpec.builder()
+    private static final CommandSpec toggleModuleCommandSpec = CommandSpec.builder()
             .permission("aperf.cmd.module.toggle")
             .arguments(
                     GenericArguments.catalogedElement(Text.of("module"), Module.class),
@@ -22,13 +22,13 @@ public final class Commands {
             .executor(new ToggleModuleExecutor())
             .build();
 
-    private static CommandSpec moduleCommandSpec = CommandSpec.builder()
+    private static final CommandSpec moduleCommandSpec = CommandSpec.builder()
             .permission("aperf.cmd.module")
             .child(listModuleCommandSpec, "list", "l")
             .child(toggleModuleCommandSpec, "toggle")
             .build();
 
-    private static CommandSpec aPerfCommandSpec = CommandSpec.builder()
+    private static final CommandSpec aPerfCommandSpec = CommandSpec.builder()
             .permission("aperf.cmd")
             .arguments(
                     GenericArguments.catalogedElement(Text.of("module"), Module.class),

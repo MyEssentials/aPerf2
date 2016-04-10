@@ -7,6 +7,7 @@ import ninja.leaping.configurate.loader.ConfigurationLoader;
 import ninja.leaping.configurate.yaml.YAMLConfigurationLoader;
 
 import java.nio.file.Path;
+import java.util.Optional;
 
 public final class ConfigUtil {
     private ConfigUtil() {
@@ -17,15 +18,15 @@ public final class ConfigUtil {
      * @param path The path to check
      * @return The ConfigurationLoader created
      */
-    public static ConfigurationLoader<? extends ConfigurationNode> get(Path path) {
+    public static Optional<ConfigurationLoader<? extends ConfigurationNode>> get(Path path) {
         if (path.toString().endsWith(".json")) {
-            return GsonConfigurationLoader.builder().setPath(path).build();
+            return Optional.ofNullable(GsonConfigurationLoader.builder().setPath(path).build());
         } else if (path.toString().endsWith(".yml") || path.toString().endsWith(".yaml")) {
-            return YAMLConfigurationLoader.builder().setPath(path).build();
+            return Optional.ofNullable(YAMLConfigurationLoader.builder().setPath(path).build());
         } else if (path.toString().endsWith(".conf")) {
-            return HoconConfigurationLoader.builder().setPath(path).build();
+            return Optional.ofNullable(HoconConfigurationLoader.builder().setPath(path).build());
         }
 
-        return null;
+        return Optional.empty();
     }
 }

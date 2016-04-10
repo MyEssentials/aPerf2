@@ -6,6 +6,8 @@ import io.github.myessentials.aperf.api.filter.impl.StringFilter;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 
+import javax.annotation.Nonnull;
+
 public class InstanceFilter extends StringFilter {
     private Class<?> clazz;
 
@@ -57,11 +59,13 @@ public class InstanceFilter extends StringFilter {
         }
 
         @Override
+        @Nonnull
         public String getId() {
             return "Instance";
         }
 
         @Override
+        @Nonnull
         public String getName() {
             return "Instance";
         }

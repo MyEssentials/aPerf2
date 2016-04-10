@@ -6,6 +6,8 @@ import io.github.myessentials.aperf.api.filter.impl.AbstractFilter;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 
+import javax.annotation.Nonnull;
+
 /**
  * {@link io.github.myessentials.aperf.api.filter.Filter} that catches all
  */
@@ -50,11 +52,13 @@ public class AllFilter extends AbstractFilter {
         }
 
         @Override
+        @Nonnull
         public String getId() {
             return "All";
         }
 
         @Override
+        @Nonnull
         public String getName() {
             return "All";
         }

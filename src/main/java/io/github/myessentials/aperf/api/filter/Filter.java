@@ -8,14 +8,14 @@ import ninja.leaping.configurate.objectmapping.ObjectMappingException;
  */
 public interface Filter {
     /**
-     * Name of this Filter.
+     * Name of this {@link Filter}.
      * MUST be unique and the same as {@link FilterRegistration#getId()}!
-     * @return
+     * @return The name of the Filter
      */
     String getName();
 
     /**
-     * Checks if o is a hit on the filter.
+     * Checks if o is a hit on this {@link Filter}.
      * Filter should type check the given Object and return false if it can't check it!
      * @param o The Object to check
      * @return If the Object hits the Filter
@@ -30,21 +30,21 @@ public interface Filter {
     String group(Object o);
 
     /**
-     * Serializes the values of this {@link Filter} to a {@link ConfigurationNode}
+     * Serialize the values of this {@link Filter} to a {@link ConfigurationNode}
      * @param value The {@link ConfigurationNode} to serialize to
      * @throws ObjectMappingException
      */
     void serialize(ConfigurationNode value) throws ObjectMappingException;
 
     /**
-     * Deserializes the values from the given {@link ConfigurationNode} into this {@link Filter}
+     * Deserialize the values from the given {@link ConfigurationNode} into this {@link Filter}
      * @param value The {@link ConfigurationNode} to deserialize from
      * @throws ObjectMappingException
      */
     void deserialize(ConfigurationNode value) throws ObjectMappingException;
 
     /**
-     * Deserialized the value from the given String into this {@link Filter}
+     * Deserialize the value from the given String into this {@link Filter}
      * @param value The String to deserialize from
      * @throws ObjectMappingException
      */

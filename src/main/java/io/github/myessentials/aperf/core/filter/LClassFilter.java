@@ -4,6 +4,8 @@ import io.github.myessentials.aperf.api.filter.Filter;
 import io.github.myessentials.aperf.api.filter.FilterRegistration;
 import io.github.myessentials.aperf.api.filter.impl.StringFilter;
 
+import javax.annotation.Nonnull;
+
 /**
  * {@link io.github.myessentials.aperf.api.filter.Filter} that checks the FULL class name
  */
@@ -35,11 +37,13 @@ public class LClassFilter extends StringFilter {
         }
 
         @Override
+        @Nonnull
         public String getId() {
             return "LClass";
         }
 
         @Override
+        @Nonnull
         public String getName() {
             return "LClass";
         }

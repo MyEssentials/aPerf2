@@ -7,6 +7,8 @@ import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.entity.Entity;
 
+import javax.annotation.Nonnull;
+
 public class NameFilter extends StringFilter {
     @Override
     public String getName() {
@@ -53,11 +55,13 @@ public class NameFilter extends StringFilter {
         }
 
         @Override
+        @Nonnull
         public String getId() {
             return "Name";
         }
 
         @Override
+        @Nonnull
         public String getName() {
             return "Name";
         }

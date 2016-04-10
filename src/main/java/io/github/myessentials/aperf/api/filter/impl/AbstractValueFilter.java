@@ -19,6 +19,7 @@ public abstract class AbstractValueFilter<T> extends AbstractFilter {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void deserialize(ConfigurationNode value) throws ObjectMappingException {
         this.value = (T) Optional.ofNullable(value)
                 .filter(node -> !node.isVirtual())

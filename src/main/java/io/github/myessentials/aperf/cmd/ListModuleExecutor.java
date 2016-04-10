@@ -13,18 +13,20 @@ import org.spongepowered.api.service.pagination.PaginationService;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.TextTemplate;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.stream.Collectors;
 
 // TODO Cache the builder and refresh as needed?
 
-public class ListModuleExecutor implements CommandExecutor {
+class ListModuleExecutor implements CommandExecutor {
     private static final TextTemplate template = TextTemplate.of(
             TextTemplate.arg("moduleName"), " - ", TextTemplate.arg("enableState")
     );
 
     @Override
-    public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
+    @Nonnull
+    public CommandResult execute(@Nonnull CommandSource src, @Nonnull CommandContext args) throws CommandException {
         // Get builder
         PaginationList.Builder builder = Sponge.getServiceManager().provide(PaginationService.class)
                 .orElseThrow(() -> new CommandException(Text.of("Failed to get pagination service")))
