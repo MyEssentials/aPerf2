@@ -37,8 +37,6 @@ public final class SpawnLimiterModule extends Module {
                     .orElseThrow(() -> new RuntimeException("Failed to load configuration for SpawnLimiterModule"));
             spawnLimitsRoot = spawnLimitsLoader.load();
             limits.addAll(spawnLimitsRoot.getList(TypeToken.of(SpawnLimit.class)));
-
-            APerf.getLogger().info(limits.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
