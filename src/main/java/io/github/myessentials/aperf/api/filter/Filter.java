@@ -1,12 +1,13 @@
 package io.github.myessentials.aperf.api.filter;
 
+import io.github.myessentials.aperf.api.grouper.GroupSupplier;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 
 /**
- * Interface for all Filters to build off of
+ * Interface for all Filters to build off of.
  */
-public interface Filter {
+public interface Filter extends GroupSupplier {
     /**
      * Returns the {@link FilterType} this {@link Filter} is
      * @return Returns an instance of the {@link FilterType} for this {@link Filter}
@@ -20,13 +21,6 @@ public interface Filter {
      * @return If the Object hits the Filter
      */
     boolean hits(Object o);
-
-    /**
-     * Returns what group o belongs to.
-     * @param o The Object to check
-     * @return The group the Object belongs to
-     */
-    String group(Object o);
 
     /**
      * Serialize the values of this {@link Filter} to a {@link ConfigurationNode}

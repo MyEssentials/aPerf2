@@ -3,6 +3,7 @@ package io.github.myessentials.aperf.modules.entity.cmd;
 import com.google.common.collect.ImmutableMap;
 import io.github.myessentials.aperf.api.filter.Filter;
 import io.github.myessentials.aperf.api.filter.FilterType;
+import io.github.myessentials.aperf.api.grouper.GroupSupplier;
 import io.github.myessentials.aperf.api.grouper.Grouper;
 import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 import org.spongepowered.api.Sponge;
@@ -71,7 +72,7 @@ class ListEntitiesExecutor implements CommandExecutor {
         return CommandResult.success();
     }
 
-    private static void sendResult(CommandSource src, Filter filter, Filter group) throws CommandException {
+    private static void sendResult(CommandSource src, Filter filter, GroupSupplier group) throws CommandException {
         // Create grouper
         Grouper<Entity> grouper = new Grouper<>(filter, group);
 

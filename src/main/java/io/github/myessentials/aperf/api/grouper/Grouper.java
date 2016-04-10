@@ -6,26 +6,26 @@ import java.util.*;
 
 public final class Grouper<T> {
     private final Filter filter;
-    private final Filter groupFilter;
+    private final GroupSupplier groupSupplier;
 
-    public Grouper(Filter filter, Filter groupFilter) {
+    public Grouper(Filter filter, GroupSupplier groupSupplier) {
         this.filter = filter;
-        this.groupFilter = groupFilter;
+        this.groupSupplier = groupSupplier;
     }
 
     public List<Map.Entry<String, Integer>> group(Iterable<T> list, Comparator<Map.Entry<String, Integer>> comparator) {
         Map<String, Integer> counts = new HashMap<>();
 
         // If filter or group filter is null, return early
-        if (filter == null || groupFilter == null) return new ArrayList<>(counts.entrySet());
+        if (filter == null || groupSupplier == null) return new ArrayList<>(counts.entrySet());
 
         // Loop over all the objects
         for (T o : list) {
             // Check if the object hits the filter
             if (!filter.hits(o)) continue;
 
-            // Get the group from the groupFilter
-            String group = groupFilter.group(o);
+            // Get the group from the groupSupplier
+            String group = groupSupplier.group(o);
 
             // Ignore the entity of the group is null
             if (group == null) continue;
