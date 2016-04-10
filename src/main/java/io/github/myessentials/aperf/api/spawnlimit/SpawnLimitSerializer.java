@@ -41,7 +41,7 @@ public class SpawnLimitSerializer implements TypeSerializer<SpawnLimit> {
                 .getValue(TypeToken.of(Filter.class)));
 
         // Set the enable state
-        limit.get().setEnabled(value.getNode("enabled").getBoolean(true));
+        limit.get().setActive(value.getNode("active").getBoolean(true));
 
         // Get the value node
         ConfigurationNode valueNode = value.getNode("value");
@@ -61,7 +61,7 @@ public class SpawnLimitSerializer implements TypeSerializer<SpawnLimit> {
         value.getNode("type").setValue(obj.getType().getId());
 
         // Store the enable state
-        value.getNode("enabled").setValue(obj.isEnabled());
+        value.getNode("active").setValue(obj.isActive());
 
         // Store the filter
         value.getNode("filter").setValue(TypeToken.of(Filter.class), obj.getFilter());

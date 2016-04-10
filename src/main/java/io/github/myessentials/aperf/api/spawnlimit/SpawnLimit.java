@@ -5,13 +5,15 @@ import io.github.myessentials.aperf.core.filter.MultiFilter;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.format.TextColors;
 
 /**
  * Interface for all SpawnLimits to build off of
  */
 public abstract class SpawnLimit {
     private Filter filter;
-    private boolean enabled = true;
+    private boolean active = true;
 
     /**
      * Returns the {@link SpawnLimitType} this {@link SpawnLimit} is
@@ -50,26 +52,30 @@ public abstract class SpawnLimit {
     }
 
     /**
-     * Returns if this {@link SpawnLimit} is enabled or not
+     * Returns if this {@link SpawnLimit} is active or not
      * @return The current enable state of this {@link SpawnLimit}
      */
-    public final boolean isEnabled() {
-        return enabled;
+    public final boolean isActive() {
+        return active;
     }
 
     /**
      * Sets the enable state of this {@link SpawnLimit}
-     * @param enabled The new enable state
+     * @param active The new enable state
      */
-    public final void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+    public final void setActive(boolean active) {
+        this.active = active;
     }
 
     /**
      * Toggles the enable state of this {@link SpawnLimit}
      */
-    public final void toggleEnabled() {
-        setEnabled(!this.enabled);
+    public final void toggleActive() {
+        setActive(!this.active);
+    }
+
+    public final Text getActiveText() {
+        return isActive() ? Text.of(TextColors.GREEN, "On") : Text.of(TextColors.RED, "Off");
     }
 
     /**
@@ -134,6 +140,6 @@ public abstract class SpawnLimit {
 
     @Override
     public String toString() {
-        return String.format("%s(enabled=%s; filter=%s)", getType().getId(), isEnabled(), filter == null ? "None" : filter.toString());
+        return String.format("%s(active=%s; filter=%s)", getType().getId(), isActive(), filter == null ? "None" : filter.toString());
     }
 }
