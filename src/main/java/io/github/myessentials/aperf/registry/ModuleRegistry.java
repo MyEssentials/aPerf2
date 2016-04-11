@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import io.github.myessentials.aperf.api.module.Module;
 import io.github.myessentials.aperf.modules.entity.EntityModule;
 import io.github.myessentials.aperf.modules.spawnlimiter.SpawnLimiterModule;
+import io.github.myessentials.aperf.modules.tileentity.TileEntityModule;
 import org.spongepowered.api.registry.AdditionalCatalogRegistryModule;
 import org.spongepowered.api.registry.RegistrationPhase;
 import org.spongepowered.api.registry.util.DelayedRegistration;
@@ -38,5 +39,6 @@ public class ModuleRegistry implements AdditionalCatalogRegistryModule<Module> {
     public void registerDefaults() {
         registerAdditionalCatalog(EntityModule.instance);
         registerAdditionalCatalog(SpawnLimiterModule.instance);
+        registerAdditionalCatalog(TileEntityModule.instance);
     }
 }
