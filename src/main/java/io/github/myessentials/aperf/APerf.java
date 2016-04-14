@@ -15,6 +15,7 @@ import io.github.myessentials.aperf.config.ConfigManager;
 import io.github.myessentials.aperf.registry.FilterRegistry;
 import io.github.myessentials.aperf.registry.ModuleRegistry;
 import io.github.myessentials.aperf.registry.SpawnLimitRegistry;
+import io.github.myessentials.aperf.util.logger.MessageLogger;
 import me.flibio.updatifier.Updatifier;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
@@ -26,6 +27,7 @@ import org.spongepowered.api.config.DefaultConfig;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.*;
 import org.spongepowered.api.plugin.Plugin;
+import org.spongepowered.api.text.channel.MessageChannel;
 
 import java.nio.file.Path;
 
@@ -48,7 +50,6 @@ public class APerf {
         return instance.configDir;
     }
 
-    @Inject
     private Logger logger;
 
     @Inject
@@ -98,5 +99,11 @@ public class APerf {
     @Inject
     private void setLoader(@DefaultConfig(sharedRoot = false) ConfigurationLoader<CommentedConfigurationNode> loader) {
         configManager.setLoader(loader);
+    }
+
+    @Inject
+    private void setLogger(Logger logger) {
+        // TODO: Replace permission MessageChannel with a custom channel?
+        this.logger = new MessageLogger(logger, MessageChannel.permission("aperf.debug.channel"));
     }
 }
